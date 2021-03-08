@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBSubdereModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DetalleNomina">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Patente" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdNomina" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nominas">
+          <Key>
+            <PropertyRef Name="IdNomina" />
+          </Key>
+          <Property Name="IdNomina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="Patente" />
+          </Key>
+          <Property Name="Patente" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Rut" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+          <Property Name="FechaFactura" Type="datetime" />
+          <Property Name="FechaHomologacion" Type="datetime" />
+          <Property Name="ValorFactura" Type="bigint" />
+          <Property Name="FechaPlazoHomologacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetalleNomina_Nominas">
+          <End Role="Nominas" Type="Self.Nominas" Multiplicity="1" />
+          <End Role="DetalleNomina" Type="Self.DetalleNomina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nominas">
+              <PropertyRef Name="IdNomina" />
+            </Principal>
+            <Dependent Role="DetalleNomina">
+              <PropertyRef Name="IdNomina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleNomina_Vehiculos">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="DetalleNomina" Type="Self.DetalleNomina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Patente" />
+            </Principal>
+            <Dependent Role="DetalleNomina">
+              <PropertyRef Name="Patente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBSubdereModelStoreContainer">
+          <EntitySet Name="DetalleNomina" EntityType="Self.DetalleNomina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nominas" EntityType="Self.Nominas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetalleNomina_Nominas" Association="Self.FK_DetalleNomina_Nominas">
+            <End Role="Nominas" EntitySet="Nominas" />
+            <End Role="DetalleNomina" EntitySet="DetalleNomina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleNomina_Vehiculos" Association="Self.FK_DetalleNomina_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="DetalleNomina" EntitySet="DetalleNomina" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBSubdereModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DetalleNomina">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Patente" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IdNomina" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nominas" Relationship="Self.FK_DetalleNomina_Nominas" FromRole="DetalleNomina" ToRole="Nominas" />
+          <NavigationProperty Name="Vehiculos" Relationship="Self.FK_DetalleNomina_Vehiculos" FromRole="DetalleNomina" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Nominas">
+          <Key>
+            <PropertyRef Name="IdNomina" />
+          </Key>
+          <Property Name="IdNomina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DetalleNomina" Relationship="Self.FK_DetalleNomina_Nominas" FromRole="Nominas" ToRole="DetalleNomina" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="Patente" />
+          </Key>
+          <Property Name="Patente" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaFactura" Type="DateTime" Precision="3" />
+          <Property Name="FechaHomologacion" Type="DateTime" Precision="3" />
+          <Property Name="ValorFactura" Type="Int64" />
+          <Property Name="FechaPlazoHomologacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DetalleNomina" Relationship="Self.FK_DetalleNomina_Vehiculos" FromRole="Vehiculos" ToRole="DetalleNomina" />
+        </EntityType>
+        <Association Name="FK_DetalleNomina_Nominas">
+          <End Role="Nominas" Type="Self.Nominas" Multiplicity="1" />
+          <End Role="DetalleNomina" Type="Self.DetalleNomina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nominas">
+              <PropertyRef Name="IdNomina" />
+            </Principal>
+            <Dependent Role="DetalleNomina">
+              <PropertyRef Name="IdNomina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleNomina_Vehiculos">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="DetalleNomina" Type="Self.DetalleNomina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="Patente" />
+            </Principal>
+            <Dependent Role="DetalleNomina">
+              <PropertyRef Name="Patente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBSubdereEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DetalleNomina" EntityType="Self.DetalleNomina" />
+          <EntitySet Name="Nominas" EntityType="Self.Nominas" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" />
+          <AssociationSet Name="FK_DetalleNomina_Nominas" Association="Self.FK_DetalleNomina_Nominas">
+            <End Role="Nominas" EntitySet="Nominas" />
+            <End Role="DetalleNomina" EntitySet="DetalleNomina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleNomina_Vehiculos" Association="Self.FK_DetalleNomina_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="DetalleNomina" EntitySet="DetalleNomina" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBSubdereModelStoreContainer" CdmEntityContainer="DBSubdereEntities">
+          <EntitySetMapping Name="DetalleNomina">
+            <EntityTypeMapping TypeName="DBSubdereModel.DetalleNomina">
+              <MappingFragment StoreEntitySet="DetalleNomina">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="Patente" ColumnName="Patente" />
+                <ScalarProperty Name="IdNomina" ColumnName="IdNomina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nominas">
+            <EntityTypeMapping TypeName="DBSubdereModel.Nominas">
+              <MappingFragment StoreEntitySet="Nominas">
+                <ScalarProperty Name="IdNomina" ColumnName="IdNomina" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculos">
+            <EntityTypeMapping TypeName="DBSubdereModel.Vehiculos">
+              <MappingFragment StoreEntitySet="Vehiculos">
+                <ScalarProperty Name="Patente" ColumnName="Patente" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="FechaHomologacion" ColumnName="FechaHomologacion" />
+                <ScalarProperty Name="ValorFactura" ColumnName="ValorFactura" />
+                <ScalarProperty Name="FechaPlazoHomologacion" ColumnName="FechaPlazoHomologacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

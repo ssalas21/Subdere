@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -50,8 +50,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,6 +79,500 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Anexo_de_Vehiculos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asignacion_de_Cuentas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Autorizacion_Usuarios.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base_Hertz.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bloqueo_de_Vehiculos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bloque_de_Personas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Boletines_en_Tarjetas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Boletines_Nulos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cajas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cambio_Dueño.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarrosRemol_Nulos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Carros_Remolques_Factura_Declaracion.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ciudadesMapfre.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Codigos_ComunaJPL_SRCEI.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Codigos_JPL_SRCEI.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Compañias_De_Seguros.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes_Pago_Multas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comunas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="comunasConsorcio.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="comunasMapfre.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion_Datos_Padron.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion_Posiciones_Padron.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion_Sistema.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contaminacion.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Control_Folios_Internet.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Control_Folios_Internet_InHouse.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Control_Pago_Deuda.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Control_Vencimiento_CHI.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Correos_por_proceso_masivo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Correo_Factura.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Crea_Correlativo_Varios.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cuentas_por_Periodo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Bloqueo_de_Vehiculos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Boletines_Nulos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Cajas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Codigos_ComunaJPL_SRCEI.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Codigos_JPL_SRCEI.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Compañias_de_Seguros.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Historico_Tasaciones_.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos_del_CarrosRemolques.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos_del_Vehiculo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos_del_Vehiculo_01.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos_del_Vehiculo_Resp.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos_Historico_CarrosRemolques.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos_Incorporacion.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Derechos_Varios.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DerVar.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleNomina.cs">
+      <DependentUpon>ModelNominas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle_Contaminacion.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle_Derechos_Varios.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle_Encuesta_Anual.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Documento_Factura.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Documento_Traslado.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Duplicados.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Eliminacion_por_Decreto.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empresa.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Encuesta_Anual.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EQU_COMUNAS_CONSORCIO.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Estados_de_Traslados.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Factura_Internet.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ficha_Vehiculo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="firmasContribuyente.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generacion_Preemision.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Glosa_Multas_de_Transito.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Historico_CorreccionMon.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Historico_Reemplazo_Placas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Historico_Tasaciones.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hist_Rev_Tecnicas_Seguros.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Huella_Usuario.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Impuesto.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Indices.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Informe_Dinamico_QR.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Lugares.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedor_Correos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Marcas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mensaje_Correo_Factura.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelNominas.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelNominas.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelNominas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelNominas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelNominas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelNominas.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSubdere.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nominas.cs">
+      <DependentUpon>ModelNominas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notificacion_Actualizacion_Estructura.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notificacion_Actualizacion_Estructura__.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="No_Preemitir.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pagos_Adicionales.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pago_de_Sellos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="parametros_fuente.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parametros_Generales.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PASO_PERMISO.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Periodos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos_00.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos_de_Circulacion.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos_Resp.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos_Robados.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Posiciones_Primer_Cuerpo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Posiciones_Segundo_Cuerpo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Prescripcion_Adjuntos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Propietarios.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Propietarios_0.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROP_1.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rebaja_de_Multas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Regiones.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="regionesMapfre.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroLinkDuplicados.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registros_por_cargas_masivas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_Automotoras_Internet.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_Multas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_multas_de_paso.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_Multas_Pagadas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_Multas_PagadasOtrasComunas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_Multas_Pagadas_Convenio.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_multas_Prescritas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registro_de_Preemisiones.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reg_Rev_Tecnicas_Robadas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reg_Sellos_Robados.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Renovacion_Adjuntos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Respaldo_SII.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Respaldo_Version.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Resultado_Pagos_Adicionales.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sellos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sellos_Nulos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sellos_Placas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sellos_Vehiculo.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Series_Placas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SII.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SII_Paso.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Solicitud_de_Traslado.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIPOS_DE_CARROCERIAS.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Documentos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Ingreso.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Pago.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Vehiculos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Vehiculos_BCI.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Vehiculos_EquivalenciasSeguro.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_de_Vehiculos_Seguro.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_Monedas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Totales_Morosos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_AACH.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Aseguradoras.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_BcoChile.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_BcoChile_Detalle.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Consorcio.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_ImpExp.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Mapfre.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Mapfre_v1.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_MTT.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Registro_Civil.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_TesoreriaGeneral.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_TesoreriaGeneral_Detalle.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Transbank.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Transbank_Detalle.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transacciones_Transbank_Pago_Automatico.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traslados_de_Vehiculos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traslados_de_Vehiculos___.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traslados_Internet.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Traslados_Resp.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios_Externos.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Valores_Monedas.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vehiculos.cs">
+      <DependentUpon>ModelNominas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vehiculos_Fuera_Circulacion.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Verificacion_Ingreso.cs">
+      <DependentUpon>ModelSubdere.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +587,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelSubdere.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSubdere.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSubdere.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSubdere.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -101,6 +614,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="ModelSubdere.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelSubdere.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ModelNominas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelNominas.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelNominas.edmx.diagram">
+      <DependentUpon>ModelNominas.edmx</DependentUpon>
+    </None>
+    <None Include="ModelSubdere.edmx.diagram">
+      <DependentUpon>ModelSubdere.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,15 +636,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DBSubdere.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DBSubdere_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DBSubdere.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -129,6 +648,38 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBSubdere.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBSubdere_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>DBSubdere.mdf</DependentUpon>
+    </Content>
+    <Content Include="ModelNominas.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelNominas.edmx</DependentUpon>
+      <LastGenOutput>ModelNominas.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelNominas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelNominas.edmx</DependentUpon>
+      <LastGenOutput>ModelNominas.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelSubdere.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelSubdere.Context.cs</LastGenOutput>
+      <DependentUpon>ModelSubdere.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelSubdere.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSubdere.edmx</DependentUpon>
+      <LastGenOutput>ModelSubdere.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
