@@ -5,6 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Subdere"
         mc:Ignorable="d"
-        Title="MainWindow" Height="516.066" Width="1058.033">
-    <Grid/>
+        Title="MainWindow" Height="636.975" Width="831.669">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="369*"/>
+            <RowDefinition Height="116*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="337" Margin="10,12,0,0" Stroke="Black" VerticalAlignment="Top" Width="804"/>
+        <Label Content="Datos del Vehículo" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <Label Content="Placa" HorizontalAlignment="Left" Margin="27,62,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtPlaca" HorizontalAlignment="Left" Height="23" Margin="114,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" KeyUp="TxtPlaca_KeyUp"/>
+        <Label Content="Digito" HorizontalAlignment="Left" Margin="27,90,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtDigito" HorizontalAlignment="Left" Height="23" Margin="114,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <Label Content="Codigo" HorizontalAlignment="Left" Margin="27,118,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="114,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="TxtAnno" HorizontalAlignment="Left" Height="23" Margin="114,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <Label Content="Año" HorizontalAlignment="Left" Margin="27,145,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tasación" HorizontalAlignment="Left" Margin="27,173,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtTasacion" HorizontalAlignment="Left" Height="23" Margin="114,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsEnabled="False"/>
+        <Label x:Name="LblFechaFactura" Content="Fecha de Factura" HorizontalAlignment="Left" Margin="475,62,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha Emisión Homologación" HorizontalAlignment="Left" Margin="475,90,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblValorFactura" Content="Valor Neto Factura" HorizontalAlignment="Left" Margin="475,146,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtValorNetoFactura" HorizontalAlignment="Left" Height="23" Margin="648,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Número de motor" HorizontalAlignment="Left" Margin="475,175,0,0" VerticalAlignment="Top"/>
+        <Label Content="Número de chassis" HorizontalAlignment="Left" Margin="475,202,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtNroMotor" HorizontalAlignment="Left" Height="23" Margin="648,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtNroChassis" HorizontalAlignment="Left" Height="23" Margin="648,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Color" HorizontalAlignment="Left" Margin="27,201,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtColor" HorizontalAlignment="Left" Height="23" Margin="114,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="475,228,0,0" VerticalAlignment="Top"/>
+        <Label Content="Modelo" HorizontalAlignment="Left" Margin="27,230,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tipo" HorizontalAlignment="Left" Margin="475,259,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cilindrada" HorizontalAlignment="Left" Margin="27,258,0,0" VerticalAlignment="Top"/>
+        <Label Content="Combustible" HorizontalAlignment="Left" Margin="475,287,0,0" VerticalAlignment="Top"/>
+        <Label Content="Transmisión" HorizontalAlignment="Left" Margin="27,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Equipamiento" HorizontalAlignment="Left" Margin="475,314,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtModelo" HorizontalAlignment="Left" Height="23" Margin="114,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="TxtCilindrada" HorizontalAlignment="Left" Height="23" Margin="114,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="TxtTransmision" HorizontalAlignment="Left" Height="23" Margin="114,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="TxtMarca" HorizontalAlignment="Left" Height="23" Margin="648,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtCombustible" HorizontalAlignment="Left" Height="23" Margin="648,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="CmbTipo" HorizontalAlignment="Left" Margin="648,261,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtEquipamiento" HorizontalAlignment="Left" Height="23" Margin="648,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="DpFechaFactura" HorizontalAlignment="Left" Margin="648,62,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="DpFechaEmisionHomologacion" HorizontalAlignment="Left" Margin="648,91,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="372,122,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}"/>
+        <Label Content="Fecha Plazo Homologación" HorizontalAlignment="Left" Margin="475,119,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DpPlazoHomologacion" HorizontalAlignment="Left" Margin="648,120,0,0" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="ChkSello" Content="¿Tiene sello verde?" HorizontalAlignment="Left" Margin="114,320,0,0" VerticalAlignment="Top" Width="242" IsChecked="True"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="192" Margin="10,361,0,0" Stroke="Black" VerticalAlignment="Top" Width="508" Grid.RowSpan="2"/>
+        <Label Content="Datos del propietario" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <Label Content="Rut" HorizontalAlignment="Left" Margin="27,385,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="27,416,0,0" VerticalAlignment="Top"/>
+        <Label Content="Domicilio" HorizontalAlignment="Left" Margin="27,447,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Label Content="Comuna" HorizontalAlignment="Left" Margin="27,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Teléfono" HorizontalAlignment="Left" Margin="27,48,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtRut" HorizontalAlignment="Left" Height="23" Margin="114,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" MaxLength="10" LostFocus="TxtRut_LostFocus"/>
+        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="114,419,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
+        <TextBox x:Name="TxtDomicilio" HorizontalAlignment="Left" Height="23" Margin="114,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" Grid.RowSpan="2"/>
+        <TextBox x:Name="TxtComuna" HorizontalAlignment="Left" Height="23" Margin="114,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
+        <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="114,52,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
+    </Grid>
 </Window>
