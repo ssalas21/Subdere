@@ -91,6 +91,7 @@
     <Compile Include="Base_Hertz.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
+    <Compile Include="BLL\ComunasBLL.cs" />
     <Compile Include="BLL\Datos_del_VehiculoBLL.cs" />
     <Compile Include="BLL\PropietariosBLL.cs" />
     <Compile Include="BLL\SIIBLL.cs" />

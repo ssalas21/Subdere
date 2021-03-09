@@ -18,5 +18,9 @@ namespace Subdere.BLL {
             return (from l in context.SII where l.Codigo == codigo select l).FirstOrDefault();            
         }
 
+        public bool CheckSII(string codigo) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo == codigo select l).Any();
+        }
     }
 }

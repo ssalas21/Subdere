@@ -63,7 +63,7 @@
         <TextBox x:Name="TxtRut" HorizontalAlignment="Left" Height="23" Margin="114,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" MaxLength="10" LostFocus="TxtRut_LostFocus"/>
         <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="114,419,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
         <TextBox x:Name="TxtDomicilio" HorizontalAlignment="Left" Height="23" Margin="114,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" Grid.RowSpan="2"/>
-        <TextBox x:Name="TxtComuna" HorizontalAlignment="Left" Height="23" Margin="114,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
         <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="114,52,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
+        <ComboBox x:Name="CmbComuna" HorizontalAlignment="Left" Margin="114,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="394"/>
     </Grid>
 </Window>
