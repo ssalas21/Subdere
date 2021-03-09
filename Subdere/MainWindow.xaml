@@ -49,7 +49,7 @@
         <TextBox x:Name="TxtEquipamiento" HorizontalAlignment="Left" Height="23" Margin="648,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="DpFechaFactura" HorizontalAlignment="Left" Margin="648,62,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="DpFechaEmisionHomologacion" HorizontalAlignment="Left" Margin="648,91,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BtnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="372,122,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}"/>
+        <Button x:Name="BtnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="372,122,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="BtnBuscar_Click"/>
         <Label Content="Fecha Plazo Homologación" HorizontalAlignment="Left" Margin="475,119,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="DpPlazoHomologacion" HorizontalAlignment="Left" Margin="648,120,0,0" VerticalAlignment="Top" Width="120"/>
         <CheckBox x:Name="ChkSello" Content="¿Tiene sello verde?" HorizontalAlignment="Left" Margin="114,320,0,0" VerticalAlignment="Top" Width="242" IsChecked="True"/>

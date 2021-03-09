@@ -473,6 +473,9 @@
     <Compile Include="Solicitud_de_Traslado.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tasaciones.xaml.cs">
+      <DependentUpon>Tasaciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TIPOS_DE_CARROCERIAS.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
@@ -590,6 +593,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Tasaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelSubdere.Context.cs">

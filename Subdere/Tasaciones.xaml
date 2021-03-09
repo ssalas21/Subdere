@@ -1,0 +1,36 @@
+﻿<Window x:Class="Subdere.Tasaciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Subdere"
+        mc:Ignorable="d"
+        Title="Tasaciones" Height="671.884" Width="924.59">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="520" Margin="10,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="890"/>
+        <Label Content="Buscar Tasacion" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <DataGrid x:Name="DgLivianos" HorizontalAlignment="Left" Height="397" Margin="22,120,0,0" VerticalAlignment="Top" Width="859" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}"/>
+                <DataGridTextColumn Header="Año" Binding="{Binding Año_Fabricacion}"/>
+                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}"/>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
+                <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}"/>
+                <DataGridTextColumn Header="Version" Binding="{Binding Version}"/>
+                <DataGridTextColumn Header="Cilindrada" Binding="{Binding Cilindrada}"/>
+                <DataGridTextColumn Header="Combustible" Binding="{Binding Combustible}"/>
+                <DataGridTextColumn Header="Transmisión" Binding="{Binding Transmision}"/>
+                <DataGridTextColumn Header="Tasación" Binding="{Binding Tasacion}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Año" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtAnno" HorizontalAlignment="Left" Height="23" Margin="59,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" TextChanged="TxtAnno_TextChanged"/>
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="181,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtMarca" HorizontalAlignment="Left" Height="23" Margin="240,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtMarca_TextChanged"/>
+        <Label Content="Modelo" HorizontalAlignment="Left" Margin="381,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtModelo" HorizontalAlignment="Left" Height="23" Margin="460,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="TxtModelo_TextChanged"/>
+        <Label Content="Version" HorizontalAlignment="Left" Margin="661,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtVersion" HorizontalAlignment="Left" Height="23" Margin="720,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="TxtVersion_TextChanged"/>
+
+    </Grid>
+</Window>

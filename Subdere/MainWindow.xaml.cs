@@ -102,5 +102,10 @@ namespace Subdere {
                 CmbComuna.SelectedValue = new ComunasBLL().GetComunas(propietario.Comuna).Codigo;
             }
         }
+
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e) {
+            Tasaciones tasaciones = new Tasaciones();
+            tasaciones.Show();
+        }
     }
 }
