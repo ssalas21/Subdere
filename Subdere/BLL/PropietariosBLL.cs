@@ -29,20 +29,25 @@ namespace Subdere.BLL {
             Propietarios propietario = GetPropietarios(rut);
             propietario.Nombre = nombre;
             propietario.Direccion = domicilio;
-            propietario.Comuna = comuna;
+            propietario.Comuna = new ComunasBLL().GetComunas(comuna).Descripcion;
             propietario.Telefono = telefono;
-            context.SaveChanges();
+            string query = "UPDATE Propietarios SET Nombre = '" + propietario.Nombre + "', Direccion = '" + propietario.Direccion + "', Comuna = '" + propietario.Comuna + "', Telefono = '" + propietario.Telefono + "' WHERE Rut = '" + propietario.Rut + "'";
+            new Connection().Coneccion(query);
         }
 
         public void InsertPropietario(string rut, string nombre, string domicilio, string comuna, string telefono) {
             context = new Permisos_de_CirculacionEntities();
             Propietarios propietario = new Propietarios();
+            if (rut.Length == 9) rut = "00" + rut;
+            if (rut.Length == 10) rut = "0" + rut;
+            if (rut.Length == 8) rut = "000" + rut;
+            propietario.Rut = rut;
             propietario.Nombre = nombre;
             propietario.Direccion = domicilio;
             propietario.Comuna = new ComunasBLL().GetComunas(comuna).Descripcion;
             propietario.Telefono = telefono;
-            context.Propietarios.Add(propietario);
-            context.SaveChanges();
+            string query = "INSERT INTO Propietarios (Rut, Nombre, Direccion, Comuna, Telefono) VALUES ('" + propietario.Rut + "', '" + propietario.Nombre + "', '" + propietario.Direccion + "', '" + propietario.Comuna + "', '" + propietario.Telefono + "')";
+            new Connection().Coneccion(query);
         }
     }
 }

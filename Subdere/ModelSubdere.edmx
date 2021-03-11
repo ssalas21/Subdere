@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Permisos_de_CirculacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Permisos_de_CirculacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'Permisos_de_Circulacion.dbo._Bloqueo_de_Vehiculos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="_Bloqueo_de_Vehiculos">
@@ -3629,6 +3629,826 @@ advertencia 6002: La tabla o vista 'Permisos_de_Circulacion.dbo.Verificacion_Ing
           <Property Name="valida_tonelaje" Type="int" />
           <Property Name="Numero_Chasis" Type="int" />
         </EntityType>
+        <Function Name="Elimina_Multas_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Multas" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Codigo_Cliente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PER_Periodos_TraePorPlaca" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="placa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PER_TraeClasifAñoAnt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="placa" Type="varchar" Mode="In" />
+          <Parameter Name="ano" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Permisos_de_Circulacion_ActualizaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroBoletin" Type="bigint" Mode="In" />
+          <Parameter Name="Fecha_Pago" Type="datetime" Mode="In" />
+          <Parameter Name="Accion" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaCajas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Desde_Boletin" Type="numeric" Mode="In" />
+          <Parameter Name="Hasta_Boletin" Type="numeric" Mode="In" />
+          <Parameter Name="Ubicacion" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaCartas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Path_CartaSolicitudAnt" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaTraslado" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaRechazos" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaCobranza" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaCobranzaMun" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CertifOcular" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaDecJurada" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaAviso" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CuentaCorriente" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaDetalleTraslado" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaDetalleRechazo" Type="varchar" Mode="In" />
+          <Parameter Name="Path_Fondos_Terceros" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaCartas_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Path_CartaSolicitudAnt" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaTraslado" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaRechazos" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaCobranza" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaCobranzaMun" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CertifOcular" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaDecJurada" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaAviso" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CuentaCorriente" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaDetalleTraslado" Type="varchar" Mode="In" />
+          <Parameter Name="Path_CartaDetalleRechazo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaCiaSeguros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaDatosVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="TipoVehiculo" Type="numeric" Mode="In" />
+          <Parameter Name="Clasificacion" Type="numeric" Mode="In" />
+          <Parameter Name="CodigoSII" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoMarca" Type="numeric" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="AñoFabricacion" Type="numeric" Mode="In" />
+          <Parameter Name="Color" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroMotor" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroChassis" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroPuertas" Type="numeric" Mode="In" />
+          <Parameter Name="Tonelaje" Type="numeric" Mode="In" />
+          <Parameter Name="Asientos" Type="numeric" Mode="In" />
+          <Parameter Name="Ejes" Type="numeric" Mode="In" />
+          <Parameter Name="Ruedas" Type="numeric" Mode="In" />
+          <Parameter Name="Sello" Type="numeric" Mode="In" />
+          <Parameter Name="NumeroSello" Type="varchar" Mode="In" />
+          <Parameter Name="CompañiaSeguro" Type="numeric" Mode="In" />
+          <Parameter Name="NumeroPoliza" Type="varchar" Mode="In" />
+          <Parameter Name="NroRevTec" Type="varchar" Mode="In" />
+          <Parameter Name="LugarRevTec" Type="varchar" Mode="In" />
+          <Parameter Name="FolioGases" Type="varchar" Mode="In" />
+          <Parameter Name="UsarCorreo" Type="bit" Mode="In" />
+          <Parameter Name="NombreCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="ComunaCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="FonoCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="varchar" Mode="In" />
+          <Parameter Name="Asimilado" Type="bit" Mode="In" />
+          <Parameter Name="Tasado" Type="bit" Mode="In" />
+          <Parameter Name="TasacionSII" Type="numeric" Mode="In" />
+          <Parameter Name="NetoFactura" Type="numeric" Mode="In" />
+          <Parameter Name="FechaFactura" Type="datetime" Mode="In" />
+          <Parameter Name="NumeroFactura" Type="numeric" Mode="In" />
+          <Parameter Name="Cilindrada" Type="numeric" Mode="In" />
+          <Parameter Name="Combustible" Type="varchar" Mode="In" />
+          <Parameter Name="Equipamiento" Type="varchar" Mode="In" />
+          <Parameter Name="Transmision" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Estado_Vehiculo" Type="smallint" Mode="In" />
+          <Parameter Name="Rut_Empresa" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Notario" Type="varchar" Mode="In" />
+          <Parameter Name="Declaracion_Jurada" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_VencRevTec" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_RevTec" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Aprueba_Traslado" Type="datetime" Mode="In" />
+          <Parameter Name="Codigo_ZonaFranca" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_VIN" Type="varchar" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="int" Mode="In" />
+          <Parameter Name="Boletin_Anterior" Type="float" Mode="In" />
+          <Parameter Name="Fecha_Termino_Seguro" Type="datetime" Mode="In" />
+          <Parameter Name="Comunidad_Int" Type="int" Mode="In" />
+          <Parameter Name="Potencia" Type="varchar" Mode="In" />
+          <Parameter Name="Marchas" Type="varchar" Mode="In" />
+          <Parameter Name="Traccion" Type="varchar" Mode="In" />
+          <Parameter Name="Equipamiento_Detallado" Type="varchar" Mode="In" />
+          <Parameter Name="Permiso_Año" Type="varchar" Mode="In" />
+          <Parameter Name="Version" Type="varchar" Mode="In" />
+          <Parameter Name="Hash" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaDuplicado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="FormaPago" Type="numeric" Mode="In" />
+          <Parameter Name="AñoPermiso" Type="numeric" Mode="In" />
+          <Parameter Name="NroBoletin" Type="float" Mode="In" />
+          <Parameter Name="FechaEmision" Type="datetime" Mode="In" />
+          <Parameter Name="Valor" Type="numeric" Mode="In" />
+          <Parameter Name="Caja" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaEstadoTraslado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Trasladado" Type="numeric" Mode="In" />
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Comuna" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaIndices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Año" Type="numeric" Mode="In" />
+          <Parameter Name="Mes" Type="numeric" Mode="In" />
+          <Parameter Name="ValorUTM" Type="float" Mode="In" />
+          <Parameter Name="IPC" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaMarcas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaMunicipalidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Fonos" Type="varchar" Mode="In" />
+          <Parameter Name="Alcalde" Type="varchar" Mode="In" />
+          <Parameter Name="Director" Type="varchar" Mode="In" />
+          <Parameter Name="JefePermisos" Type="varchar" Mode="In" />
+          <Parameter Name="JefeLicencias" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionDepto" Type="varchar" Mode="In" />
+          <Parameter Name="FonosDepto" Type="varchar" Mode="In" />
+          <Parameter Name="FaxDepto" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Año_del_Permiso" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="numeric" Mode="In" />
+          <Parameter Name="Periodo" Type="numeric" Mode="In" />
+          <Parameter Name="Clasificacion" Type="numeric" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="Neto_Factura" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Factura" Type="datetime" Mode="In" />
+          <Parameter Name="Valor_UTM" Type="float" Mode="In" />
+          <Parameter Name="Comuna_Anterior" Type="numeric" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="numeric" Mode="In" />
+          <Parameter Name="Compañia_Seguro" Type="numeric" Mode="In" />
+          <Parameter Name="Numero_Poliza" Type="varchar" Mode="In" />
+          <Parameter Name="Nro_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Lugar_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Folio_Gases" Type="varchar" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="numeric" Mode="In" />
+          <Parameter Name="Numero_Boletin" Type="float" Mode="In" />
+          <Parameter Name="Numero_Caja" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Permiso" Type="numeric" Mode="In" />
+          <Parameter Name="Porcentaje_IPC" Type="real" Mode="In" />
+          <Parameter Name="Porcentaje_Multa" Type="real" Mode="In" />
+          <Parameter Name="Valor_IPC" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Multa" Type="numeric" Mode="In" />
+          <Parameter Name="Total_a_Pagar" Type="numeric" Mode="In" />
+          <Parameter Name="Estado_del_Pago" Type="numeric" Mode="In" />
+          <Parameter Name="Fondos_a_Terceros" Type="bit" Mode="In" />
+          <Parameter Name="Valor_Contado" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Cuota" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Correccion_Monetaria" Type="bit" Mode="In" />
+          <Parameter Name="Porcentaje_Correccion" Type="real" Mode="In" />
+          <Parameter Name="Monto_Correccion" Type="numeric" Mode="In" />
+          <Parameter Name="Origen" Type="tinyint" Mode="In" />
+          <Parameter Name="Fecha_Ingreso" Type="datetime" Mode="In" />
+          <Parameter Name="Comuna_Origen" Type="smallint" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Empresa_Procedencia" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Pago" Type="datetime" Mode="In" />
+          <Parameter Name="Numero_Boletin_Preimpreso" Type="real" Mode="In" />
+          <Parameter Name="Municipalidad" Type="varchar" Mode="In" />
+          <Parameter Name="Derechos_Varios" Type="varchar" Mode="In" />
+          <Parameter Name="Hora_Emision" Type="time" Mode="In" />
+          <Parameter Name="SeriesQR" Type="varchar" Mode="In" />
+          <Parameter Name="Hash" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaParametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correccion_Monetaria" Type="bit" Mode="In" />
+          <Parameter Name="CorrMon1" Type="real" Mode="In" />
+          <Parameter Name="CorrMon2" Type="real" Mode="In" />
+          <Parameter Name="CorrMon3" Type="real" Mode="In" />
+          <Parameter Name="Desglosar_Fondo_Comun" Type="bit" Mode="In" />
+          <Parameter Name="Glosa_FdoComun" Type="varchar" Mode="In" />
+          <Parameter Name="Glosa_FdoMunicipal" Type="varchar" Mode="In" />
+          <Parameter Name="Totalizar_Boletin" Type="bit" Mode="In" />
+          <Parameter Name="Porcentaje_Duplicado" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Referencia" Type="numeric" Mode="In" />
+          <Parameter Name="Enlace_Tesoreria" Type="bit" Mode="In" />
+          <Parameter Name="Registro_de_Sellos" Type="bit" Mode="In" />
+          <Parameter Name="Eliminar_por_Decreto" Type="bit" Mode="In" />
+          <Parameter Name="Guardar_CiaSeguros" Type="bit" Mode="In" />
+          <Parameter Name="Guardar_RevTecnica" Type="bit" Mode="In" />
+          <Parameter Name="Guardar_NroMotor" Type="bit" Mode="In" />
+          <Parameter Name="Convenio_Pagos" Type="bit" Mode="In" />
+          <Parameter Name="Transferencias" Type="bit" Mode="In" />
+          <Parameter Name="Valor_Transferencia" Type="real" Mode="In" />
+          <Parameter Name="Porcentaje_Transferencia" Type="numeric" Mode="In" />
+          <Parameter Name="Largo_NroBoletin" Type="numeric" Mode="In" />
+          <Parameter Name="Rango_Sellos" Type="smallint" Mode="In" />
+          <Parameter Name="Revisiones_Tecnicas_Robadas" Type="smallint" Mode="In" />
+          <Parameter Name="Repite_Boletin" Type="smallint" Mode="In" />
+          <Parameter Name="ValidaPagoAnterior" Type="smallint" Mode="In" />
+          <Parameter Name="Glosa_ZonaFranca" Type="varchar" Mode="In" />
+          <Parameter Name="Ver_NBoletin" Type="int" Mode="In" />
+          <Parameter Name="Imprimir_Boletin" Type="int" Mode="In" />
+          <Parameter Name="Interes_Factura" Type="int" Mode="In" />
+          <Parameter Name="Valida_Fono_Fijo" Type="bit" Mode="In" />
+          <Parameter Name="Valida_Movil" Type="bit" Mode="In" />
+          <Parameter Name="Clasificador_Presupuestario2008" Type="bit" Mode="In" />
+          <Parameter Name="Emitir_Multas" Type="bit" Mode="In" />
+          <Parameter Name="Vista_Tasaciones" Type="bit" Mode="In" />
+          <Parameter Name="Habilita_F7" Type="bit" Mode="In" />
+          <Parameter Name="Traslados_automaticos" Type="bit" Mode="In" />
+          <Parameter Name="forma_de_trabajo" Type="bit" Mode="In" />
+          <Parameter Name="Ruta_ImagenesEcom" Type="varchar" Mode="In" />
+          <Parameter Name="Ruta_WSDLEmail" Type="varchar" Mode="In" />
+          <Parameter Name="Valida_Email" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaPeriodos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaRenov" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCtdo" Type="datetime" Mode="In" />
+          <Parameter Name="FechaCta" Type="datetime" Mode="In" />
+          <Parameter Name="UTMMes" Type="numeric" Mode="In" />
+          <Parameter Name="UTMFactura" Type="numeric" Mode="In" />
+          <Parameter Name="Limite_Traslado" Type="bit" Mode="In" />
+          <Parameter Name="Fecha_Limite_Traslado" Type="datetime" Mode="In" />
+          <Parameter Name="Periodo_Prueba" Type="bit" Mode="In" />
+          <Parameter Name="Inicio_Segunda_Cuota" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaPropietarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Comuna" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Postal" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Empresa" Type="int" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono_Movil" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaRegPreemision" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Año" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Numero_Boletin" Type="float" Mode="In" />
+          <Parameter Name="Valor_Contado" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Cuota" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_IPC" Type="float" Mode="In" />
+          <Parameter Name="Tipo" Type="numeric" Mode="In" />
+          <Parameter Name="ID_Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Clasificacion" Type="numeric" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="Valor_UTM" Type="float" Mode="In" />
+          <Parameter Name="Comuna_Anterior" Type="numeric" Mode="In" />
+          <Parameter Name="Ano_anterior" Type="numeric" Mode="In" />
+          <Parameter Name="Correccion_Monetaria" Type="smallint" Mode="In" />
+          <Parameter Name="Monto_Correccion" Type="float" Mode="In" />
+          <Parameter Name="Numero_Caja_Transito" Type="numeric" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="varchar" Mode="In" />
+          <Parameter Name="Periodo" Type="varchar" Mode="In" />
+          <Parameter Name="Rut_Propietario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaSellos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Glosa" Type="varchar" Mode="In" />
+          <Parameter Name="DesdeSello" Type="varchar" Mode="In" />
+          <Parameter Name="HastaSello" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario_Sello" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaSII" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Tipo" Type="varchar" Mode="In" />
+          <Parameter Name="Marca" Type="varchar" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="Pais" Type="varchar" Mode="In" />
+          <Parameter Name="Puertas" Type="numeric" Mode="In" />
+          <Parameter Name="Cilindrada" Type="numeric" Mode="In" />
+          <Parameter Name="Combustible" Type="varchar" Mode="In" />
+          <Parameter Name="Transmision" Type="varchar" Mode="In" />
+          <Parameter Name="Equipamiento" Type="varchar" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="AñoFabricacion" Type="numeric" Mode="In" />
+          <Parameter Name="AñoTasacion" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaTipoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Glosa" Type="varchar" Mode="In" />
+          <Parameter Name="Descuento" Type="real" Mode="In" />
+          <Parameter Name="Factura" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaTipoVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sw" Type="numeric" Mode="In" />
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Periodo" Type="smallint" Mode="In" />
+          <Parameter Name="TipoCalculo" Type="smallint" Mode="In" />
+          <Parameter Name="UTMVehiculo" Type="float" Mode="In" />
+          <Parameter Name="Mascara" Type="varchar" Mode="In" />
+          <Parameter Name="Tonelaje_I1" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_F1" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_U1" Type="float" Mode="In" />
+          <Parameter Name="Tonelaje_I2" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_F2" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_U2" Type="float" Mode="In" />
+          <Parameter Name="Tonelaje_I3" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_F3" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_U3" Type="float" Mode="In" />
+          <Parameter Name="Tonelaje_I4" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_F4" Type="int" Mode="In" />
+          <Parameter Name="Tonelaje_U4" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_ActualizaTraslados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModoEdicion" Type="numeric" Mode="In" />
+          <Parameter Name="Id" Type="float" Mode="In" />
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Solicitud" Type="datetime" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Documento" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Comuna" Type="smallint" Mode="In" />
+          <Parameter Name="Nota" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario_Ingreso_Traslado" Type="varchar" Mode="In" />
+          <Parameter Name="Hash" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_CambiaEstadoCarta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="float" Mode="In" />
+          <Parameter Name="Imprimir" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_Carga_Multas_Registro_Civil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ConsultaDeuda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Año" Type="numeric" Mode="In" />
+          <Parameter Name="Msg" Type="varchar" Mode="InOut" />
+          <Parameter Name="Registros" Type="numeric" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Correlativo_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo_Sistema" Type="smallint" Mode="In" />
+          <Parameter Name="Folio" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Correlativo_Internet_InHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo_Sistema" Type="smallint" Mode="In" />
+          <Parameter Name="Folio" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_CorrelativoTramitesVarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="FormaPago" Type="smallint" Mode="In" />
+          <Parameter Name="AñoPermiso" Type="smallint" Mode="In" />
+          <Parameter Name="FechaEmision" Type="datetime" Mode="In" />
+          <Parameter Name="Valor_Duplicado" Type="int" Mode="In" />
+          <Parameter Name="Numero_Caja" Type="smallint" Mode="In" />
+          <Parameter Name="Estado_del_Pago" Type="tinyint" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Tipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DatosVehiculo_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="PST" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_DatosVehiculosResp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="TipoVehiculo" Type="numeric" Mode="In" />
+          <Parameter Name="Clasificacion" Type="numeric" Mode="In" />
+          <Parameter Name="CodigoSII" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoMarca" Type="numeric" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="AñoFabricacion" Type="numeric" Mode="In" />
+          <Parameter Name="Color" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroMotor" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroChassis" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroPuertas" Type="numeric" Mode="In" />
+          <Parameter Name="Tonelaje" Type="numeric" Mode="In" />
+          <Parameter Name="Asientos" Type="numeric" Mode="In" />
+          <Parameter Name="Ejes" Type="numeric" Mode="In" />
+          <Parameter Name="Ruedas" Type="numeric" Mode="In" />
+          <Parameter Name="Sello" Type="numeric" Mode="In" />
+          <Parameter Name="NumeroSello" Type="varchar" Mode="In" />
+          <Parameter Name="CompañiaSeguro" Type="numeric" Mode="In" />
+          <Parameter Name="NumeroPoliza" Type="varchar" Mode="In" />
+          <Parameter Name="NroRevTec" Type="varchar" Mode="In" />
+          <Parameter Name="LugarRevTec" Type="varchar" Mode="In" />
+          <Parameter Name="FolioGases" Type="varchar" Mode="In" />
+          <Parameter Name="UsarCorreo" Type="bit" Mode="In" />
+          <Parameter Name="NombreCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="ComunaCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="FonoCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="varchar" Mode="In" />
+          <Parameter Name="Asimilado" Type="bit" Mode="In" />
+          <Parameter Name="Tasado" Type="bit" Mode="In" />
+          <Parameter Name="TasacionSII" Type="numeric" Mode="In" />
+          <Parameter Name="NetoFactura" Type="numeric" Mode="In" />
+          <Parameter Name="FechaFactura" Type="datetime" Mode="In" />
+          <Parameter Name="NumeroFactura" Type="numeric" Mode="In" />
+          <Parameter Name="Cilindrada" Type="numeric" Mode="In" />
+          <Parameter Name="Combustible" Type="varchar" Mode="In" />
+          <Parameter Name="Equipamiento" Type="varchar" Mode="In" />
+          <Parameter Name="Transmision" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Estado_Vehiculo" Type="smallint" Mode="In" />
+          <Parameter Name="Rut_Empresa" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Notario" Type="varchar" Mode="In" />
+          <Parameter Name="Declaracion_Jurada" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_VencRevTec" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_RevTec" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Aprueba_Traslado" Type="datetime" Mode="In" />
+          <Parameter Name="Codigo_ZonaFranca" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_VIN" Type="varchar" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="int" Mode="In" />
+          <Parameter Name="Boletin_Anterior" Type="float" Mode="In" />
+          <Parameter Name="Fecha_Termino_Seguro" Type="datetime" Mode="In" />
+          <Parameter Name="Comunidad_Int" Type="int" Mode="In" />
+          <Parameter Name="Potencia" Type="varchar" Mode="In" />
+          <Parameter Name="Marchas" Type="varchar" Mode="In" />
+          <Parameter Name="Traccion" Type="varchar" Mode="In" />
+          <Parameter Name="Equipamiento_Detallado" Type="varchar" Mode="In" />
+          <Parameter Name="Permiso_Año" Type="varchar" Mode="In" />
+          <Parameter Name="Version" Type="varchar" Mode="In" />
+          <Parameter Name="Hash" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Usuario_Transaccion" Type="varchar" Mode="In" />
+          <Parameter Name="Equipo" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_EliminaDatosVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_EncabezadoDeudores_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="do" Type="varchar" Mode="In" />
+          <Parameter Name="Ano_Proceso" Type="smallint" Mode="In" />
+          <Parameter Name="Codigo_Area" Type="smallint" Mode="In" />
+          <Parameter Name="Orden_Ingreso" Type="int" Mode="In" />
+          <Parameter Name="Item_Pago" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Fecha_Vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Placa_Vehiculo" Type="varchar" Mode="In" />
+          <Parameter Name="EmitidoPor" Type="varchar" Mode="In" />
+          <Parameter Name="Observacion_01" Type="varchar" Mode="In" />
+          <Parameter Name="Observacion_02" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_EncabezadoDeudoresMultas_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="do" Type="varchar" Mode="In" />
+          <Parameter Name="Ano_Proceso" Type="smallint" Mode="In" />
+          <Parameter Name="Codigo_Area" Type="smallint" Mode="In" />
+          <Parameter Name="Orden_Ingreso" Type="int" Mode="In" />
+          <Parameter Name="Item_Pago" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Fecha_Vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Placa_Vehiculo" Type="varchar" Mode="In" />
+          <Parameter Name="EmitidoPor" Type="varchar" Mode="In" />
+          <Parameter Name="Observacion_01" Type="varchar" Mode="In" />
+          <Parameter Name="Observacion_02" Type="varchar" Mode="In" />
+          <Parameter Name="Observacion_03" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Inserta_Registro_de_Multas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Fecha_Informe" Type="varchar" Mode="In" />
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Id_Multa" Type="float" Mode="In" />
+          <Parameter Name="Juzgado" Type="varchar" Mode="In" />
+          <Parameter Name="Comuna" Type="varchar" Mode="In" />
+          <Parameter Name="Rol_Causa" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Sentencia" Type="datetime" Mode="In" />
+          <Parameter Name="Multa" Type="float" Mode="In" />
+          <Parameter Name="Arancel" Type="float" Mode="In" />
+          <Parameter Name="Tipo_Moneda" Type="smallint" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Motivo" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Ingreso" Type="datetime" Mode="In" />
+          <Parameter Name="TAG" Type="int" Mode="In" />
+          <Parameter Name="Codigo_Comuna" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Juzgado" Type="varchar" Mode="In" />
+          <Parameter Name="Año_Rol_Causa" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SP_inserta_Registros_Por_Carga_Masiva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha_Archivo" Type="varchar" Mode="In" />
+          <Parameter Name="Valor_Permiso" Type="int" Mode="In" />
+          <Parameter Name="Numero_Boletin" Type="numeric" Mode="In" />
+          <Parameter Name="Año_Permiso" Type="int" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Archivo" Type="varchar" Mode="In" />
+          <Parameter Name="Registros_por_Archivo" Type="numeric" Mode="In" />
+          <Parameter Name="Empresa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarTransaccion_AACH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodError" Type="char" Mode="In" />
+          <Parameter Name="Error" Type="char" Mode="In" />
+          <Parameter Name="Ticket" Type="int" Mode="In" />
+          <Parameter Name="NroFolio" Type="char" Mode="In" />
+          <Parameter Name="NroPoliza" Type="char" Mode="In" />
+          <Parameter Name="RutCia" Type="char" Mode="In" />
+          <Parameter Name="NombreCompania" Type="char" Mode="In" />
+          <Parameter Name="Patente" Type="char" Mode="In" />
+          <Parameter Name="DigPatene" Type="char" Mode="In" />
+          <Parameter Name="TipoVehiculo" Type="char" Mode="In" />
+          <Parameter Name="MarcaVehiculo" Type="char" Mode="In" />
+          <Parameter Name="ModeloVehiculo" Type="char" Mode="In" />
+          <Parameter Name="Anofabricacion" Type="char" Mode="In" />
+          <Parameter Name="NroMotor" Type="char" Mode="In" />
+          <Parameter Name="RutPropietario" Type="char" Mode="In" />
+          <Parameter Name="NombrePropietario" Type="char" Mode="In" />
+          <Parameter Name="FechaInicio" Type="char" Mode="In" />
+          <Parameter Name="fechaTermino" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertarTransaccion_MTT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="COD_RESULTADO" Type="varchar" Mode="In" />
+          <Parameter Name="RESULTADO" Type="varchar" Mode="In" />
+          <Parameter Name="estadorevtec" Type="smallint" Mode="In" />
+          <Parameter Name="COMUNA_PRT" Type="varchar" Mode="In" />
+          <Parameter Name="CODIGO_PRT" Type="varchar" Mode="In" />
+          <Parameter Name="ID_CRT" Type="varchar" Mode="In" />
+          <Parameter Name="MARCA" Type="varbinary" Mode="In" />
+          <Parameter Name="MODELO" Type="varchar" Mode="In" />
+          <Parameter Name="NUMERO_CHASIS" Type="varchar" Mode="In" />
+          <Parameter Name="TIPO_COMBUSTIBLE" Type="varchar" Mode="In" />
+          <Parameter Name="TIPO_SELLO" Type="varchar" Mode="In" />
+          <Parameter Name="TIPO_VEHICULO" Type="varchar" Mode="In" />
+          <Parameter Name="NUMERO_MOTOR" Type="varchar" Mode="In" />
+          <Parameter Name="COMUNA_PRT_G" Type="varchar" Mode="In" />
+          <Parameter Name="CODIGO_PRT_G" Type="varchar" Mode="In" />
+          <Parameter Name="ID_CRT_G" Type="varchar" Mode="In" />
+          <Parameter Name="PPUDV" Type="varchar" Mode="In" />
+          <Parameter Name="ANO_FABRICACION" Type="varchar" Mode="In" />
+          <Parameter Name="FECHA_REVISION" Type="datetime" Mode="In" />
+          <Parameter Name="FECHA_VENCIMIENTO" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_Multas_Pendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_NroBoletinAutomatico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_NroBoletinAutomaticoporLugar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_PermisosResp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Año_del_Permiso" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="numeric" Mode="In" />
+          <Parameter Name="Periodo" Type="numeric" Mode="In" />
+          <Parameter Name="Clasificacion" Type="numeric" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="Neto_Factura" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Factura" Type="datetime" Mode="In" />
+          <Parameter Name="Valor_UTM" Type="float" Mode="In" />
+          <Parameter Name="Comuna_Anterior" Type="numeric" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="numeric" Mode="In" />
+          <Parameter Name="Compañia_Seguro" Type="numeric" Mode="In" />
+          <Parameter Name="Numero_Poliza" Type="varchar" Mode="In" />
+          <Parameter Name="Nro_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Lugar_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Folio_Gases" Type="varchar" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="numeric" Mode="In" />
+          <Parameter Name="Numero_Boletin" Type="float" Mode="In" />
+          <Parameter Name="Numero_Caja" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Permiso" Type="numeric" Mode="In" />
+          <Parameter Name="Porcentaje_IPC" Type="real" Mode="In" />
+          <Parameter Name="Porcentaje_Multa" Type="real" Mode="In" />
+          <Parameter Name="Valor_IPC" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Multa" Type="numeric" Mode="In" />
+          <Parameter Name="Total_a_Pagar" Type="numeric" Mode="In" />
+          <Parameter Name="Estado_del_Pago" Type="numeric" Mode="In" />
+          <Parameter Name="Fondos_a_Terceros" Type="bit" Mode="In" />
+          <Parameter Name="Valor_Contado" Type="numeric" Mode="In" />
+          <Parameter Name="Valor_Cuota" Type="numeric" Mode="In" />
+          <Parameter Name="Fecha_Vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Correccion_Monetaria" Type="bit" Mode="In" />
+          <Parameter Name="Porcentaje_Correccion" Type="real" Mode="In" />
+          <Parameter Name="Monto_Correccion" Type="numeric" Mode="In" />
+          <Parameter Name="Origen" Type="tinyint" Mode="In" />
+          <Parameter Name="Fecha_Ingreso" Type="datetime" Mode="In" />
+          <Parameter Name="Comuna_Origen" Type="smallint" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Empresa_Procedencia" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Pago" Type="datetime" Mode="In" />
+          <Parameter Name="Numero_Boletin_Preimpreso" Type="real" Mode="In" />
+          <Parameter Name="Municipalidad" Type="varchar" Mode="In" />
+          <Parameter Name="Derechos_Varios" Type="varchar" Mode="In" />
+          <Parameter Name="Hora_Emision" Type="time" Mode="In" />
+          <Parameter Name="SeriesQR" Type="varchar" Mode="In" />
+          <Parameter Name="Hash" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Usuario_Transaccion" Type="varchar" Mode="In" />
+          <Parameter Name="Equipo" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_PROCESO_PAGO_PERMISOS_INTERNET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo_Area" Type="smallint" Mode="In" />
+          <Parameter Name="Ano_Proceso" Type="smallint" Mode="In" />
+          <Parameter Name="MiItemPago" Type="smallint" Mode="In" />
+          <Parameter Name="MiOrdenIngreso" Type="int" Mode="In" />
+          <Parameter Name="MiRut" Type="varchar" Mode="In" />
+          <Parameter Name="FechaActual" Type="datetime" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Año_del_Permiso" Type="smallint" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="sp_RegistraMulta_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Año_del_Permiso" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="smallint" Mode="In" />
+          <Parameter Name="Periodo" Type="smallint" Mode="In" />
+          <Parameter Name="Clasificacion" Type="smallint" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="Valor_UTM" Type="int" Mode="In" />
+          <Parameter Name="Comuna_Anterior" Type="smallint" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="smallint" Mode="In" />
+          <Parameter Name="Compañia_Seguro" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Poliza" Type="varchar" Mode="In" />
+          <Parameter Name="Nro_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Lugar_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Caja" Type="smallint" Mode="In" />
+          <Parameter Name="Valor_Permiso" Type="int" Mode="In" />
+          <Parameter Name="Porcentaje_IPC" Type="real" Mode="In" />
+          <Parameter Name="Porcentaje_Multa" Type="real" Mode="In" />
+          <Parameter Name="Valor_IPC" Type="int" Mode="In" />
+          <Parameter Name="Valor_Multa" Type="int" Mode="In" />
+          <Parameter Name="Total_a_Pagar" Type="int" Mode="In" />
+          <Parameter Name="Estado_del_Pago" Type="tinyint" Mode="In" />
+          <Parameter Name="Fondos_a_Terceros" Type="bit" Mode="In" />
+          <Parameter Name="Valor_Contado" Type="int" Mode="In" />
+          <Parameter Name="Valor_Cuota" Type="int" Mode="In" />
+          <Parameter Name="Fecha_vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Correccion_Monetaria" Type="bit" Mode="In" />
+          <Parameter Name="Porcentaje_Correccion" Type="real" Mode="In" />
+          <Parameter Name="Monto_Correccion" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Pago" Type="datetime" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RegistraPermiso_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Año_del_Permiso" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="smallint" Mode="In" />
+          <Parameter Name="Periodo" Type="smallint" Mode="In" />
+          <Parameter Name="Clasificacion" Type="smallint" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="Neto_Factura" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Factura" Type="datetime" Mode="In" />
+          <Parameter Name="Valor_UTM" Type="int" Mode="In" />
+          <Parameter Name="Comuna_Anterior" Type="smallint" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="smallint" Mode="In" />
+          <Parameter Name="Compañia_Seguro" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Poliza" Type="varchar" Mode="In" />
+          <Parameter Name="Nro_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Lugar_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Caja" Type="smallint" Mode="In" />
+          <Parameter Name="Valor_Permiso" Type="int" Mode="In" />
+          <Parameter Name="Porcentaje_IPC" Type="real" Mode="In" />
+          <Parameter Name="Porcentaje_Multa" Type="real" Mode="In" />
+          <Parameter Name="Valor_IPC" Type="int" Mode="In" />
+          <Parameter Name="Valor_Multa" Type="int" Mode="In" />
+          <Parameter Name="Total_a_Pagar" Type="int" Mode="In" />
+          <Parameter Name="Estado_del_Pago" Type="tinyint" Mode="In" />
+          <Parameter Name="Fondos_a_Terceros" Type="bit" Mode="In" />
+          <Parameter Name="Valor_Contado" Type="int" Mode="In" />
+          <Parameter Name="Valor_Cuota" Type="int" Mode="In" />
+          <Parameter Name="Fecha_vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Correccion_Monetaria" Type="bit" Mode="In" />
+          <Parameter Name="Porcentaje_Correccion" Type="real" Mode="In" />
+          <Parameter Name="Monto_Correccion" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Pago" Type="datetime" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RegistraPermiso_Internet_InHouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Año_del_Permiso" Type="smallint" Mode="In" />
+          <Parameter Name="Fecha_Emision" Type="datetime" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="smallint" Mode="In" />
+          <Parameter Name="Periodo" Type="smallint" Mode="In" />
+          <Parameter Name="Clasificacion" Type="smallint" Mode="In" />
+          <Parameter Name="Tasacion" Type="float" Mode="In" />
+          <Parameter Name="Neto_Factura" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Factura" Type="datetime" Mode="In" />
+          <Parameter Name="Valor_UTM" Type="int" Mode="In" />
+          <Parameter Name="Comuna_Anterior" Type="smallint" Mode="In" />
+          <Parameter Name="Año_Anterior" Type="smallint" Mode="In" />
+          <Parameter Name="Compañia_Seguro" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Poliza" Type="varchar" Mode="In" />
+          <Parameter Name="Nro_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Lugar_Revision_Tecnica" Type="varchar" Mode="In" />
+          <Parameter Name="Forma_de_Pago" Type="smallint" Mode="In" />
+          <Parameter Name="Numero_Caja" Type="smallint" Mode="In" />
+          <Parameter Name="Valor_Permiso" Type="int" Mode="In" />
+          <Parameter Name="Porcentaje_IPC" Type="real" Mode="In" />
+          <Parameter Name="Porcentaje_Multa" Type="real" Mode="In" />
+          <Parameter Name="Valor_IPC" Type="int" Mode="In" />
+          <Parameter Name="Valor_Multa" Type="int" Mode="In" />
+          <Parameter Name="Total_a_Pagar" Type="int" Mode="In" />
+          <Parameter Name="Estado_del_Pago" Type="tinyint" Mode="In" />
+          <Parameter Name="Fondos_a_Terceros" Type="bit" Mode="In" />
+          <Parameter Name="Valor_Contado" Type="int" Mode="In" />
+          <Parameter Name="Valor_Cuota" Type="int" Mode="In" />
+          <Parameter Name="Fecha_vencimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Correccion_Monetaria" Type="bit" Mode="In" />
+          <Parameter Name="Porcentaje_Correccion" Type="real" Mode="In" />
+          <Parameter Name="Monto_Correccion" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Pago" Type="datetime" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RegistraPropietario_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Comuna" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo_Postal" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RegistraVehiculo_Internet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Placa" Type="varchar" Mode="In" />
+          <Parameter Name="Digito" Type="varchar" Mode="In" />
+          <Parameter Name="Rut" Type="varchar" Mode="In" />
+          <Parameter Name="TipoVehiculo" Type="numeric" Mode="In" />
+          <Parameter Name="Clasificacion" Type="numeric" Mode="In" />
+          <Parameter Name="CodigoMarca" Type="numeric" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="AñoFabricacion" Type="numeric" Mode="In" />
+          <Parameter Name="Color" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroMotor" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroChassis" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroPuertas" Type="numeric" Mode="In" />
+          <Parameter Name="Tonelaje" Type="numeric" Mode="In" />
+          <Parameter Name="Asientos" Type="numeric" Mode="In" />
+          <Parameter Name="Sello" Type="numeric" Mode="In" />
+          <Parameter Name="NumeroSello" Type="varchar" Mode="In" />
+          <Parameter Name="NroRevTec" Type="varchar" Mode="In" />
+          <Parameter Name="LugarRevTec" Type="varchar" Mode="In" />
+          <Parameter Name="UsarCorreo" Type="bit" Mode="In" />
+          <Parameter Name="Asimilado" Type="bit" Mode="In" />
+          <Parameter Name="Tasado" Type="bit" Mode="In" />
+          <Parameter Name="Trasladado" Type="bit" Mode="In" />
+          <Parameter Name="NetoFactura" Type="numeric" Mode="In" />
+          <Parameter Name="FechaFactura" Type="datetime" Mode="In" />
+          <Parameter Name="NumeroFactura" Type="numeric" Mode="In" />
+          <Parameter Name="Rut_Factura" Type="varchar" Mode="In" />
+          <Parameter Name="Cilindrada" Type="numeric" Mode="In" />
+          <Parameter Name="Combustible" Type="varchar" Mode="In" />
+          <Parameter Name="Equipamiento" Type="varchar" Mode="In" />
+          <Parameter Name="Transmision" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="Estado_Vehiculo" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="sp_Seguro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orden" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ValorSeguroInternet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo_CiaSeguro" Type="smallint" Mode="In" />
+          <Parameter Name="Tipo_Vehiculo" Type="smallint" Mode="In" />
+          <Parameter Name="Banco" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="Trae_Datos_Por_Años" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="int" Mode="In" />
+          <Parameter Name="Hasta" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="Permisos_de_CirculacionModelStoreContainer">
           <EntitySet Name="Derechos_Varios" EntityType="Self.Derechos_Varios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
@@ -6071,8 +6891,7 @@ advertencia 6002: La tabla o vista 'Permisos_de_Circulacion.dbo.Verificacion_Ing
     FROM [dbo].[Verificacion_Ingreso] AS [Verificacion_Ingreso]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Permisos_de_CirculacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -9247,7 +10066,968 @@ advertencia 6002: La tabla o vista 'Permisos_de_Circulacion.dbo.Verificacion_Ing
           <EntitySet Name="Valores_Monedas" EntityType="Self.Valores_Monedas" />
           <EntitySet Name="Vehiculos_Fuera_Circulacion" EntityType="Self.Vehiculos_Fuera_Circulacion" />
           <EntitySet Name="Verificacion_Ingreso" EntityType="Self.Verificacion_Ingreso" />
+          <FunctionImport Name="Elimina_Multas_ID">
+            <Parameter Name="ID_Multas" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Cliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PER_Periodos_TraePorPlaca" ReturnType="Collection(Int16)">
+          <Parameter Name="placa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PER_TraeClasifAñoAnt" ReturnType="Collection(Permisos_de_CirculacionModel.PER_TraeClasifAñoAnt_Result)">
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="ano" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Permisos_de_Circulacion_ActualizaPago">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="NumeroBoletin" Mode="In" Type="Int64" />
+            <Parameter Name="Fecha_Pago" Mode="In" Type="DateTime" />
+            <Parameter Name="Accion" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaCajas">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Desde_Boletin" Mode="In" Type="Decimal" />
+            <Parameter Name="Hasta_Boletin" Mode="In" Type="Decimal" />
+            <Parameter Name="Ubicacion" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaCartas">
+            <Parameter Name="Path_CartaSolicitudAnt" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaTraslado" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaRechazos" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaCobranza" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaCobranzaMun" Mode="In" Type="String" />
+            <Parameter Name="Path_CertifOcular" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaDecJurada" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaAviso" Mode="In" Type="String" />
+            <Parameter Name="Path_CuentaCorriente" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaDetalleTraslado" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaDetalleRechazo" Mode="In" Type="String" />
+            <Parameter Name="Path_Fondos_Terceros" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaCartas_">
+            <Parameter Name="Path_CartaSolicitudAnt" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaTraslado" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaRechazos" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaCobranza" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaCobranzaMun" Mode="In" Type="String" />
+            <Parameter Name="Path_CertifOcular" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaDecJurada" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaAviso" Mode="In" Type="String" />
+            <Parameter Name="Path_CuentaCorriente" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaDetalleTraslado" Mode="In" Type="String" />
+            <Parameter Name="Path_CartaDetalleRechazo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaCiaSeguros">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaDatosVehiculo">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="TipoVehiculo" Mode="In" Type="Decimal" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="CodigoSII" Mode="In" Type="String" />
+            <Parameter Name="CodigoMarca" Mode="In" Type="Decimal" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="AñoFabricacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Color" Mode="In" Type="String" />
+            <Parameter Name="NumeroMotor" Mode="In" Type="String" />
+            <Parameter Name="NumeroChassis" Mode="In" Type="String" />
+            <Parameter Name="NumeroPuertas" Mode="In" Type="Decimal" />
+            <Parameter Name="Tonelaje" Mode="In" Type="Decimal" />
+            <Parameter Name="Asientos" Mode="In" Type="Decimal" />
+            <Parameter Name="Ejes" Mode="In" Type="Decimal" />
+            <Parameter Name="Ruedas" Mode="In" Type="Decimal" />
+            <Parameter Name="Sello" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroSello" Mode="In" Type="String" />
+            <Parameter Name="CompañiaSeguro" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroPoliza" Mode="In" Type="String" />
+            <Parameter Name="NroRevTec" Mode="In" Type="String" />
+            <Parameter Name="LugarRevTec" Mode="In" Type="String" />
+            <Parameter Name="FolioGases" Mode="In" Type="String" />
+            <Parameter Name="UsarCorreo" Mode="In" Type="Boolean" />
+            <Parameter Name="NombreCorreo" Mode="In" Type="String" />
+            <Parameter Name="DireccionCorreo" Mode="In" Type="String" />
+            <Parameter Name="ComunaCorreo" Mode="In" Type="String" />
+            <Parameter Name="FonoCorreo" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="String" />
+            <Parameter Name="Asimilado" Mode="In" Type="Boolean" />
+            <Parameter Name="Tasado" Mode="In" Type="Boolean" />
+            <Parameter Name="TasacionSII" Mode="In" Type="Decimal" />
+            <Parameter Name="NetoFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="FechaFactura" Mode="In" Type="DateTime" />
+            <Parameter Name="NumeroFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="Cilindrada" Mode="In" Type="Decimal" />
+            <Parameter Name="Combustible" Mode="In" Type="String" />
+            <Parameter Name="Equipamiento" Mode="In" Type="String" />
+            <Parameter Name="Transmision" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Estado_Vehiculo" Mode="In" Type="Int16" />
+            <Parameter Name="Rut_Empresa" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Notario" Mode="In" Type="String" />
+            <Parameter Name="Declaracion_Jurada" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_VencRevTec" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_RevTec" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Aprueba_Traslado" Mode="In" Type="DateTime" />
+            <Parameter Name="Codigo_ZonaFranca" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_VIN" Mode="In" Type="String" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Int32" />
+            <Parameter Name="Boletin_Anterior" Mode="In" Type="Double" />
+            <Parameter Name="Fecha_Termino_Seguro" Mode="In" Type="DateTime" />
+            <Parameter Name="Comunidad_Int" Mode="In" Type="Int32" />
+            <Parameter Name="Potencia" Mode="In" Type="String" />
+            <Parameter Name="Marchas" Mode="In" Type="String" />
+            <Parameter Name="Traccion" Mode="In" Type="String" />
+            <Parameter Name="Equipamiento_Detallado" Mode="In" Type="String" />
+            <Parameter Name="Permiso_Año" Mode="In" Type="String" />
+            <Parameter Name="Version" Mode="In" Type="String" />
+            <Parameter Name="Hash" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaDuplicado">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="FormaPago" Mode="In" Type="Decimal" />
+            <Parameter Name="AñoPermiso" Mode="In" Type="Decimal" />
+            <Parameter Name="NroBoletin" Mode="In" Type="Double" />
+            <Parameter Name="FechaEmision" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor" Mode="In" Type="Decimal" />
+            <Parameter Name="Caja" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaEstadoTraslado">
+            <Parameter Name="Trasladado" Mode="In" Type="Decimal" />
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Comuna" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaIndices">
+            <Parameter Name="Año" Mode="In" Type="Decimal" />
+            <Parameter Name="Mes" Mode="In" Type="Decimal" />
+            <Parameter Name="ValorUTM" Mode="In" Type="Double" />
+            <Parameter Name="IPC" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaMarcas">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaMunicipalidad">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Fonos" Mode="In" Type="String" />
+            <Parameter Name="Alcalde" Mode="In" Type="String" />
+            <Parameter Name="Director" Mode="In" Type="String" />
+            <Parameter Name="JefePermisos" Mode="In" Type="String" />
+            <Parameter Name="JefeLicencias" Mode="In" Type="String" />
+            <Parameter Name="DireccionDepto" Mode="In" Type="String" />
+            <Parameter Name="FonosDepto" Mode="In" Type="String" />
+            <Parameter Name="FaxDepto" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaPagos">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Año_del_Permiso" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="Decimal" />
+            <Parameter Name="Periodo" Mode="In" Type="Decimal" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="Neto_Factura" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Factura" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor_UTM" Mode="In" Type="Double" />
+            <Parameter Name="Comuna_Anterior" Mode="In" Type="Decimal" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Decimal" />
+            <Parameter Name="Compañia_Seguro" Mode="In" Type="Decimal" />
+            <Parameter Name="Numero_Poliza" Mode="In" Type="String" />
+            <Parameter Name="Nro_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Lugar_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Folio_Gases" Mode="In" Type="String" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Decimal" />
+            <Parameter Name="Numero_Boletin" Mode="In" Type="Double" />
+            <Parameter Name="Numero_Caja" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Permiso" Mode="In" Type="Decimal" />
+            <Parameter Name="Porcentaje_IPC" Mode="In" Type="Single" />
+            <Parameter Name="Porcentaje_Multa" Mode="In" Type="Single" />
+            <Parameter Name="Valor_IPC" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Multa" Mode="In" Type="Decimal" />
+            <Parameter Name="Total_a_Pagar" Mode="In" Type="Decimal" />
+            <Parameter Name="Estado_del_Pago" Mode="In" Type="Decimal" />
+            <Parameter Name="Fondos_a_Terceros" Mode="In" Type="Boolean" />
+            <Parameter Name="Valor_Contado" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Cuota" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Boolean" />
+            <Parameter Name="Porcentaje_Correccion" Mode="In" Type="Single" />
+            <Parameter Name="Monto_Correccion" Mode="In" Type="Decimal" />
+            <Parameter Name="Origen" Mode="In" Type="Byte" />
+            <Parameter Name="Fecha_Ingreso" Mode="In" Type="DateTime" />
+            <Parameter Name="Comuna_Origen" Mode="In" Type="Int16" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Empresa_Procedencia" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Pago" Mode="In" Type="DateTime" />
+            <Parameter Name="Numero_Boletin_Preimpreso" Mode="In" Type="Single" />
+            <Parameter Name="Municipalidad" Mode="In" Type="String" />
+            <Parameter Name="Derechos_Varios" Mode="In" Type="String" />
+            <Parameter Name="Hora_Emision" Mode="In" Type="Time" />
+            <Parameter Name="SeriesQR" Mode="In" Type="String" />
+            <Parameter Name="Hash" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaParametros">
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Boolean" />
+            <Parameter Name="CorrMon1" Mode="In" Type="Single" />
+            <Parameter Name="CorrMon2" Mode="In" Type="Single" />
+            <Parameter Name="CorrMon3" Mode="In" Type="Single" />
+            <Parameter Name="Desglosar_Fondo_Comun" Mode="In" Type="Boolean" />
+            <Parameter Name="Glosa_FdoComun" Mode="In" Type="String" />
+            <Parameter Name="Glosa_FdoMunicipal" Mode="In" Type="String" />
+            <Parameter Name="Totalizar_Boletin" Mode="In" Type="Boolean" />
+            <Parameter Name="Porcentaje_Duplicado" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Referencia" Mode="In" Type="Decimal" />
+            <Parameter Name="Enlace_Tesoreria" Mode="In" Type="Boolean" />
+            <Parameter Name="Registro_de_Sellos" Mode="In" Type="Boolean" />
+            <Parameter Name="Eliminar_por_Decreto" Mode="In" Type="Boolean" />
+            <Parameter Name="Guardar_CiaSeguros" Mode="In" Type="Boolean" />
+            <Parameter Name="Guardar_RevTecnica" Mode="In" Type="Boolean" />
+            <Parameter Name="Guardar_NroMotor" Mode="In" Type="Boolean" />
+            <Parameter Name="Convenio_Pagos" Mode="In" Type="Boolean" />
+            <Parameter Name="Transferencias" Mode="In" Type="Boolean" />
+            <Parameter Name="Valor_Transferencia" Mode="In" Type="Single" />
+            <Parameter Name="Porcentaje_Transferencia" Mode="In" Type="Decimal" />
+            <Parameter Name="Largo_NroBoletin" Mode="In" Type="Decimal" />
+            <Parameter Name="Rango_Sellos" Mode="In" Type="Int16" />
+            <Parameter Name="Revisiones_Tecnicas_Robadas" Mode="In" Type="Int16" />
+            <Parameter Name="Repite_Boletin" Mode="In" Type="Int16" />
+            <Parameter Name="ValidaPagoAnterior" Mode="In" Type="Int16" />
+            <Parameter Name="Glosa_ZonaFranca" Mode="In" Type="String" />
+            <Parameter Name="Ver_NBoletin" Mode="In" Type="Int32" />
+            <Parameter Name="Imprimir_Boletin" Mode="In" Type="Int32" />
+            <Parameter Name="Interes_Factura" Mode="In" Type="Int32" />
+            <Parameter Name="Valida_Fono_Fijo" Mode="In" Type="Boolean" />
+            <Parameter Name="Valida_Movil" Mode="In" Type="Boolean" />
+            <Parameter Name="Clasificador_Presupuestario2008" Mode="In" Type="Boolean" />
+            <Parameter Name="Emitir_Multas" Mode="In" Type="Boolean" />
+            <Parameter Name="Vista_Tasaciones" Mode="In" Type="Boolean" />
+            <Parameter Name="Habilita_F7" Mode="In" Type="Boolean" />
+            <Parameter Name="Traslados_automaticos" Mode="In" Type="Boolean" />
+            <Parameter Name="forma_de_trabajo" Mode="In" Type="Boolean" />
+            <Parameter Name="Ruta_ImagenesEcom" Mode="In" Type="String" />
+            <Parameter Name="Ruta_WSDLEmail" Mode="In" Type="String" />
+            <Parameter Name="Valida_Email" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaPeriodos">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="FechaRenov" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCtdo" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCta" Mode="In" Type="DateTime" />
+            <Parameter Name="UTMMes" Mode="In" Type="Decimal" />
+            <Parameter Name="UTMFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="Limite_Traslado" Mode="In" Type="Boolean" />
+            <Parameter Name="Fecha_Limite_Traslado" Mode="In" Type="DateTime" />
+            <Parameter Name="Periodo_Prueba" Mode="In" Type="Boolean" />
+            <Parameter Name="Inicio_Segunda_Cuota" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaPropietarios">
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Comuna" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Postal" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Empresa" Mode="In" Type="Int32" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="Telefono_Movil" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaRegPreemision">
+            <Parameter Name="Año" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Numero_Boletin" Mode="In" Type="Double" />
+            <Parameter Name="Valor_Contado" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Cuota" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_IPC" Mode="In" Type="Double" />
+            <Parameter Name="Tipo" Mode="In" Type="Decimal" />
+            <Parameter Name="ID_Usuario" Mode="In" Type="String" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="Valor_UTM" Mode="In" Type="Double" />
+            <Parameter Name="Comuna_Anterior" Mode="In" Type="Decimal" />
+            <Parameter Name="Ano_anterior" Mode="In" Type="Decimal" />
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Int16" />
+            <Parameter Name="Monto_Correccion" Mode="In" Type="Double" />
+            <Parameter Name="Numero_Caja_Transito" Mode="In" Type="Decimal" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="String" />
+            <Parameter Name="Periodo" Mode="In" Type="String" />
+            <Parameter Name="Rut_Propietario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaSellos">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Glosa" Mode="In" Type="String" />
+            <Parameter Name="DesdeSello" Mode="In" Type="String" />
+            <Parameter Name="HastaSello" Mode="In" Type="String" />
+            <Parameter Name="Usuario_Sello" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaSII">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Tipo" Mode="In" Type="String" />
+            <Parameter Name="Marca" Mode="In" Type="String" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="Pais" Mode="In" Type="String" />
+            <Parameter Name="Puertas" Mode="In" Type="Decimal" />
+            <Parameter Name="Cilindrada" Mode="In" Type="Decimal" />
+            <Parameter Name="Combustible" Mode="In" Type="String" />
+            <Parameter Name="Transmision" Mode="In" Type="String" />
+            <Parameter Name="Equipamiento" Mode="In" Type="String" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="AñoFabricacion" Mode="In" Type="Decimal" />
+            <Parameter Name="AñoTasacion" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaTipoPago">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Glosa" Mode="In" Type="String" />
+            <Parameter Name="Descuento" Mode="In" Type="Single" />
+            <Parameter Name="Factura" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaTipoVehiculo">
+            <Parameter Name="sw" Mode="In" Type="Decimal" />
+            <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Periodo" Mode="In" Type="Int16" />
+            <Parameter Name="TipoCalculo" Mode="In" Type="Int16" />
+            <Parameter Name="UTMVehiculo" Mode="In" Type="Double" />
+            <Parameter Name="Mascara" Mode="In" Type="String" />
+            <Parameter Name="Tonelaje_I1" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_F1" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_U1" Mode="In" Type="Double" />
+            <Parameter Name="Tonelaje_I2" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_F2" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_U2" Mode="In" Type="Double" />
+            <Parameter Name="Tonelaje_I3" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_F3" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_U3" Mode="In" Type="Double" />
+            <Parameter Name="Tonelaje_I4" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_F4" Mode="In" Type="Int32" />
+            <Parameter Name="Tonelaje_U4" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaTraslados">
+            <Parameter Name="ModoEdicion" Mode="In" Type="Decimal" />
+            <Parameter Name="Id" Mode="In" Type="Double" />
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Solicitud" Mode="In" Type="DateTime" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Documento" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Comuna" Mode="In" Type="Int16" />
+            <Parameter Name="Nota" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Usuario_Ingreso_Traslado" Mode="In" Type="String" />
+            <Parameter Name="Hash" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CambiaEstadoCarta">
+            <Parameter Name="Id" Mode="In" Type="Double" />
+            <Parameter Name="Imprimir" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Carga_Multas_Registro_Civil" />
+          <FunctionImport Name="sp_ConsultaDeuda">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Año" Mode="In" Type="Decimal" />
+            <Parameter Name="Msg" Mode="InOut" Type="String" />
+            <Parameter Name="Registros" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Correlativo_Internet">
+            <Parameter Name="Codigo_Sistema" Mode="In" Type="Int16" />
+            <Parameter Name="Folio" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Correlativo_Internet_InHouse">
+            <Parameter Name="Codigo_Sistema" Mode="In" Type="Int16" />
+            <Parameter Name="Folio" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_CorrelativoTramitesVarios" ReturnType="Collection(Double)">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="FormaPago" Mode="In" Type="Int16" />
+            <Parameter Name="AñoPermiso" Mode="In" Type="Int16" />
+            <Parameter Name="FechaEmision" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor_Duplicado" Mode="In" Type="Int32" />
+            <Parameter Name="Numero_Caja" Mode="In" Type="Int16" />
+            <Parameter Name="Estado_del_Pago" Mode="In" Type="Byte" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Tipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DatosVehiculo_Internet" ReturnType="Collection(Permisos_de_CirculacionModel.sp_DatosVehiculo_Internet_Result)">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="PST" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DatosVehiculosResp">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="TipoVehiculo" Mode="In" Type="Decimal" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="CodigoSII" Mode="In" Type="String" />
+            <Parameter Name="CodigoMarca" Mode="In" Type="Decimal" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="AñoFabricacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Color" Mode="In" Type="String" />
+            <Parameter Name="NumeroMotor" Mode="In" Type="String" />
+            <Parameter Name="NumeroChassis" Mode="In" Type="String" />
+            <Parameter Name="NumeroPuertas" Mode="In" Type="Decimal" />
+            <Parameter Name="Tonelaje" Mode="In" Type="Decimal" />
+            <Parameter Name="Asientos" Mode="In" Type="Decimal" />
+            <Parameter Name="Ejes" Mode="In" Type="Decimal" />
+            <Parameter Name="Ruedas" Mode="In" Type="Decimal" />
+            <Parameter Name="Sello" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroSello" Mode="In" Type="String" />
+            <Parameter Name="CompañiaSeguro" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroPoliza" Mode="In" Type="String" />
+            <Parameter Name="NroRevTec" Mode="In" Type="String" />
+            <Parameter Name="LugarRevTec" Mode="In" Type="String" />
+            <Parameter Name="FolioGases" Mode="In" Type="String" />
+            <Parameter Name="UsarCorreo" Mode="In" Type="Boolean" />
+            <Parameter Name="NombreCorreo" Mode="In" Type="String" />
+            <Parameter Name="DireccionCorreo" Mode="In" Type="String" />
+            <Parameter Name="ComunaCorreo" Mode="In" Type="String" />
+            <Parameter Name="FonoCorreo" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="String" />
+            <Parameter Name="Asimilado" Mode="In" Type="Boolean" />
+            <Parameter Name="Tasado" Mode="In" Type="Boolean" />
+            <Parameter Name="TasacionSII" Mode="In" Type="Decimal" />
+            <Parameter Name="NetoFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="FechaFactura" Mode="In" Type="DateTime" />
+            <Parameter Name="NumeroFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="Cilindrada" Mode="In" Type="Decimal" />
+            <Parameter Name="Combustible" Mode="In" Type="String" />
+            <Parameter Name="Equipamiento" Mode="In" Type="String" />
+            <Parameter Name="Transmision" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Estado_Vehiculo" Mode="In" Type="Int16" />
+            <Parameter Name="Rut_Empresa" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Notario" Mode="In" Type="String" />
+            <Parameter Name="Declaracion_Jurada" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_VencRevTec" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_RevTec" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Aprueba_Traslado" Mode="In" Type="DateTime" />
+            <Parameter Name="Codigo_ZonaFranca" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_VIN" Mode="In" Type="String" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Int32" />
+            <Parameter Name="Boletin_Anterior" Mode="In" Type="Double" />
+            <Parameter Name="Fecha_Termino_Seguro" Mode="In" Type="DateTime" />
+            <Parameter Name="Comunidad_Int" Mode="In" Type="Int32" />
+            <Parameter Name="Potencia" Mode="In" Type="String" />
+            <Parameter Name="Marchas" Mode="In" Type="String" />
+            <Parameter Name="Traccion" Mode="In" Type="String" />
+            <Parameter Name="Equipamiento_Detallado" Mode="In" Type="String" />
+            <Parameter Name="Permiso_Año" Mode="In" Type="String" />
+            <Parameter Name="Version" Mode="In" Type="String" />
+            <Parameter Name="Hash" Mode="In" Type="String" />
+            <Parameter Name="Usuario_Transaccion" Mode="In" Type="String" />
+            <Parameter Name="Equipo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EliminaDatosVehiculo">
+          <Parameter Name="Placa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EncabezadoDeudores_Internet">
+            <Parameter Name="do" Mode="In" Type="String" />
+            <Parameter Name="Ano_Proceso" Mode="In" Type="Int16" />
+            <Parameter Name="Codigo_Area" Mode="In" Type="Int16" />
+            <Parameter Name="Orden_Ingreso" Mode="In" Type="Int32" />
+            <Parameter Name="Item_Pago" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Fecha_Vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Placa_Vehiculo" Mode="In" Type="String" />
+            <Parameter Name="EmitidoPor" Mode="In" Type="String" />
+            <Parameter Name="Observacion_01" Mode="In" Type="String" />
+            <Parameter Name="Observacion_02" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EncabezadoDeudoresMultas_Internet">
+            <Parameter Name="do" Mode="In" Type="String" />
+            <Parameter Name="Ano_Proceso" Mode="In" Type="Int16" />
+            <Parameter Name="Codigo_Area" Mode="In" Type="Int16" />
+            <Parameter Name="Orden_Ingreso" Mode="In" Type="Int32" />
+            <Parameter Name="Item_Pago" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Fecha_Vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Placa_Vehiculo" Mode="In" Type="String" />
+            <Parameter Name="EmitidoPor" Mode="In" Type="String" />
+            <Parameter Name="Observacion_01" Mode="In" Type="String" />
+            <Parameter Name="Observacion_02" Mode="In" Type="String" />
+            <Parameter Name="Observacion_03" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Inserta_Registro_de_Multas">
+            <Parameter Name="Fecha_Informe" Mode="In" Type="String" />
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Id_Multa" Mode="In" Type="Double" />
+            <Parameter Name="Juzgado" Mode="In" Type="String" />
+            <Parameter Name="Comuna" Mode="In" Type="String" />
+            <Parameter Name="Rol_Causa" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Sentencia" Mode="In" Type="DateTime" />
+            <Parameter Name="Multa" Mode="In" Type="Double" />
+            <Parameter Name="Arancel" Mode="In" Type="Double" />
+            <Parameter Name="Tipo_Moneda" Mode="In" Type="Int16" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Motivo" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Ingreso" Mode="In" Type="DateTime" />
+            <Parameter Name="TAG" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo_Comuna" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Juzgado" Mode="In" Type="String" />
+            <Parameter Name="Año_Rol_Causa" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SP_inserta_Registros_Por_Carga_Masiva">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Fecha_Archivo" Mode="In" Type="String" />
+            <Parameter Name="Valor_Permiso" Mode="In" Type="Int32" />
+            <Parameter Name="Numero_Boletin" Mode="In" Type="Decimal" />
+            <Parameter Name="Año_Permiso" Mode="In" Type="Int32" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Archivo" Mode="In" Type="String" />
+            <Parameter Name="Registros_por_Archivo" Mode="In" Type="Decimal" />
+            <Parameter Name="Empresa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarTransaccion_AACH">
+            <Parameter Name="CodError" Mode="In" Type="String" />
+            <Parameter Name="Error" Mode="In" Type="String" />
+            <Parameter Name="Ticket" Mode="In" Type="Int32" />
+            <Parameter Name="NroFolio" Mode="In" Type="String" />
+            <Parameter Name="NroPoliza" Mode="In" Type="String" />
+            <Parameter Name="RutCia" Mode="In" Type="String" />
+            <Parameter Name="NombreCompania" Mode="In" Type="String" />
+            <Parameter Name="Patente" Mode="In" Type="String" />
+            <Parameter Name="DigPatene" Mode="In" Type="String" />
+            <Parameter Name="TipoVehiculo" Mode="In" Type="String" />
+            <Parameter Name="MarcaVehiculo" Mode="In" Type="String" />
+            <Parameter Name="ModeloVehiculo" Mode="In" Type="String" />
+            <Parameter Name="Anofabricacion" Mode="In" Type="String" />
+            <Parameter Name="NroMotor" Mode="In" Type="String" />
+            <Parameter Name="RutPropietario" Mode="In" Type="String" />
+            <Parameter Name="NombrePropietario" Mode="In" Type="String" />
+            <Parameter Name="FechaInicio" Mode="In" Type="String" />
+            <Parameter Name="fechaTermino" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertarTransaccion_MTT">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="COD_RESULTADO" Mode="In" Type="String" />
+            <Parameter Name="RESULTADO" Mode="In" Type="String" />
+            <Parameter Name="estadorevtec" Mode="In" Type="Int16" />
+            <Parameter Name="COMUNA_PRT" Mode="In" Type="String" />
+            <Parameter Name="CODIGO_PRT" Mode="In" Type="String" />
+            <Parameter Name="ID_CRT" Mode="In" Type="String" />
+            <Parameter Name="MARCA" Mode="In" Type="Binary" />
+            <Parameter Name="MODELO" Mode="In" Type="String" />
+            <Parameter Name="NUMERO_CHASIS" Mode="In" Type="String" />
+            <Parameter Name="TIPO_COMBUSTIBLE" Mode="In" Type="String" />
+            <Parameter Name="TIPO_SELLO" Mode="In" Type="String" />
+            <Parameter Name="TIPO_VEHICULO" Mode="In" Type="String" />
+            <Parameter Name="NUMERO_MOTOR" Mode="In" Type="String" />
+            <Parameter Name="COMUNA_PRT_G" Mode="In" Type="String" />
+            <Parameter Name="CODIGO_PRT_G" Mode="In" Type="String" />
+            <Parameter Name="ID_CRT_G" Mode="In" Type="String" />
+            <Parameter Name="PPUDV" Mode="In" Type="String" />
+            <Parameter Name="ANO_FABRICACION" Mode="In" Type="String" />
+            <Parameter Name="FECHA_REVISION" Mode="In" Type="DateTime" />
+            <Parameter Name="FECHA_VENCIMIENTO" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Multas_Pendientes" ReturnType="Collection(Int32)">
+          <Parameter Name="Placa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_NroBoletinAutomatico" ReturnType="Collection(Double)" />
+          <FunctionImport Name="sp_NroBoletinAutomaticoporLugar" ReturnType="Collection(Permisos_de_CirculacionModel.sp_NroBoletinAutomaticoporLugar_Result)">
+          <Parameter Name="Codigo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PermisosResp">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Año_del_Permiso" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="Decimal" />
+            <Parameter Name="Periodo" Mode="In" Type="Decimal" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="Neto_Factura" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Factura" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor_UTM" Mode="In" Type="Double" />
+            <Parameter Name="Comuna_Anterior" Mode="In" Type="Decimal" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Decimal" />
+            <Parameter Name="Compañia_Seguro" Mode="In" Type="Decimal" />
+            <Parameter Name="Numero_Poliza" Mode="In" Type="String" />
+            <Parameter Name="Nro_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Lugar_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Folio_Gases" Mode="In" Type="String" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Decimal" />
+            <Parameter Name="Numero_Boletin" Mode="In" Type="Double" />
+            <Parameter Name="Numero_Caja" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Permiso" Mode="In" Type="Decimal" />
+            <Parameter Name="Porcentaje_IPC" Mode="In" Type="Single" />
+            <Parameter Name="Porcentaje_Multa" Mode="In" Type="Single" />
+            <Parameter Name="Valor_IPC" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Multa" Mode="In" Type="Decimal" />
+            <Parameter Name="Total_a_Pagar" Mode="In" Type="Decimal" />
+            <Parameter Name="Estado_del_Pago" Mode="In" Type="Decimal" />
+            <Parameter Name="Fondos_a_Terceros" Mode="In" Type="Boolean" />
+            <Parameter Name="Valor_Contado" Mode="In" Type="Decimal" />
+            <Parameter Name="Valor_Cuota" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha_Vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Boolean" />
+            <Parameter Name="Porcentaje_Correccion" Mode="In" Type="Single" />
+            <Parameter Name="Monto_Correccion" Mode="In" Type="Decimal" />
+            <Parameter Name="Origen" Mode="In" Type="Byte" />
+            <Parameter Name="Fecha_Ingreso" Mode="In" Type="DateTime" />
+            <Parameter Name="Comuna_Origen" Mode="In" Type="Int16" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Empresa_Procedencia" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Pago" Mode="In" Type="DateTime" />
+            <Parameter Name="Numero_Boletin_Preimpreso" Mode="In" Type="Single" />
+            <Parameter Name="Municipalidad" Mode="In" Type="String" />
+            <Parameter Name="Derechos_Varios" Mode="In" Type="String" />
+            <Parameter Name="Hora_Emision" Mode="In" Type="Time" />
+            <Parameter Name="SeriesQR" Mode="In" Type="String" />
+            <Parameter Name="Hash" Mode="In" Type="String" />
+            <Parameter Name="Usuario_Transaccion" Mode="In" Type="String" />
+            <Parameter Name="Equipo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PROCESO_PAGO_PERMISOS_INTERNET">
+            <Parameter Name="Codigo_Area" Mode="In" Type="Int16" />
+            <Parameter Name="Ano_Proceso" Mode="In" Type="Int16" />
+            <Parameter Name="MiItemPago" Mode="In" Type="Int16" />
+            <Parameter Name="MiOrdenIngreso" Mode="In" Type="Int32" />
+            <Parameter Name="MiRut" Mode="In" Type="String" />
+            <Parameter Name="FechaActual" Mode="In" Type="DateTime" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Año_del_Permiso" Mode="In" Type="Int16" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RegistraMulta_Internet">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Año_del_Permiso" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="Int16" />
+            <Parameter Name="Periodo" Mode="In" Type="Int16" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Int16" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="Valor_UTM" Mode="In" Type="Int32" />
+            <Parameter Name="Comuna_Anterior" Mode="In" Type="Int16" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Int16" />
+            <Parameter Name="Compañia_Seguro" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Poliza" Mode="In" Type="String" />
+            <Parameter Name="Nro_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Lugar_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Caja" Mode="In" Type="Int16" />
+            <Parameter Name="Valor_Permiso" Mode="In" Type="Int32" />
+            <Parameter Name="Porcentaje_IPC" Mode="In" Type="Single" />
+            <Parameter Name="Porcentaje_Multa" Mode="In" Type="Single" />
+            <Parameter Name="Valor_IPC" Mode="In" Type="Int32" />
+            <Parameter Name="Valor_Multa" Mode="In" Type="Int32" />
+            <Parameter Name="Total_a_Pagar" Mode="In" Type="Int32" />
+            <Parameter Name="Estado_del_Pago" Mode="In" Type="Byte" />
+            <Parameter Name="Fondos_a_Terceros" Mode="In" Type="Boolean" />
+            <Parameter Name="Valor_Contado" Mode="In" Type="Int32" />
+            <Parameter Name="Valor_Cuota" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Boolean" />
+            <Parameter Name="Porcentaje_Correccion" Mode="In" Type="Single" />
+            <Parameter Name="Monto_Correccion" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Pago" Mode="In" Type="DateTime" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RegistraPermiso_Internet">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Año_del_Permiso" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="Int16" />
+            <Parameter Name="Periodo" Mode="In" Type="Int16" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Int16" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="Neto_Factura" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Factura" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor_UTM" Mode="In" Type="Int32" />
+            <Parameter Name="Comuna_Anterior" Mode="In" Type="Int16" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Int16" />
+            <Parameter Name="Compañia_Seguro" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Poliza" Mode="In" Type="String" />
+            <Parameter Name="Nro_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Lugar_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Caja" Mode="In" Type="Int16" />
+            <Parameter Name="Valor_Permiso" Mode="In" Type="Int32" />
+            <Parameter Name="Porcentaje_IPC" Mode="In" Type="Single" />
+            <Parameter Name="Porcentaje_Multa" Mode="In" Type="Single" />
+            <Parameter Name="Valor_IPC" Mode="In" Type="Int32" />
+            <Parameter Name="Valor_Multa" Mode="In" Type="Int32" />
+            <Parameter Name="Total_a_Pagar" Mode="In" Type="Int32" />
+            <Parameter Name="Estado_del_Pago" Mode="In" Type="Byte" />
+            <Parameter Name="Fondos_a_Terceros" Mode="In" Type="Boolean" />
+            <Parameter Name="Valor_Contado" Mode="In" Type="Int32" />
+            <Parameter Name="Valor_Cuota" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Boolean" />
+            <Parameter Name="Porcentaje_Correccion" Mode="In" Type="Single" />
+            <Parameter Name="Monto_Correccion" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Pago" Mode="In" Type="DateTime" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RegistraPermiso_Internet_InHouse">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Año_del_Permiso" Mode="In" Type="Int16" />
+            <Parameter Name="Fecha_Emision" Mode="In" Type="DateTime" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="Int16" />
+            <Parameter Name="Periodo" Mode="In" Type="Int16" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Int16" />
+            <Parameter Name="Tasacion" Mode="In" Type="Double" />
+            <Parameter Name="Neto_Factura" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Factura" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor_UTM" Mode="In" Type="Int32" />
+            <Parameter Name="Comuna_Anterior" Mode="In" Type="Int16" />
+            <Parameter Name="Año_Anterior" Mode="In" Type="Int16" />
+            <Parameter Name="Compañia_Seguro" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Poliza" Mode="In" Type="String" />
+            <Parameter Name="Nro_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Lugar_Revision_Tecnica" Mode="In" Type="String" />
+            <Parameter Name="Forma_de_Pago" Mode="In" Type="Int16" />
+            <Parameter Name="Numero_Caja" Mode="In" Type="Int16" />
+            <Parameter Name="Valor_Permiso" Mode="In" Type="Int32" />
+            <Parameter Name="Porcentaje_IPC" Mode="In" Type="Single" />
+            <Parameter Name="Porcentaje_Multa" Mode="In" Type="Single" />
+            <Parameter Name="Valor_IPC" Mode="In" Type="Int32" />
+            <Parameter Name="Valor_Multa" Mode="In" Type="Int32" />
+            <Parameter Name="Total_a_Pagar" Mode="In" Type="Int32" />
+            <Parameter Name="Estado_del_Pago" Mode="In" Type="Byte" />
+            <Parameter Name="Fondos_a_Terceros" Mode="In" Type="Boolean" />
+            <Parameter Name="Valor_Contado" Mode="In" Type="Int32" />
+            <Parameter Name="Valor_Cuota" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_vencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Correccion_Monetaria" Mode="In" Type="Boolean" />
+            <Parameter Name="Porcentaje_Correccion" Mode="In" Type="Single" />
+            <Parameter Name="Monto_Correccion" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Pago" Mode="In" Type="DateTime" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RegistraPropietario_Internet">
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Comuna" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Postal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RegistraVehiculo_Internet">
+            <Parameter Name="Placa" Mode="In" Type="String" />
+            <Parameter Name="Digito" Mode="In" Type="String" />
+            <Parameter Name="Rut" Mode="In" Type="String" />
+            <Parameter Name="TipoVehiculo" Mode="In" Type="Decimal" />
+            <Parameter Name="Clasificacion" Mode="In" Type="Decimal" />
+            <Parameter Name="CodigoMarca" Mode="In" Type="Decimal" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="AñoFabricacion" Mode="In" Type="Decimal" />
+            <Parameter Name="Color" Mode="In" Type="String" />
+            <Parameter Name="NumeroMotor" Mode="In" Type="String" />
+            <Parameter Name="NumeroChassis" Mode="In" Type="String" />
+            <Parameter Name="NumeroPuertas" Mode="In" Type="Decimal" />
+            <Parameter Name="Tonelaje" Mode="In" Type="Decimal" />
+            <Parameter Name="Asientos" Mode="In" Type="Decimal" />
+            <Parameter Name="Sello" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroSello" Mode="In" Type="String" />
+            <Parameter Name="NroRevTec" Mode="In" Type="String" />
+            <Parameter Name="LugarRevTec" Mode="In" Type="String" />
+            <Parameter Name="UsarCorreo" Mode="In" Type="Boolean" />
+            <Parameter Name="Asimilado" Mode="In" Type="Boolean" />
+            <Parameter Name="Tasado" Mode="In" Type="Boolean" />
+            <Parameter Name="Trasladado" Mode="In" Type="Boolean" />
+            <Parameter Name="NetoFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="FechaFactura" Mode="In" Type="DateTime" />
+            <Parameter Name="NumeroFactura" Mode="In" Type="Decimal" />
+            <Parameter Name="Rut_Factura" Mode="In" Type="String" />
+            <Parameter Name="Cilindrada" Mode="In" Type="Decimal" />
+            <Parameter Name="Combustible" Mode="In" Type="String" />
+            <Parameter Name="Equipamiento" Mode="In" Type="String" />
+            <Parameter Name="Transmision" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+            <Parameter Name="Estado_Vehiculo" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Seguro" ReturnType="Collection(Permisos_de_CirculacionModel.sp_Seguro_Result)">
+          <Parameter Name="orden" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ValorSeguroInternet" ReturnType="Collection(Permisos_de_CirculacionModel.sp_ValorSeguroInternet_Result)">
+            <Parameter Name="Codigo_CiaSeguro" Mode="In" Type="Int16" />
+            <Parameter Name="Tipo_Vehiculo" Mode="In" Type="Int16" />
+            <Parameter Name="Banco" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="Trae_Datos_Por_Años" ReturnType="Collection(Permisos_de_CirculacionModel.Trae_Datos_Por_Años_Result)">
+            <Parameter Name="Desde" Mode="In" Type="Int32" />
+            <Parameter Name="Hasta" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="PER_TraeClasifAñoAnt_Result">
+          <Property Type="Int16" Name="Clasificacion" Nullable="true" />
+          <Property Type="String" Name="Codigo_SII" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="sp_DatosVehiculo_Internet_Result">
+          <Property Type="String" Name="Digito" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Rut" Nullable="true" MaxLength="11" />
+          <Property Type="Int16" Name="Anno_del_Permiso" Nullable="false" />
+          <Property Type="Int16" Name="Anno_Anterior" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Emision" Nullable="true" Precision="16" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="50" />
+          <Property Type="Int16" Name="Forma_de_Pago" Nullable="false" />
+          <Property Type="Int32" Name="Valor_Cuota" Nullable="true" />
+          <Property Type="Int32" Name="Valor_Contado" Nullable="true" />
+          <Property Type="Int32" Name="Valor_Permiso" Nullable="true" />
+          <Property Type="Int32" Name="Valor_IPC" Nullable="true" />
+          <Property Type="Int32" Name="Valor_Multa" Nullable="true" />
+          <Property Type="Int32" Name="Total_a_Pagar" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Vencimiento" Nullable="true" Precision="16" />
+          <Property Type="Double" Name="Numero_Boletin" Nullable="true" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="30" />
+          <Property Type="Int16" Name="Anno_Fabricacion" Nullable="true" />
+          <Property Type="String" Name="Numero_Motor" Nullable="true" MaxLength="30" />
+          <Property Type="Int16" Name="Numero_Puertas" Nullable="true" />
+          <Property Type="Int16" Name="Numero_Asientos" Nullable="true" />
+          <Property Type="String" Name="Numero_Chassis" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Numero_Sello" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="Tipo_Sello" Nullable="false" />
+          <Property Type="Int32" Name="Tasacion" Nullable="true" />
+          <Property Type="Int16" Name="Cilindrada" Nullable="true" />
+          <Property Type="String" Name="Combustible" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Transmision" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Equipamiento" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Tonelaje" Nullable="true" />
+          <Property Type="String" Name="Codigo_SII" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Comuna" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Sello" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_NroBoletinAutomaticoporLugar_Result">
+          <Property Type="Double" Name="Correlativo" Nullable="false" />
+          <Property Type="Double" Name="Correlativo_Hasta" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Seguro_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Placa" Nullable="true" MaxLength="9" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="Id_Pedido" Nullable="false" />
+          <Property Type="Int16" Name="Numero_de_Pagos" Nullable="true" />
+          <Property Type="Int16" Name="Estado" Nullable="true" />
+          <Property Type="String" Name="TBK_ORDEN_COMPRA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_TIPO_TRANSACCION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_ID_SESION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_ID_TRANSACCION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_CODIGO_AUTORIZACION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_RESPUESTA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_MONTO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_NUMERO_TARJETA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_FECHA_EXPIRACION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_FECHA_CONTABLE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_FECHA_TRANSACCION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_HORA_TRANSACCION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_COD_AUT_M001" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_TIPO_PAGO_M001" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_NUMERO_CUOTAS_M001" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_COD_RESP_M001" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_MONTO_TIENDA_M001" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_ORDEN_TIENDA_M001" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_COD_AUT_M002" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_TIPO_PAGO_M002" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_NUMERO_CUOTAS_M002" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_COD_RESP_M002" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_MONTO_TIENDA_M002" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_ORDEN_TIENDA_M002" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TBK_MAC" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RT_RazonSocial" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="RT_NumeroCertificado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CS_CiaSeguro" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CS_NumeroPoliza" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CS_ValorSeguro" Nullable="true" />
+          <Property Type="String" Name="DL_NombreContacto" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DL_DireccionContacto" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DL_TelefonoContacto" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DL_DiasVisita" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DL_HorasVisita" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DL_MailContacto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HOMOLOGADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="REVTEC_WS_MTT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SEGURO_ONLINE_WS_AACH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="COMPRA_SEGURO_ONLINE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ID_HOMOLOGADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ID_MTT_REVTEC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ID_MTT_REVGAS" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="URL" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Folio_Permiso" Nullable="true" />
+          <Property Type="Int32" Name="Forma_de_Pago" Nullable="true" />
+          <Property Type="Int32" Name="CS_CodigoCiaSeguro" Nullable="true" />
+          <Property Type="Int32" Name="Anno" Nullable="true" />
+          <Property Type="String" Name="Ruta_Log_Permiso" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Ruta_Log_Multa" Nullable="true" MaxLength="2000" />
+          <Property Type="DateTime" Name="Fecha_VencRevTec" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="CobroAdicional" Nullable="true" />
+          <Property Type="Int16" Name="movil" Nullable="true" />
+          <Property Type="String" Name="Digito" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="30" />
+          <Property Type="Int16" Name="anoFab" Nullable="true" />
+          <Property Type="String" Name="Numero_Motor" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Numero_Chassis" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Rut" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="Comuna" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Codigo_Postal" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="cod_region" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ValorSeguroInternet_Result">
+          <Property Type="Int32" Name="Codigo_Equivalencia" Nullable="false" />
+          <Property Type="Int32" Name="Valor_Seguro" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Trae_Datos_Por_Años_Result">
+          <Property Type="String" Name="Añoc" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="TipoVehiculo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Año" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="Placa" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="SIINuevo" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="SIIAnt" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="FechadePago" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Valordelpermiso" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12113,6 +13893,217 @@ advertencia 6002: La tabla o vista 'Permisos_de_Circulacion.dbo.Verificacion_Ing
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Elimina_Multas_ID" FunctionName="Permisos_de_CirculacionModel.Store.Elimina_Multas_ID" />
+          <FunctionImportMapping FunctionImportName="PER_Periodos_TraePorPlaca" FunctionName="Permisos_de_CirculacionModel.Store.PER_Periodos_TraePorPlaca" />
+          <FunctionImportMapping FunctionImportName="PER_TraeClasifAñoAnt" FunctionName="Permisos_de_CirculacionModel.Store.PER_TraeClasifAñoAnt">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Permisos_de_CirculacionModel.PER_TraeClasifAñoAnt_Result">
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="Codigo_SII" ColumnName="Codigo_SII" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Permisos_de_Circulacion_ActualizaPago" FunctionName="Permisos_de_CirculacionModel.Store.Permisos_de_Circulacion_ActualizaPago" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaCajas" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaCajas" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaCartas" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaCartas" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaCartas_" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaCartas_" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaCiaSeguros" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaCiaSeguros" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaDatosVehiculo" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaDatosVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaDuplicado" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaDuplicado" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaEstadoTraslado" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaEstadoTraslado" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaIndices" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaIndices" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaMarcas" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaMarcas" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaMunicipalidad" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaMunicipalidad" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaPagos" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaPagos" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaParametros" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaParametros" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaPeriodos" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaPeriodos" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaPropietarios" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaPropietarios" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaRegPreemision" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaRegPreemision" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaSellos" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaSellos" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaSII" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaSII" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaTipoPago" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaTipoPago" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaTipoVehiculo" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaTipoVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaTraslados" FunctionName="Permisos_de_CirculacionModel.Store.sp_ActualizaTraslados" />
+          <FunctionImportMapping FunctionImportName="sp_CambiaEstadoCarta" FunctionName="Permisos_de_CirculacionModel.Store.sp_CambiaEstadoCarta" />
+          <FunctionImportMapping FunctionImportName="sp_Carga_Multas_Registro_Civil" FunctionName="Permisos_de_CirculacionModel.Store.sp_Carga_Multas_Registro_Civil" />
+          <FunctionImportMapping FunctionImportName="sp_ConsultaDeuda" FunctionName="Permisos_de_CirculacionModel.Store.sp_ConsultaDeuda" />
+          <FunctionImportMapping FunctionImportName="sp_Correlativo_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_Correlativo_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_Correlativo_Internet_InHouse" FunctionName="Permisos_de_CirculacionModel.Store.sp_Correlativo_Internet_InHouse" />
+          <FunctionImportMapping FunctionImportName="Sp_CorrelativoTramitesVarios" FunctionName="Permisos_de_CirculacionModel.Store.Sp_CorrelativoTramitesVarios" />
+          <FunctionImportMapping FunctionImportName="sp_DatosVehiculo_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_DatosVehiculo_Internet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Permisos_de_CirculacionModel.sp_DatosVehiculo_Internet_Result">
+                <ScalarProperty Name="Digito" ColumnName="Digito" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Anno_del_Permiso" ColumnName="Anno_del_Permiso" />
+                <ScalarProperty Name="Anno_Anterior" ColumnName="Anno_Anterior" />
+                <ScalarProperty Name="Fecha_Emision" ColumnName="Fecha_Emision" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="Forma_de_Pago" ColumnName="Forma_de_Pago" />
+                <ScalarProperty Name="Valor_Cuota" ColumnName="Valor_Cuota" />
+                <ScalarProperty Name="Valor_Contado" ColumnName="Valor_Contado" />
+                <ScalarProperty Name="Valor_Permiso" ColumnName="Valor_Permiso" />
+                <ScalarProperty Name="Valor_IPC" ColumnName="Valor_IPC" />
+                <ScalarProperty Name="Valor_Multa" ColumnName="Valor_Multa" />
+                <ScalarProperty Name="Total_a_Pagar" ColumnName="Total_a_Pagar" />
+                <ScalarProperty Name="Fecha_Vencimiento" ColumnName="Fecha_Vencimiento" />
+                <ScalarProperty Name="Numero_Boletin" ColumnName="Numero_Boletin" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Anno_Fabricacion" ColumnName="Anno_Fabricacion" />
+                <ScalarProperty Name="Numero_Motor" ColumnName="Numero_Motor" />
+                <ScalarProperty Name="Numero_Puertas" ColumnName="Numero_Puertas" />
+                <ScalarProperty Name="Numero_Asientos" ColumnName="Numero_Asientos" />
+                <ScalarProperty Name="Numero_Chassis" ColumnName="Numero_Chassis" />
+                <ScalarProperty Name="Numero_Sello" ColumnName="Numero_Sello" />
+                <ScalarProperty Name="Tipo_Sello" ColumnName="Tipo_Sello" />
+                <ScalarProperty Name="Tasacion" ColumnName="Tasacion" />
+                <ScalarProperty Name="Cilindrada" ColumnName="Cilindrada" />
+                <ScalarProperty Name="Combustible" ColumnName="Combustible" />
+                <ScalarProperty Name="Transmision" ColumnName="Transmision" />
+                <ScalarProperty Name="Equipamiento" ColumnName="Equipamiento" />
+                <ScalarProperty Name="Tonelaje" ColumnName="Tonelaje" />
+                <ScalarProperty Name="Codigo_SII" ColumnName="Codigo_SII" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Sello" ColumnName="Sello" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DatosVehiculosResp" FunctionName="Permisos_de_CirculacionModel.Store.sp_DatosVehiculosResp" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaDatosVehiculo" FunctionName="Permisos_de_CirculacionModel.Store.sp_EliminaDatosVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_EncabezadoDeudores_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_EncabezadoDeudores_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_EncabezadoDeudoresMultas_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_EncabezadoDeudoresMultas_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_Inserta_Registro_de_Multas" FunctionName="Permisos_de_CirculacionModel.Store.sp_Inserta_Registro_de_Multas" />
+          <FunctionImportMapping FunctionImportName="SP_inserta_Registros_Por_Carga_Masiva" FunctionName="Permisos_de_CirculacionModel.Store.SP_inserta_Registros_Por_Carga_Masiva" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarTransaccion_AACH" FunctionName="Permisos_de_CirculacionModel.Store.sp_InsertarTransaccion_AACH" />
+          <FunctionImportMapping FunctionImportName="sp_InsertarTransaccion_MTT" FunctionName="Permisos_de_CirculacionModel.Store.sp_InsertarTransaccion_MTT" />
+          <FunctionImportMapping FunctionImportName="SP_Multas_Pendientes" FunctionName="Permisos_de_CirculacionModel.Store.SP_Multas_Pendientes" />
+          <FunctionImportMapping FunctionImportName="sp_NroBoletinAutomatico" FunctionName="Permisos_de_CirculacionModel.Store.sp_NroBoletinAutomatico" />
+          <FunctionImportMapping FunctionImportName="sp_NroBoletinAutomaticoporLugar" FunctionName="Permisos_de_CirculacionModel.Store.sp_NroBoletinAutomaticoporLugar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Permisos_de_CirculacionModel.sp_NroBoletinAutomaticoporLugar_Result">
+                <ScalarProperty Name="Correlativo" ColumnName="Correlativo" />
+                <ScalarProperty Name="Correlativo_Hasta" ColumnName="Correlativo_Hasta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PermisosResp" FunctionName="Permisos_de_CirculacionModel.Store.sp_PermisosResp" />
+          <FunctionImportMapping FunctionImportName="SP_PROCESO_PAGO_PERMISOS_INTERNET" FunctionName="Permisos_de_CirculacionModel.Store.SP_PROCESO_PAGO_PERMISOS_INTERNET" />
+          <FunctionImportMapping FunctionImportName="sp_RegistraMulta_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_RegistraMulta_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_RegistraPermiso_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_RegistraPermiso_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_RegistraPermiso_Internet_InHouse" FunctionName="Permisos_de_CirculacionModel.Store.sp_RegistraPermiso_Internet_InHouse" />
+          <FunctionImportMapping FunctionImportName="sp_RegistraPropietario_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_RegistraPropietario_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_RegistraVehiculo_Internet" FunctionName="Permisos_de_CirculacionModel.Store.sp_RegistraVehiculo_Internet" />
+          <FunctionImportMapping FunctionImportName="sp_Seguro" FunctionName="Permisos_de_CirculacionModel.Store.sp_Seguro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Permisos_de_CirculacionModel.sp_Seguro_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
+                <ScalarProperty Name="Numero_de_Pagos" ColumnName="Numero_de_Pagos" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TBK_ORDEN_COMPRA" ColumnName="TBK_ORDEN_COMPRA" />
+                <ScalarProperty Name="TBK_TIPO_TRANSACCION" ColumnName="TBK_TIPO_TRANSACCION" />
+                <ScalarProperty Name="TBK_ID_SESION" ColumnName="TBK_ID_SESION" />
+                <ScalarProperty Name="TBK_ID_TRANSACCION" ColumnName="TBK_ID_TRANSACCION" />
+                <ScalarProperty Name="TBK_CODIGO_AUTORIZACION" ColumnName="TBK_CODIGO_AUTORIZACION" />
+                <ScalarProperty Name="TBK_RESPUESTA" ColumnName="TBK_RESPUESTA" />
+                <ScalarProperty Name="TBK_MONTO" ColumnName="TBK_MONTO" />
+                <ScalarProperty Name="TBK_NUMERO_TARJETA" ColumnName="TBK_NUMERO_TARJETA" />
+                <ScalarProperty Name="TBK_FECHA_EXPIRACION" ColumnName="TBK_FECHA_EXPIRACION" />
+                <ScalarProperty Name="TBK_FECHA_CONTABLE" ColumnName="TBK_FECHA_CONTABLE" />
+                <ScalarProperty Name="TBK_FECHA_TRANSACCION" ColumnName="TBK_FECHA_TRANSACCION" />
+                <ScalarProperty Name="TBK_HORA_TRANSACCION" ColumnName="TBK_HORA_TRANSACCION" />
+                <ScalarProperty Name="TBK_COD_AUT_M001" ColumnName="TBK_COD_AUT_M001" />
+                <ScalarProperty Name="TBK_TIPO_PAGO_M001" ColumnName="TBK_TIPO_PAGO_M001" />
+                <ScalarProperty Name="TBK_NUMERO_CUOTAS_M001" ColumnName="TBK_NUMERO_CUOTAS_M001" />
+                <ScalarProperty Name="TBK_COD_RESP_M001" ColumnName="TBK_COD_RESP_M001" />
+                <ScalarProperty Name="TBK_MONTO_TIENDA_M001" ColumnName="TBK_MONTO_TIENDA_M001" />
+                <ScalarProperty Name="TBK_ORDEN_TIENDA_M001" ColumnName="TBK_ORDEN_TIENDA_M001" />
+                <ScalarProperty Name="TBK_COD_AUT_M002" ColumnName="TBK_COD_AUT_M002" />
+                <ScalarProperty Name="TBK_TIPO_PAGO_M002" ColumnName="TBK_TIPO_PAGO_M002" />
+                <ScalarProperty Name="TBK_NUMERO_CUOTAS_M002" ColumnName="TBK_NUMERO_CUOTAS_M002" />
+                <ScalarProperty Name="TBK_COD_RESP_M002" ColumnName="TBK_COD_RESP_M002" />
+                <ScalarProperty Name="TBK_MONTO_TIENDA_M002" ColumnName="TBK_MONTO_TIENDA_M002" />
+                <ScalarProperty Name="TBK_ORDEN_TIENDA_M002" ColumnName="TBK_ORDEN_TIENDA_M002" />
+                <ScalarProperty Name="TBK_MAC" ColumnName="TBK_MAC" />
+                <ScalarProperty Name="RT_RazonSocial" ColumnName="RT_RazonSocial" />
+                <ScalarProperty Name="RT_NumeroCertificado" ColumnName="RT_NumeroCertificado" />
+                <ScalarProperty Name="CS_CiaSeguro" ColumnName="CS_CiaSeguro" />
+                <ScalarProperty Name="CS_NumeroPoliza" ColumnName="CS_NumeroPoliza" />
+                <ScalarProperty Name="CS_ValorSeguro" ColumnName="CS_ValorSeguro" />
+                <ScalarProperty Name="DL_NombreContacto" ColumnName="DL_NombreContacto" />
+                <ScalarProperty Name="DL_DireccionContacto" ColumnName="DL_DireccionContacto" />
+                <ScalarProperty Name="DL_TelefonoContacto" ColumnName="DL_TelefonoContacto" />
+                <ScalarProperty Name="DL_DiasVisita" ColumnName="DL_DiasVisita" />
+                <ScalarProperty Name="DL_HorasVisita" ColumnName="DL_HorasVisita" />
+                <ScalarProperty Name="DL_MailContacto" ColumnName="DL_MailContacto" />
+                <ScalarProperty Name="HOMOLOGADO" ColumnName="HOMOLOGADO" />
+                <ScalarProperty Name="REVTEC_WS_MTT" ColumnName="REVTEC_WS_MTT" />
+                <ScalarProperty Name="SEGURO_ONLINE_WS_AACH" ColumnName="SEGURO_ONLINE_WS_AACH" />
+                <ScalarProperty Name="COMPRA_SEGURO_ONLINE" ColumnName="COMPRA_SEGURO_ONLINE" />
+                <ScalarProperty Name="ID_HOMOLOGADO" ColumnName="ID_HOMOLOGADO" />
+                <ScalarProperty Name="ID_MTT_REVTEC" ColumnName="ID_MTT_REVTEC" />
+                <ScalarProperty Name="ID_MTT_REVGAS" ColumnName="ID_MTT_REVGAS" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Folio_Permiso" ColumnName="Folio_Permiso" />
+                <ScalarProperty Name="Forma_de_Pago" ColumnName="Forma_de_Pago" />
+                <ScalarProperty Name="CS_CodigoCiaSeguro" ColumnName="CS_CodigoCiaSeguro" />
+                <ScalarProperty Name="Anno" ColumnName="Anno" />
+                <ScalarProperty Name="Ruta_Log_Permiso" ColumnName="Ruta_Log_Permiso" />
+                <ScalarProperty Name="Ruta_Log_Multa" ColumnName="Ruta_Log_Multa" />
+                <ScalarProperty Name="Fecha_VencRevTec" ColumnName="Fecha_VencRevTec" />
+                <ScalarProperty Name="CobroAdicional" ColumnName="CobroAdicional" />
+                <ScalarProperty Name="movil" ColumnName="movil" />
+                <ScalarProperty Name="Digito" ColumnName="Digito" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="anoFab" ColumnName="anoFab" />
+                <ScalarProperty Name="Numero_Motor" ColumnName="Numero_Motor" />
+                <ScalarProperty Name="Numero_Chassis" ColumnName="Numero_Chassis" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Codigo_Postal" ColumnName="Codigo_Postal" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="cod_region" ColumnName="cod_region" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ValorSeguroInternet" FunctionName="Permisos_de_CirculacionModel.Store.sp_ValorSeguroInternet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Permisos_de_CirculacionModel.sp_ValorSeguroInternet_Result">
+                <ScalarProperty Name="Codigo_Equivalencia" ColumnName="Codigo_Equivalencia" />
+                <ScalarProperty Name="Valor_Seguro" ColumnName="Valor_Seguro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Trae_Datos_Por_Años" FunctionName="Permisos_de_CirculacionModel.Store.Trae_Datos_Por_Años">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Permisos_de_CirculacionModel.Trae_Datos_Por_Años_Result">
+                <ScalarProperty Name="Añoc" ColumnName="Añoc" />
+                <ScalarProperty Name="TipoVehiculo" ColumnName="TipoVehiculo" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="SIINuevo" ColumnName="SIINuevo" />
+                <ScalarProperty Name="SIIAnt" ColumnName="SIIAnt" />
+                <ScalarProperty Name="FechadePago" ColumnName="FechadePago" />
+                <ScalarProperty Name="Valordelpermiso" ColumnName="Valordelpermiso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

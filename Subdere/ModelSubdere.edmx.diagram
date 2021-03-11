@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7d759f5d5b6d41f0b324c819de8c8ba6" Name="Diagram1">
+      <Diagram DiagramId="7d759f5d5b6d41f0b324c819de8c8ba6" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="Permisos_de_CirculacionModel.Derechos_Varios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Permisos_de_CirculacionModel.Empresa" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Permisos_de_CirculacionModel.Encuesta_Anual" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />

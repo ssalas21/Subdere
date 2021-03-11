@@ -22,11 +22,13 @@ namespace Subdere
     
         public string Patente { get; set; }
         public string Rut { get; set; }
-        public System.DateTime FechaVencimiento { get; set; }
+        public Nullable<System.DateTime> FechaVencimiento { get; set; }
         public Nullable<System.DateTime> FechaFactura { get; set; }
         public Nullable<System.DateTime> FechaHomologacion { get; set; }
         public Nullable<long> ValorFactura { get; set; }
-        public System.DateTime FechaPlazoHomologacion { get; set; }
+        public Nullable<System.DateTime> FechaPlazoHomologacion { get; set; }
+        public Nullable<long> Tasacion { get; set; }
+        public string Codigo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleNomina> DetalleNomina { get; set; }

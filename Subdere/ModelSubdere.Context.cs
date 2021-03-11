@@ -12,6 +12,8 @@ namespace Subdere
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Permisos_de_CirculacionEntities : DbContext
     {
@@ -180,5 +182,3121 @@ namespace Subdere
         public virtual DbSet<Valores_Monedas> Valores_Monedas { get; set; }
         public virtual DbSet<Vehiculos_Fuera_Circulacion> Vehiculos_Fuera_Circulacion { get; set; }
         public virtual DbSet<Verificacion_Ingreso> Verificacion_Ingreso { get; set; }
+    
+        public virtual int Elimina_Multas_ID(string iD_Multas, string codigo_Cliente)
+        {
+            var iD_MultasParameter = iD_Multas != null ?
+                new ObjectParameter("ID_Multas", iD_Multas) :
+                new ObjectParameter("ID_Multas", typeof(string));
+    
+            var codigo_ClienteParameter = codigo_Cliente != null ?
+                new ObjectParameter("Codigo_Cliente", codigo_Cliente) :
+                new ObjectParameter("Codigo_Cliente", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Elimina_Multas_ID", iD_MultasParameter, codigo_ClienteParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<short>> PER_Periodos_TraePorPlaca(string placa)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("placa", placa) :
+                new ObjectParameter("placa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("PER_Periodos_TraePorPlaca", placaParameter);
+        }
+    
+        public virtual ObjectResult<PER_TraeClasifAñoAnt_Result> PER_TraeClasifAñoAnt(string placa, string ano)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("placa", placa) :
+                new ObjectParameter("placa", typeof(string));
+    
+            var anoParameter = ano != null ?
+                new ObjectParameter("ano", ano) :
+                new ObjectParameter("ano", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PER_TraeClasifAñoAnt_Result>("PER_TraeClasifAñoAnt", placaParameter, anoParameter);
+        }
+    
+        public virtual int Permisos_de_Circulacion_ActualizaPago(string placa, string digito, Nullable<long> numeroBoletin, Nullable<System.DateTime> fecha_Pago, Nullable<short> accion)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var numeroBoletinParameter = numeroBoletin.HasValue ?
+                new ObjectParameter("NumeroBoletin", numeroBoletin) :
+                new ObjectParameter("NumeroBoletin", typeof(long));
+    
+            var fecha_PagoParameter = fecha_Pago.HasValue ?
+                new ObjectParameter("Fecha_Pago", fecha_Pago) :
+                new ObjectParameter("Fecha_Pago", typeof(System.DateTime));
+    
+            var accionParameter = accion.HasValue ?
+                new ObjectParameter("Accion", accion) :
+                new ObjectParameter("Accion", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Permisos_de_Circulacion_ActualizaPago", placaParameter, digitoParameter, numeroBoletinParameter, fecha_PagoParameter, accionParameter);
+        }
+    
+        public virtual int sp_ActualizaCajas(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion, Nullable<decimal> desde_Boletin, Nullable<decimal> hasta_Boletin, Nullable<decimal> ubicacion)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var desde_BoletinParameter = desde_Boletin.HasValue ?
+                new ObjectParameter("Desde_Boletin", desde_Boletin) :
+                new ObjectParameter("Desde_Boletin", typeof(decimal));
+    
+            var hasta_BoletinParameter = hasta_Boletin.HasValue ?
+                new ObjectParameter("Hasta_Boletin", hasta_Boletin) :
+                new ObjectParameter("Hasta_Boletin", typeof(decimal));
+    
+            var ubicacionParameter = ubicacion.HasValue ?
+                new ObjectParameter("Ubicacion", ubicacion) :
+                new ObjectParameter("Ubicacion", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaCajas", swParameter, codigoParameter, descripcionParameter, desde_BoletinParameter, hasta_BoletinParameter, ubicacionParameter);
+        }
+    
+        public virtual int sp_ActualizaCartas(string path_CartaSolicitudAnt, string path_CartaTraslado, string path_CartaRechazos, string path_CartaCobranza, string path_CartaCobranzaMun, string path_CertifOcular, string path_CartaDecJurada, string path_CartaAviso, string path_CuentaCorriente, string path_CartaDetalleTraslado, string path_CartaDetalleRechazo, string path_Fondos_Terceros)
+        {
+            var path_CartaSolicitudAntParameter = path_CartaSolicitudAnt != null ?
+                new ObjectParameter("Path_CartaSolicitudAnt", path_CartaSolicitudAnt) :
+                new ObjectParameter("Path_CartaSolicitudAnt", typeof(string));
+    
+            var path_CartaTrasladoParameter = path_CartaTraslado != null ?
+                new ObjectParameter("Path_CartaTraslado", path_CartaTraslado) :
+                new ObjectParameter("Path_CartaTraslado", typeof(string));
+    
+            var path_CartaRechazosParameter = path_CartaRechazos != null ?
+                new ObjectParameter("Path_CartaRechazos", path_CartaRechazos) :
+                new ObjectParameter("Path_CartaRechazos", typeof(string));
+    
+            var path_CartaCobranzaParameter = path_CartaCobranza != null ?
+                new ObjectParameter("Path_CartaCobranza", path_CartaCobranza) :
+                new ObjectParameter("Path_CartaCobranza", typeof(string));
+    
+            var path_CartaCobranzaMunParameter = path_CartaCobranzaMun != null ?
+                new ObjectParameter("Path_CartaCobranzaMun", path_CartaCobranzaMun) :
+                new ObjectParameter("Path_CartaCobranzaMun", typeof(string));
+    
+            var path_CertifOcularParameter = path_CertifOcular != null ?
+                new ObjectParameter("Path_CertifOcular", path_CertifOcular) :
+                new ObjectParameter("Path_CertifOcular", typeof(string));
+    
+            var path_CartaDecJuradaParameter = path_CartaDecJurada != null ?
+                new ObjectParameter("Path_CartaDecJurada", path_CartaDecJurada) :
+                new ObjectParameter("Path_CartaDecJurada", typeof(string));
+    
+            var path_CartaAvisoParameter = path_CartaAviso != null ?
+                new ObjectParameter("Path_CartaAviso", path_CartaAviso) :
+                new ObjectParameter("Path_CartaAviso", typeof(string));
+    
+            var path_CuentaCorrienteParameter = path_CuentaCorriente != null ?
+                new ObjectParameter("Path_CuentaCorriente", path_CuentaCorriente) :
+                new ObjectParameter("Path_CuentaCorriente", typeof(string));
+    
+            var path_CartaDetalleTrasladoParameter = path_CartaDetalleTraslado != null ?
+                new ObjectParameter("Path_CartaDetalleTraslado", path_CartaDetalleTraslado) :
+                new ObjectParameter("Path_CartaDetalleTraslado", typeof(string));
+    
+            var path_CartaDetalleRechazoParameter = path_CartaDetalleRechazo != null ?
+                new ObjectParameter("Path_CartaDetalleRechazo", path_CartaDetalleRechazo) :
+                new ObjectParameter("Path_CartaDetalleRechazo", typeof(string));
+    
+            var path_Fondos_TercerosParameter = path_Fondos_Terceros != null ?
+                new ObjectParameter("Path_Fondos_Terceros", path_Fondos_Terceros) :
+                new ObjectParameter("Path_Fondos_Terceros", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaCartas", path_CartaSolicitudAntParameter, path_CartaTrasladoParameter, path_CartaRechazosParameter, path_CartaCobranzaParameter, path_CartaCobranzaMunParameter, path_CertifOcularParameter, path_CartaDecJuradaParameter, path_CartaAvisoParameter, path_CuentaCorrienteParameter, path_CartaDetalleTrasladoParameter, path_CartaDetalleRechazoParameter, path_Fondos_TercerosParameter);
+        }
+    
+        public virtual int sp_ActualizaCartas_(string path_CartaSolicitudAnt, string path_CartaTraslado, string path_CartaRechazos, string path_CartaCobranza, string path_CartaCobranzaMun, string path_CertifOcular, string path_CartaDecJurada, string path_CartaAviso, string path_CuentaCorriente, string path_CartaDetalleTraslado, string path_CartaDetalleRechazo)
+        {
+            var path_CartaSolicitudAntParameter = path_CartaSolicitudAnt != null ?
+                new ObjectParameter("Path_CartaSolicitudAnt", path_CartaSolicitudAnt) :
+                new ObjectParameter("Path_CartaSolicitudAnt", typeof(string));
+    
+            var path_CartaTrasladoParameter = path_CartaTraslado != null ?
+                new ObjectParameter("Path_CartaTraslado", path_CartaTraslado) :
+                new ObjectParameter("Path_CartaTraslado", typeof(string));
+    
+            var path_CartaRechazosParameter = path_CartaRechazos != null ?
+                new ObjectParameter("Path_CartaRechazos", path_CartaRechazos) :
+                new ObjectParameter("Path_CartaRechazos", typeof(string));
+    
+            var path_CartaCobranzaParameter = path_CartaCobranza != null ?
+                new ObjectParameter("Path_CartaCobranza", path_CartaCobranza) :
+                new ObjectParameter("Path_CartaCobranza", typeof(string));
+    
+            var path_CartaCobranzaMunParameter = path_CartaCobranzaMun != null ?
+                new ObjectParameter("Path_CartaCobranzaMun", path_CartaCobranzaMun) :
+                new ObjectParameter("Path_CartaCobranzaMun", typeof(string));
+    
+            var path_CertifOcularParameter = path_CertifOcular != null ?
+                new ObjectParameter("Path_CertifOcular", path_CertifOcular) :
+                new ObjectParameter("Path_CertifOcular", typeof(string));
+    
+            var path_CartaDecJuradaParameter = path_CartaDecJurada != null ?
+                new ObjectParameter("Path_CartaDecJurada", path_CartaDecJurada) :
+                new ObjectParameter("Path_CartaDecJurada", typeof(string));
+    
+            var path_CartaAvisoParameter = path_CartaAviso != null ?
+                new ObjectParameter("Path_CartaAviso", path_CartaAviso) :
+                new ObjectParameter("Path_CartaAviso", typeof(string));
+    
+            var path_CuentaCorrienteParameter = path_CuentaCorriente != null ?
+                new ObjectParameter("Path_CuentaCorriente", path_CuentaCorriente) :
+                new ObjectParameter("Path_CuentaCorriente", typeof(string));
+    
+            var path_CartaDetalleTrasladoParameter = path_CartaDetalleTraslado != null ?
+                new ObjectParameter("Path_CartaDetalleTraslado", path_CartaDetalleTraslado) :
+                new ObjectParameter("Path_CartaDetalleTraslado", typeof(string));
+    
+            var path_CartaDetalleRechazoParameter = path_CartaDetalleRechazo != null ?
+                new ObjectParameter("Path_CartaDetalleRechazo", path_CartaDetalleRechazo) :
+                new ObjectParameter("Path_CartaDetalleRechazo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaCartas_", path_CartaSolicitudAntParameter, path_CartaTrasladoParameter, path_CartaRechazosParameter, path_CartaCobranzaParameter, path_CartaCobranzaMunParameter, path_CertifOcularParameter, path_CartaDecJuradaParameter, path_CartaAvisoParameter, path_CuentaCorrienteParameter, path_CartaDetalleTrasladoParameter, path_CartaDetalleRechazoParameter);
+        }
+    
+        public virtual int sp_ActualizaCiaSeguros(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaCiaSeguros", swParameter, codigoParameter, descripcionParameter);
+        }
+    
+        public virtual int sp_ActualizaDatosVehiculo(string placa, string digito, string rut, Nullable<decimal> tipoVehiculo, Nullable<decimal> clasificacion, string codigoSII, Nullable<decimal> codigoMarca, string modelo, Nullable<decimal> añoFabricacion, string color, string numeroMotor, string numeroChassis, Nullable<decimal> numeroPuertas, Nullable<decimal> tonelaje, Nullable<decimal> asientos, Nullable<decimal> ejes, Nullable<decimal> ruedas, Nullable<decimal> sello, string numeroSello, Nullable<decimal> compañiaSeguro, string numeroPoliza, string nroRevTec, string lugarRevTec, string folioGases, Nullable<bool> usarCorreo, string nombreCorreo, string direccionCorreo, string comunaCorreo, string fonoCorreo, string codigoPostal, Nullable<bool> asimilado, Nullable<bool> tasado, Nullable<decimal> tasacionSII, Nullable<decimal> netoFactura, Nullable<System.DateTime> fechaFactura, Nullable<decimal> numeroFactura, Nullable<decimal> cilindrada, string combustible, string equipamiento, string transmision, string observaciones, Nullable<short> estado_Vehiculo, string rut_Empresa, string nombre_Notario, Nullable<short> declaracion_Jurada, Nullable<System.DateTime> fecha_VencRevTec, Nullable<short> tipo_RevTec, Nullable<System.DateTime> fecha_Aprueba_Traslado, Nullable<short> codigo_ZonaFranca, string numero_VIN, Nullable<int> año_Anterior, Nullable<double> boletin_Anterior, Nullable<System.DateTime> fecha_Termino_Seguro, Nullable<int> comunidad_Int, string potencia, string marchas, string traccion, string equipamiento_Detallado, string permiso_Año, string version, string hash)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var tipoVehiculoParameter = tipoVehiculo.HasValue ?
+                new ObjectParameter("TipoVehiculo", tipoVehiculo) :
+                new ObjectParameter("TipoVehiculo", typeof(decimal));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(decimal));
+    
+            var codigoSIIParameter = codigoSII != null ?
+                new ObjectParameter("CodigoSII", codigoSII) :
+                new ObjectParameter("CodigoSII", typeof(string));
+    
+            var codigoMarcaParameter = codigoMarca.HasValue ?
+                new ObjectParameter("CodigoMarca", codigoMarca) :
+                new ObjectParameter("CodigoMarca", typeof(decimal));
+    
+            var modeloParameter = modelo != null ?
+                new ObjectParameter("Modelo", modelo) :
+                new ObjectParameter("Modelo", typeof(string));
+    
+            var añoFabricacionParameter = añoFabricacion.HasValue ?
+                new ObjectParameter("AñoFabricacion", añoFabricacion) :
+                new ObjectParameter("AñoFabricacion", typeof(decimal));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var numeroMotorParameter = numeroMotor != null ?
+                new ObjectParameter("NumeroMotor", numeroMotor) :
+                new ObjectParameter("NumeroMotor", typeof(string));
+    
+            var numeroChassisParameter = numeroChassis != null ?
+                new ObjectParameter("NumeroChassis", numeroChassis) :
+                new ObjectParameter("NumeroChassis", typeof(string));
+    
+            var numeroPuertasParameter = numeroPuertas.HasValue ?
+                new ObjectParameter("NumeroPuertas", numeroPuertas) :
+                new ObjectParameter("NumeroPuertas", typeof(decimal));
+    
+            var tonelajeParameter = tonelaje.HasValue ?
+                new ObjectParameter("Tonelaje", tonelaje) :
+                new ObjectParameter("Tonelaje", typeof(decimal));
+    
+            var asientosParameter = asientos.HasValue ?
+                new ObjectParameter("Asientos", asientos) :
+                new ObjectParameter("Asientos", typeof(decimal));
+    
+            var ejesParameter = ejes.HasValue ?
+                new ObjectParameter("Ejes", ejes) :
+                new ObjectParameter("Ejes", typeof(decimal));
+    
+            var ruedasParameter = ruedas.HasValue ?
+                new ObjectParameter("Ruedas", ruedas) :
+                new ObjectParameter("Ruedas", typeof(decimal));
+    
+            var selloParameter = sello.HasValue ?
+                new ObjectParameter("Sello", sello) :
+                new ObjectParameter("Sello", typeof(decimal));
+    
+            var numeroSelloParameter = numeroSello != null ?
+                new ObjectParameter("NumeroSello", numeroSello) :
+                new ObjectParameter("NumeroSello", typeof(string));
+    
+            var compañiaSeguroParameter = compañiaSeguro.HasValue ?
+                new ObjectParameter("CompañiaSeguro", compañiaSeguro) :
+                new ObjectParameter("CompañiaSeguro", typeof(decimal));
+    
+            var numeroPolizaParameter = numeroPoliza != null ?
+                new ObjectParameter("NumeroPoliza", numeroPoliza) :
+                new ObjectParameter("NumeroPoliza", typeof(string));
+    
+            var nroRevTecParameter = nroRevTec != null ?
+                new ObjectParameter("NroRevTec", nroRevTec) :
+                new ObjectParameter("NroRevTec", typeof(string));
+    
+            var lugarRevTecParameter = lugarRevTec != null ?
+                new ObjectParameter("LugarRevTec", lugarRevTec) :
+                new ObjectParameter("LugarRevTec", typeof(string));
+    
+            var folioGasesParameter = folioGases != null ?
+                new ObjectParameter("FolioGases", folioGases) :
+                new ObjectParameter("FolioGases", typeof(string));
+    
+            var usarCorreoParameter = usarCorreo.HasValue ?
+                new ObjectParameter("UsarCorreo", usarCorreo) :
+                new ObjectParameter("UsarCorreo", typeof(bool));
+    
+            var nombreCorreoParameter = nombreCorreo != null ?
+                new ObjectParameter("NombreCorreo", nombreCorreo) :
+                new ObjectParameter("NombreCorreo", typeof(string));
+    
+            var direccionCorreoParameter = direccionCorreo != null ?
+                new ObjectParameter("DireccionCorreo", direccionCorreo) :
+                new ObjectParameter("DireccionCorreo", typeof(string));
+    
+            var comunaCorreoParameter = comunaCorreo != null ?
+                new ObjectParameter("ComunaCorreo", comunaCorreo) :
+                new ObjectParameter("ComunaCorreo", typeof(string));
+    
+            var fonoCorreoParameter = fonoCorreo != null ?
+                new ObjectParameter("FonoCorreo", fonoCorreo) :
+                new ObjectParameter("FonoCorreo", typeof(string));
+    
+            var codigoPostalParameter = codigoPostal != null ?
+                new ObjectParameter("CodigoPostal", codigoPostal) :
+                new ObjectParameter("CodigoPostal", typeof(string));
+    
+            var asimiladoParameter = asimilado.HasValue ?
+                new ObjectParameter("Asimilado", asimilado) :
+                new ObjectParameter("Asimilado", typeof(bool));
+    
+            var tasadoParameter = tasado.HasValue ?
+                new ObjectParameter("Tasado", tasado) :
+                new ObjectParameter("Tasado", typeof(bool));
+    
+            var tasacionSIIParameter = tasacionSII.HasValue ?
+                new ObjectParameter("TasacionSII", tasacionSII) :
+                new ObjectParameter("TasacionSII", typeof(decimal));
+    
+            var netoFacturaParameter = netoFactura.HasValue ?
+                new ObjectParameter("NetoFactura", netoFactura) :
+                new ObjectParameter("NetoFactura", typeof(decimal));
+    
+            var fechaFacturaParameter = fechaFactura.HasValue ?
+                new ObjectParameter("FechaFactura", fechaFactura) :
+                new ObjectParameter("FechaFactura", typeof(System.DateTime));
+    
+            var numeroFacturaParameter = numeroFactura.HasValue ?
+                new ObjectParameter("NumeroFactura", numeroFactura) :
+                new ObjectParameter("NumeroFactura", typeof(decimal));
+    
+            var cilindradaParameter = cilindrada.HasValue ?
+                new ObjectParameter("Cilindrada", cilindrada) :
+                new ObjectParameter("Cilindrada", typeof(decimal));
+    
+            var combustibleParameter = combustible != null ?
+                new ObjectParameter("Combustible", combustible) :
+                new ObjectParameter("Combustible", typeof(string));
+    
+            var equipamientoParameter = equipamiento != null ?
+                new ObjectParameter("Equipamiento", equipamiento) :
+                new ObjectParameter("Equipamiento", typeof(string));
+    
+            var transmisionParameter = transmision != null ?
+                new ObjectParameter("Transmision", transmision) :
+                new ObjectParameter("Transmision", typeof(string));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var estado_VehiculoParameter = estado_Vehiculo.HasValue ?
+                new ObjectParameter("Estado_Vehiculo", estado_Vehiculo) :
+                new ObjectParameter("Estado_Vehiculo", typeof(short));
+    
+            var rut_EmpresaParameter = rut_Empresa != null ?
+                new ObjectParameter("Rut_Empresa", rut_Empresa) :
+                new ObjectParameter("Rut_Empresa", typeof(string));
+    
+            var nombre_NotarioParameter = nombre_Notario != null ?
+                new ObjectParameter("Nombre_Notario", nombre_Notario) :
+                new ObjectParameter("Nombre_Notario", typeof(string));
+    
+            var declaracion_JuradaParameter = declaracion_Jurada.HasValue ?
+                new ObjectParameter("Declaracion_Jurada", declaracion_Jurada) :
+                new ObjectParameter("Declaracion_Jurada", typeof(short));
+    
+            var fecha_VencRevTecParameter = fecha_VencRevTec.HasValue ?
+                new ObjectParameter("Fecha_VencRevTec", fecha_VencRevTec) :
+                new ObjectParameter("Fecha_VencRevTec", typeof(System.DateTime));
+    
+            var tipo_RevTecParameter = tipo_RevTec.HasValue ?
+                new ObjectParameter("Tipo_RevTec", tipo_RevTec) :
+                new ObjectParameter("Tipo_RevTec", typeof(short));
+    
+            var fecha_Aprueba_TrasladoParameter = fecha_Aprueba_Traslado.HasValue ?
+                new ObjectParameter("Fecha_Aprueba_Traslado", fecha_Aprueba_Traslado) :
+                new ObjectParameter("Fecha_Aprueba_Traslado", typeof(System.DateTime));
+    
+            var codigo_ZonaFrancaParameter = codigo_ZonaFranca.HasValue ?
+                new ObjectParameter("Codigo_ZonaFranca", codigo_ZonaFranca) :
+                new ObjectParameter("Codigo_ZonaFranca", typeof(short));
+    
+            var numero_VINParameter = numero_VIN != null ?
+                new ObjectParameter("Numero_VIN", numero_VIN) :
+                new ObjectParameter("Numero_VIN", typeof(string));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(int));
+    
+            var boletin_AnteriorParameter = boletin_Anterior.HasValue ?
+                new ObjectParameter("Boletin_Anterior", boletin_Anterior) :
+                new ObjectParameter("Boletin_Anterior", typeof(double));
+    
+            var fecha_Termino_SeguroParameter = fecha_Termino_Seguro.HasValue ?
+                new ObjectParameter("Fecha_Termino_Seguro", fecha_Termino_Seguro) :
+                new ObjectParameter("Fecha_Termino_Seguro", typeof(System.DateTime));
+    
+            var comunidad_IntParameter = comunidad_Int.HasValue ?
+                new ObjectParameter("Comunidad_Int", comunidad_Int) :
+                new ObjectParameter("Comunidad_Int", typeof(int));
+    
+            var potenciaParameter = potencia != null ?
+                new ObjectParameter("Potencia", potencia) :
+                new ObjectParameter("Potencia", typeof(string));
+    
+            var marchasParameter = marchas != null ?
+                new ObjectParameter("Marchas", marchas) :
+                new ObjectParameter("Marchas", typeof(string));
+    
+            var traccionParameter = traccion != null ?
+                new ObjectParameter("Traccion", traccion) :
+                new ObjectParameter("Traccion", typeof(string));
+    
+            var equipamiento_DetalladoParameter = equipamiento_Detallado != null ?
+                new ObjectParameter("Equipamiento_Detallado", equipamiento_Detallado) :
+                new ObjectParameter("Equipamiento_Detallado", typeof(string));
+    
+            var permiso_AñoParameter = permiso_Año != null ?
+                new ObjectParameter("Permiso_Año", permiso_Año) :
+                new ObjectParameter("Permiso_Año", typeof(string));
+    
+            var versionParameter = version != null ?
+                new ObjectParameter("Version", version) :
+                new ObjectParameter("Version", typeof(string));
+    
+            var hashParameter = hash != null ?
+                new ObjectParameter("Hash", hash) :
+                new ObjectParameter("Hash", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaDatosVehiculo", placaParameter, digitoParameter, rutParameter, tipoVehiculoParameter, clasificacionParameter, codigoSIIParameter, codigoMarcaParameter, modeloParameter, añoFabricacionParameter, colorParameter, numeroMotorParameter, numeroChassisParameter, numeroPuertasParameter, tonelajeParameter, asientosParameter, ejesParameter, ruedasParameter, selloParameter, numeroSelloParameter, compañiaSeguroParameter, numeroPolizaParameter, nroRevTecParameter, lugarRevTecParameter, folioGasesParameter, usarCorreoParameter, nombreCorreoParameter, direccionCorreoParameter, comunaCorreoParameter, fonoCorreoParameter, codigoPostalParameter, asimiladoParameter, tasadoParameter, tasacionSIIParameter, netoFacturaParameter, fechaFacturaParameter, numeroFacturaParameter, cilindradaParameter, combustibleParameter, equipamientoParameter, transmisionParameter, observacionesParameter, estado_VehiculoParameter, rut_EmpresaParameter, nombre_NotarioParameter, declaracion_JuradaParameter, fecha_VencRevTecParameter, tipo_RevTecParameter, fecha_Aprueba_TrasladoParameter, codigo_ZonaFrancaParameter, numero_VINParameter, año_AnteriorParameter, boletin_AnteriorParameter, fecha_Termino_SeguroParameter, comunidad_IntParameter, potenciaParameter, marchasParameter, traccionParameter, equipamiento_DetalladoParameter, permiso_AñoParameter, versionParameter, hashParameter);
+        }
+    
+        public virtual int sp_ActualizaDuplicado(string placa, Nullable<decimal> formaPago, Nullable<decimal> añoPermiso, Nullable<double> nroBoletin, Nullable<System.DateTime> fechaEmision, Nullable<decimal> valor, Nullable<decimal> caja)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var formaPagoParameter = formaPago.HasValue ?
+                new ObjectParameter("FormaPago", formaPago) :
+                new ObjectParameter("FormaPago", typeof(decimal));
+    
+            var añoPermisoParameter = añoPermiso.HasValue ?
+                new ObjectParameter("AñoPermiso", añoPermiso) :
+                new ObjectParameter("AñoPermiso", typeof(decimal));
+    
+            var nroBoletinParameter = nroBoletin.HasValue ?
+                new ObjectParameter("NroBoletin", nroBoletin) :
+                new ObjectParameter("NroBoletin", typeof(double));
+    
+            var fechaEmisionParameter = fechaEmision.HasValue ?
+                new ObjectParameter("FechaEmision", fechaEmision) :
+                new ObjectParameter("FechaEmision", typeof(System.DateTime));
+    
+            var valorParameter = valor.HasValue ?
+                new ObjectParameter("Valor", valor) :
+                new ObjectParameter("Valor", typeof(decimal));
+    
+            var cajaParameter = caja.HasValue ?
+                new ObjectParameter("Caja", caja) :
+                new ObjectParameter("Caja", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaDuplicado", placaParameter, formaPagoParameter, añoPermisoParameter, nroBoletinParameter, fechaEmisionParameter, valorParameter, cajaParameter);
+        }
+    
+        public virtual int sp_ActualizaEstadoTraslado(Nullable<decimal> trasladado, string placa, Nullable<System.DateTime> fecha, Nullable<int> comuna)
+        {
+            var trasladadoParameter = trasladado.HasValue ?
+                new ObjectParameter("Trasladado", trasladado) :
+                new ObjectParameter("Trasladado", typeof(decimal));
+    
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var comunaParameter = comuna.HasValue ?
+                new ObjectParameter("Comuna", comuna) :
+                new ObjectParameter("Comuna", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaEstadoTraslado", trasladadoParameter, placaParameter, fechaParameter, comunaParameter);
+        }
+    
+        public virtual int sp_ActualizaIndices(Nullable<decimal> año, Nullable<decimal> mes, Nullable<double> valorUTM, Nullable<double> iPC)
+        {
+            var añoParameter = año.HasValue ?
+                new ObjectParameter("Año", año) :
+                new ObjectParameter("Año", typeof(decimal));
+    
+            var mesParameter = mes.HasValue ?
+                new ObjectParameter("Mes", mes) :
+                new ObjectParameter("Mes", typeof(decimal));
+    
+            var valorUTMParameter = valorUTM.HasValue ?
+                new ObjectParameter("ValorUTM", valorUTM) :
+                new ObjectParameter("ValorUTM", typeof(double));
+    
+            var iPCParameter = iPC.HasValue ?
+                new ObjectParameter("IPC", iPC) :
+                new ObjectParameter("IPC", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaIndices", añoParameter, mesParameter, valorUTMParameter, iPCParameter);
+        }
+    
+        public virtual int sp_ActualizaMarcas(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaMarcas", swParameter, codigoParameter, descripcionParameter);
+        }
+    
+        public virtual int sp_ActualizaMunicipalidad(string nombre, string rut, string direccion, string fonos, string alcalde, string director, string jefePermisos, string jefeLicencias, string direccionDepto, string fonosDepto, string faxDepto)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var fonosParameter = fonos != null ?
+                new ObjectParameter("Fonos", fonos) :
+                new ObjectParameter("Fonos", typeof(string));
+    
+            var alcaldeParameter = alcalde != null ?
+                new ObjectParameter("Alcalde", alcalde) :
+                new ObjectParameter("Alcalde", typeof(string));
+    
+            var directorParameter = director != null ?
+                new ObjectParameter("Director", director) :
+                new ObjectParameter("Director", typeof(string));
+    
+            var jefePermisosParameter = jefePermisos != null ?
+                new ObjectParameter("JefePermisos", jefePermisos) :
+                new ObjectParameter("JefePermisos", typeof(string));
+    
+            var jefeLicenciasParameter = jefeLicencias != null ?
+                new ObjectParameter("JefeLicencias", jefeLicencias) :
+                new ObjectParameter("JefeLicencias", typeof(string));
+    
+            var direccionDeptoParameter = direccionDepto != null ?
+                new ObjectParameter("DireccionDepto", direccionDepto) :
+                new ObjectParameter("DireccionDepto", typeof(string));
+    
+            var fonosDeptoParameter = fonosDepto != null ?
+                new ObjectParameter("FonosDepto", fonosDepto) :
+                new ObjectParameter("FonosDepto", typeof(string));
+    
+            var faxDeptoParameter = faxDepto != null ?
+                new ObjectParameter("FaxDepto", faxDepto) :
+                new ObjectParameter("FaxDepto", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaMunicipalidad", nombreParameter, rutParameter, direccionParameter, fonosParameter, alcaldeParameter, directorParameter, jefePermisosParameter, jefeLicenciasParameter, direccionDeptoParameter, fonosDeptoParameter, faxDeptoParameter);
+        }
+    
+        public virtual int sp_ActualizaPagos(string placa, string digito, string rut, Nullable<decimal> año_del_Permiso, Nullable<System.DateTime> fecha_Emision, Nullable<decimal> tipo_Vehiculo, Nullable<decimal> periodo, Nullable<decimal> clasificacion, Nullable<double> tasacion, Nullable<decimal> neto_Factura, Nullable<System.DateTime> fecha_Factura, Nullable<double> valor_UTM, Nullable<decimal> comuna_Anterior, Nullable<decimal> año_Anterior, Nullable<decimal> compañia_Seguro, string numero_Poliza, string nro_Revision_Tecnica, string lugar_Revision_Tecnica, string folio_Gases, Nullable<decimal> forma_de_Pago, Nullable<double> numero_Boletin, Nullable<decimal> numero_Caja, Nullable<decimal> valor_Permiso, Nullable<float> porcentaje_IPC, Nullable<float> porcentaje_Multa, Nullable<decimal> valor_IPC, Nullable<decimal> valor_Multa, Nullable<decimal> total_a_Pagar, Nullable<decimal> estado_del_Pago, Nullable<bool> fondos_a_Terceros, Nullable<decimal> valor_Contado, Nullable<decimal> valor_Cuota, Nullable<System.DateTime> fecha_Vencimiento, string observaciones, Nullable<bool> correccion_Monetaria, Nullable<float> porcentaje_Correccion, Nullable<decimal> monto_Correccion, Nullable<byte> origen, Nullable<System.DateTime> fecha_Ingreso, Nullable<short> comuna_Origen, string usuario, Nullable<int> codigo_Empresa_Procedencia, Nullable<System.DateTime> fecha_Pago, Nullable<float> numero_Boletin_Preimpreso, string municipalidad, string derechos_Varios, Nullable<System.TimeSpan> hora_Emision, string seriesQR, string hash)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var año_del_PermisoParameter = año_del_Permiso.HasValue ?
+                new ObjectParameter("Año_del_Permiso", año_del_Permiso) :
+                new ObjectParameter("Año_del_Permiso", typeof(decimal));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo.HasValue ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(decimal));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(decimal));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(decimal));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var neto_FacturaParameter = neto_Factura.HasValue ?
+                new ObjectParameter("Neto_Factura", neto_Factura) :
+                new ObjectParameter("Neto_Factura", typeof(decimal));
+    
+            var fecha_FacturaParameter = fecha_Factura.HasValue ?
+                new ObjectParameter("Fecha_Factura", fecha_Factura) :
+                new ObjectParameter("Fecha_Factura", typeof(System.DateTime));
+    
+            var valor_UTMParameter = valor_UTM.HasValue ?
+                new ObjectParameter("Valor_UTM", valor_UTM) :
+                new ObjectParameter("Valor_UTM", typeof(double));
+    
+            var comuna_AnteriorParameter = comuna_Anterior.HasValue ?
+                new ObjectParameter("Comuna_Anterior", comuna_Anterior) :
+                new ObjectParameter("Comuna_Anterior", typeof(decimal));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(decimal));
+    
+            var compañia_SeguroParameter = compañia_Seguro.HasValue ?
+                new ObjectParameter("Compañia_Seguro", compañia_Seguro) :
+                new ObjectParameter("Compañia_Seguro", typeof(decimal));
+    
+            var numero_PolizaParameter = numero_Poliza != null ?
+                new ObjectParameter("Numero_Poliza", numero_Poliza) :
+                new ObjectParameter("Numero_Poliza", typeof(string));
+    
+            var nro_Revision_TecnicaParameter = nro_Revision_Tecnica != null ?
+                new ObjectParameter("Nro_Revision_Tecnica", nro_Revision_Tecnica) :
+                new ObjectParameter("Nro_Revision_Tecnica", typeof(string));
+    
+            var lugar_Revision_TecnicaParameter = lugar_Revision_Tecnica != null ?
+                new ObjectParameter("Lugar_Revision_Tecnica", lugar_Revision_Tecnica) :
+                new ObjectParameter("Lugar_Revision_Tecnica", typeof(string));
+    
+            var folio_GasesParameter = folio_Gases != null ?
+                new ObjectParameter("Folio_Gases", folio_Gases) :
+                new ObjectParameter("Folio_Gases", typeof(string));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(decimal));
+    
+            var numero_BoletinParameter = numero_Boletin.HasValue ?
+                new ObjectParameter("Numero_Boletin", numero_Boletin) :
+                new ObjectParameter("Numero_Boletin", typeof(double));
+    
+            var numero_CajaParameter = numero_Caja.HasValue ?
+                new ObjectParameter("Numero_Caja", numero_Caja) :
+                new ObjectParameter("Numero_Caja", typeof(decimal));
+    
+            var valor_PermisoParameter = valor_Permiso.HasValue ?
+                new ObjectParameter("Valor_Permiso", valor_Permiso) :
+                new ObjectParameter("Valor_Permiso", typeof(decimal));
+    
+            var porcentaje_IPCParameter = porcentaje_IPC.HasValue ?
+                new ObjectParameter("Porcentaje_IPC", porcentaje_IPC) :
+                new ObjectParameter("Porcentaje_IPC", typeof(float));
+    
+            var porcentaje_MultaParameter = porcentaje_Multa.HasValue ?
+                new ObjectParameter("Porcentaje_Multa", porcentaje_Multa) :
+                new ObjectParameter("Porcentaje_Multa", typeof(float));
+    
+            var valor_IPCParameter = valor_IPC.HasValue ?
+                new ObjectParameter("Valor_IPC", valor_IPC) :
+                new ObjectParameter("Valor_IPC", typeof(decimal));
+    
+            var valor_MultaParameter = valor_Multa.HasValue ?
+                new ObjectParameter("Valor_Multa", valor_Multa) :
+                new ObjectParameter("Valor_Multa", typeof(decimal));
+    
+            var total_a_PagarParameter = total_a_Pagar.HasValue ?
+                new ObjectParameter("Total_a_Pagar", total_a_Pagar) :
+                new ObjectParameter("Total_a_Pagar", typeof(decimal));
+    
+            var estado_del_PagoParameter = estado_del_Pago.HasValue ?
+                new ObjectParameter("Estado_del_Pago", estado_del_Pago) :
+                new ObjectParameter("Estado_del_Pago", typeof(decimal));
+    
+            var fondos_a_TercerosParameter = fondos_a_Terceros.HasValue ?
+                new ObjectParameter("Fondos_a_Terceros", fondos_a_Terceros) :
+                new ObjectParameter("Fondos_a_Terceros", typeof(bool));
+    
+            var valor_ContadoParameter = valor_Contado.HasValue ?
+                new ObjectParameter("Valor_Contado", valor_Contado) :
+                new ObjectParameter("Valor_Contado", typeof(decimal));
+    
+            var valor_CuotaParameter = valor_Cuota.HasValue ?
+                new ObjectParameter("Valor_Cuota", valor_Cuota) :
+                new ObjectParameter("Valor_Cuota", typeof(decimal));
+    
+            var fecha_VencimientoParameter = fecha_Vencimiento.HasValue ?
+                new ObjectParameter("Fecha_Vencimiento", fecha_Vencimiento) :
+                new ObjectParameter("Fecha_Vencimiento", typeof(System.DateTime));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(bool));
+    
+            var porcentaje_CorreccionParameter = porcentaje_Correccion.HasValue ?
+                new ObjectParameter("Porcentaje_Correccion", porcentaje_Correccion) :
+                new ObjectParameter("Porcentaje_Correccion", typeof(float));
+    
+            var monto_CorreccionParameter = monto_Correccion.HasValue ?
+                new ObjectParameter("Monto_Correccion", monto_Correccion) :
+                new ObjectParameter("Monto_Correccion", typeof(decimal));
+    
+            var origenParameter = origen.HasValue ?
+                new ObjectParameter("Origen", origen) :
+                new ObjectParameter("Origen", typeof(byte));
+    
+            var fecha_IngresoParameter = fecha_Ingreso.HasValue ?
+                new ObjectParameter("Fecha_Ingreso", fecha_Ingreso) :
+                new ObjectParameter("Fecha_Ingreso", typeof(System.DateTime));
+    
+            var comuna_OrigenParameter = comuna_Origen.HasValue ?
+                new ObjectParameter("Comuna_Origen", comuna_Origen) :
+                new ObjectParameter("Comuna_Origen", typeof(short));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var codigo_Empresa_ProcedenciaParameter = codigo_Empresa_Procedencia.HasValue ?
+                new ObjectParameter("Codigo_Empresa_Procedencia", codigo_Empresa_Procedencia) :
+                new ObjectParameter("Codigo_Empresa_Procedencia", typeof(int));
+    
+            var fecha_PagoParameter = fecha_Pago.HasValue ?
+                new ObjectParameter("Fecha_Pago", fecha_Pago) :
+                new ObjectParameter("Fecha_Pago", typeof(System.DateTime));
+    
+            var numero_Boletin_PreimpresoParameter = numero_Boletin_Preimpreso.HasValue ?
+                new ObjectParameter("Numero_Boletin_Preimpreso", numero_Boletin_Preimpreso) :
+                new ObjectParameter("Numero_Boletin_Preimpreso", typeof(float));
+    
+            var municipalidadParameter = municipalidad != null ?
+                new ObjectParameter("Municipalidad", municipalidad) :
+                new ObjectParameter("Municipalidad", typeof(string));
+    
+            var derechos_VariosParameter = derechos_Varios != null ?
+                new ObjectParameter("Derechos_Varios", derechos_Varios) :
+                new ObjectParameter("Derechos_Varios", typeof(string));
+    
+            var hora_EmisionParameter = hora_Emision.HasValue ?
+                new ObjectParameter("Hora_Emision", hora_Emision) :
+                new ObjectParameter("Hora_Emision", typeof(System.TimeSpan));
+    
+            var seriesQRParameter = seriesQR != null ?
+                new ObjectParameter("SeriesQR", seriesQR) :
+                new ObjectParameter("SeriesQR", typeof(string));
+    
+            var hashParameter = hash != null ?
+                new ObjectParameter("Hash", hash) :
+                new ObjectParameter("Hash", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaPagos", placaParameter, digitoParameter, rutParameter, año_del_PermisoParameter, fecha_EmisionParameter, tipo_VehiculoParameter, periodoParameter, clasificacionParameter, tasacionParameter, neto_FacturaParameter, fecha_FacturaParameter, valor_UTMParameter, comuna_AnteriorParameter, año_AnteriorParameter, compañia_SeguroParameter, numero_PolizaParameter, nro_Revision_TecnicaParameter, lugar_Revision_TecnicaParameter, folio_GasesParameter, forma_de_PagoParameter, numero_BoletinParameter, numero_CajaParameter, valor_PermisoParameter, porcentaje_IPCParameter, porcentaje_MultaParameter, valor_IPCParameter, valor_MultaParameter, total_a_PagarParameter, estado_del_PagoParameter, fondos_a_TercerosParameter, valor_ContadoParameter, valor_CuotaParameter, fecha_VencimientoParameter, observacionesParameter, correccion_MonetariaParameter, porcentaje_CorreccionParameter, monto_CorreccionParameter, origenParameter, fecha_IngresoParameter, comuna_OrigenParameter, usuarioParameter, codigo_Empresa_ProcedenciaParameter, fecha_PagoParameter, numero_Boletin_PreimpresoParameter, municipalidadParameter, derechos_VariosParameter, hora_EmisionParameter, seriesQRParameter, hashParameter);
+        }
+    
+        public virtual int sp_ActualizaParametros(Nullable<bool> correccion_Monetaria, Nullable<float> corrMon1, Nullable<float> corrMon2, Nullable<float> corrMon3, Nullable<bool> desglosar_Fondo_Comun, string glosa_FdoComun, string glosa_FdoMunicipal, Nullable<bool> totalizar_Boletin, Nullable<decimal> porcentaje_Duplicado, Nullable<decimal> fecha_Referencia, Nullable<bool> enlace_Tesoreria, Nullable<bool> registro_de_Sellos, Nullable<bool> eliminar_por_Decreto, Nullable<bool> guardar_CiaSeguros, Nullable<bool> guardar_RevTecnica, Nullable<bool> guardar_NroMotor, Nullable<bool> convenio_Pagos, Nullable<bool> transferencias, Nullable<float> valor_Transferencia, Nullable<decimal> porcentaje_Transferencia, Nullable<decimal> largo_NroBoletin, Nullable<short> rango_Sellos, Nullable<short> revisiones_Tecnicas_Robadas, Nullable<short> repite_Boletin, Nullable<short> validaPagoAnterior, string glosa_ZonaFranca, Nullable<int> ver_NBoletin, Nullable<int> imprimir_Boletin, Nullable<int> interes_Factura, Nullable<bool> valida_Fono_Fijo, Nullable<bool> valida_Movil, Nullable<bool> clasificador_Presupuestario2008, Nullable<bool> emitir_Multas, Nullable<bool> vista_Tasaciones, Nullable<bool> habilita_F7, Nullable<bool> traslados_automaticos, Nullable<bool> forma_de_trabajo, string ruta_ImagenesEcom, string ruta_WSDLEmail, Nullable<bool> valida_Email)
+        {
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(bool));
+    
+            var corrMon1Parameter = corrMon1.HasValue ?
+                new ObjectParameter("CorrMon1", corrMon1) :
+                new ObjectParameter("CorrMon1", typeof(float));
+    
+            var corrMon2Parameter = corrMon2.HasValue ?
+                new ObjectParameter("CorrMon2", corrMon2) :
+                new ObjectParameter("CorrMon2", typeof(float));
+    
+            var corrMon3Parameter = corrMon3.HasValue ?
+                new ObjectParameter("CorrMon3", corrMon3) :
+                new ObjectParameter("CorrMon3", typeof(float));
+    
+            var desglosar_Fondo_ComunParameter = desglosar_Fondo_Comun.HasValue ?
+                new ObjectParameter("Desglosar_Fondo_Comun", desglosar_Fondo_Comun) :
+                new ObjectParameter("Desglosar_Fondo_Comun", typeof(bool));
+    
+            var glosa_FdoComunParameter = glosa_FdoComun != null ?
+                new ObjectParameter("Glosa_FdoComun", glosa_FdoComun) :
+                new ObjectParameter("Glosa_FdoComun", typeof(string));
+    
+            var glosa_FdoMunicipalParameter = glosa_FdoMunicipal != null ?
+                new ObjectParameter("Glosa_FdoMunicipal", glosa_FdoMunicipal) :
+                new ObjectParameter("Glosa_FdoMunicipal", typeof(string));
+    
+            var totalizar_BoletinParameter = totalizar_Boletin.HasValue ?
+                new ObjectParameter("Totalizar_Boletin", totalizar_Boletin) :
+                new ObjectParameter("Totalizar_Boletin", typeof(bool));
+    
+            var porcentaje_DuplicadoParameter = porcentaje_Duplicado.HasValue ?
+                new ObjectParameter("Porcentaje_Duplicado", porcentaje_Duplicado) :
+                new ObjectParameter("Porcentaje_Duplicado", typeof(decimal));
+    
+            var fecha_ReferenciaParameter = fecha_Referencia.HasValue ?
+                new ObjectParameter("Fecha_Referencia", fecha_Referencia) :
+                new ObjectParameter("Fecha_Referencia", typeof(decimal));
+    
+            var enlace_TesoreriaParameter = enlace_Tesoreria.HasValue ?
+                new ObjectParameter("Enlace_Tesoreria", enlace_Tesoreria) :
+                new ObjectParameter("Enlace_Tesoreria", typeof(bool));
+    
+            var registro_de_SellosParameter = registro_de_Sellos.HasValue ?
+                new ObjectParameter("Registro_de_Sellos", registro_de_Sellos) :
+                new ObjectParameter("Registro_de_Sellos", typeof(bool));
+    
+            var eliminar_por_DecretoParameter = eliminar_por_Decreto.HasValue ?
+                new ObjectParameter("Eliminar_por_Decreto", eliminar_por_Decreto) :
+                new ObjectParameter("Eliminar_por_Decreto", typeof(bool));
+    
+            var guardar_CiaSegurosParameter = guardar_CiaSeguros.HasValue ?
+                new ObjectParameter("Guardar_CiaSeguros", guardar_CiaSeguros) :
+                new ObjectParameter("Guardar_CiaSeguros", typeof(bool));
+    
+            var guardar_RevTecnicaParameter = guardar_RevTecnica.HasValue ?
+                new ObjectParameter("Guardar_RevTecnica", guardar_RevTecnica) :
+                new ObjectParameter("Guardar_RevTecnica", typeof(bool));
+    
+            var guardar_NroMotorParameter = guardar_NroMotor.HasValue ?
+                new ObjectParameter("Guardar_NroMotor", guardar_NroMotor) :
+                new ObjectParameter("Guardar_NroMotor", typeof(bool));
+    
+            var convenio_PagosParameter = convenio_Pagos.HasValue ?
+                new ObjectParameter("Convenio_Pagos", convenio_Pagos) :
+                new ObjectParameter("Convenio_Pagos", typeof(bool));
+    
+            var transferenciasParameter = transferencias.HasValue ?
+                new ObjectParameter("Transferencias", transferencias) :
+                new ObjectParameter("Transferencias", typeof(bool));
+    
+            var valor_TransferenciaParameter = valor_Transferencia.HasValue ?
+                new ObjectParameter("Valor_Transferencia", valor_Transferencia) :
+                new ObjectParameter("Valor_Transferencia", typeof(float));
+    
+            var porcentaje_TransferenciaParameter = porcentaje_Transferencia.HasValue ?
+                new ObjectParameter("Porcentaje_Transferencia", porcentaje_Transferencia) :
+                new ObjectParameter("Porcentaje_Transferencia", typeof(decimal));
+    
+            var largo_NroBoletinParameter = largo_NroBoletin.HasValue ?
+                new ObjectParameter("Largo_NroBoletin", largo_NroBoletin) :
+                new ObjectParameter("Largo_NroBoletin", typeof(decimal));
+    
+            var rango_SellosParameter = rango_Sellos.HasValue ?
+                new ObjectParameter("Rango_Sellos", rango_Sellos) :
+                new ObjectParameter("Rango_Sellos", typeof(short));
+    
+            var revisiones_Tecnicas_RobadasParameter = revisiones_Tecnicas_Robadas.HasValue ?
+                new ObjectParameter("Revisiones_Tecnicas_Robadas", revisiones_Tecnicas_Robadas) :
+                new ObjectParameter("Revisiones_Tecnicas_Robadas", typeof(short));
+    
+            var repite_BoletinParameter = repite_Boletin.HasValue ?
+                new ObjectParameter("Repite_Boletin", repite_Boletin) :
+                new ObjectParameter("Repite_Boletin", typeof(short));
+    
+            var validaPagoAnteriorParameter = validaPagoAnterior.HasValue ?
+                new ObjectParameter("ValidaPagoAnterior", validaPagoAnterior) :
+                new ObjectParameter("ValidaPagoAnterior", typeof(short));
+    
+            var glosa_ZonaFrancaParameter = glosa_ZonaFranca != null ?
+                new ObjectParameter("Glosa_ZonaFranca", glosa_ZonaFranca) :
+                new ObjectParameter("Glosa_ZonaFranca", typeof(string));
+    
+            var ver_NBoletinParameter = ver_NBoletin.HasValue ?
+                new ObjectParameter("Ver_NBoletin", ver_NBoletin) :
+                new ObjectParameter("Ver_NBoletin", typeof(int));
+    
+            var imprimir_BoletinParameter = imprimir_Boletin.HasValue ?
+                new ObjectParameter("Imprimir_Boletin", imprimir_Boletin) :
+                new ObjectParameter("Imprimir_Boletin", typeof(int));
+    
+            var interes_FacturaParameter = interes_Factura.HasValue ?
+                new ObjectParameter("Interes_Factura", interes_Factura) :
+                new ObjectParameter("Interes_Factura", typeof(int));
+    
+            var valida_Fono_FijoParameter = valida_Fono_Fijo.HasValue ?
+                new ObjectParameter("Valida_Fono_Fijo", valida_Fono_Fijo) :
+                new ObjectParameter("Valida_Fono_Fijo", typeof(bool));
+    
+            var valida_MovilParameter = valida_Movil.HasValue ?
+                new ObjectParameter("Valida_Movil", valida_Movil) :
+                new ObjectParameter("Valida_Movil", typeof(bool));
+    
+            var clasificador_Presupuestario2008Parameter = clasificador_Presupuestario2008.HasValue ?
+                new ObjectParameter("Clasificador_Presupuestario2008", clasificador_Presupuestario2008) :
+                new ObjectParameter("Clasificador_Presupuestario2008", typeof(bool));
+    
+            var emitir_MultasParameter = emitir_Multas.HasValue ?
+                new ObjectParameter("Emitir_Multas", emitir_Multas) :
+                new ObjectParameter("Emitir_Multas", typeof(bool));
+    
+            var vista_TasacionesParameter = vista_Tasaciones.HasValue ?
+                new ObjectParameter("Vista_Tasaciones", vista_Tasaciones) :
+                new ObjectParameter("Vista_Tasaciones", typeof(bool));
+    
+            var habilita_F7Parameter = habilita_F7.HasValue ?
+                new ObjectParameter("Habilita_F7", habilita_F7) :
+                new ObjectParameter("Habilita_F7", typeof(bool));
+    
+            var traslados_automaticosParameter = traslados_automaticos.HasValue ?
+                new ObjectParameter("Traslados_automaticos", traslados_automaticos) :
+                new ObjectParameter("Traslados_automaticos", typeof(bool));
+    
+            var forma_de_trabajoParameter = forma_de_trabajo.HasValue ?
+                new ObjectParameter("forma_de_trabajo", forma_de_trabajo) :
+                new ObjectParameter("forma_de_trabajo", typeof(bool));
+    
+            var ruta_ImagenesEcomParameter = ruta_ImagenesEcom != null ?
+                new ObjectParameter("Ruta_ImagenesEcom", ruta_ImagenesEcom) :
+                new ObjectParameter("Ruta_ImagenesEcom", typeof(string));
+    
+            var ruta_WSDLEmailParameter = ruta_WSDLEmail != null ?
+                new ObjectParameter("Ruta_WSDLEmail", ruta_WSDLEmail) :
+                new ObjectParameter("Ruta_WSDLEmail", typeof(string));
+    
+            var valida_EmailParameter = valida_Email.HasValue ?
+                new ObjectParameter("Valida_Email", valida_Email) :
+                new ObjectParameter("Valida_Email", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaParametros", correccion_MonetariaParameter, corrMon1Parameter, corrMon2Parameter, corrMon3Parameter, desglosar_Fondo_ComunParameter, glosa_FdoComunParameter, glosa_FdoMunicipalParameter, totalizar_BoletinParameter, porcentaje_DuplicadoParameter, fecha_ReferenciaParameter, enlace_TesoreriaParameter, registro_de_SellosParameter, eliminar_por_DecretoParameter, guardar_CiaSegurosParameter, guardar_RevTecnicaParameter, guardar_NroMotorParameter, convenio_PagosParameter, transferenciasParameter, valor_TransferenciaParameter, porcentaje_TransferenciaParameter, largo_NroBoletinParameter, rango_SellosParameter, revisiones_Tecnicas_RobadasParameter, repite_BoletinParameter, validaPagoAnteriorParameter, glosa_ZonaFrancaParameter, ver_NBoletinParameter, imprimir_BoletinParameter, interes_FacturaParameter, valida_Fono_FijoParameter, valida_MovilParameter, clasificador_Presupuestario2008Parameter, emitir_MultasParameter, vista_TasacionesParameter, habilita_F7Parameter, traslados_automaticosParameter, forma_de_trabajoParameter, ruta_ImagenesEcomParameter, ruta_WSDLEmailParameter, valida_EmailParameter);
+        }
+    
+        public virtual int sp_ActualizaPeriodos(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion, Nullable<System.DateTime> fechaRenov, Nullable<System.DateTime> fechaCtdo, Nullable<System.DateTime> fechaCta, Nullable<decimal> uTMMes, Nullable<decimal> uTMFactura, Nullable<bool> limite_Traslado, Nullable<System.DateTime> fecha_Limite_Traslado, Nullable<bool> periodo_Prueba, Nullable<System.DateTime> inicio_Segunda_Cuota)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var fechaRenovParameter = fechaRenov.HasValue ?
+                new ObjectParameter("FechaRenov", fechaRenov) :
+                new ObjectParameter("FechaRenov", typeof(System.DateTime));
+    
+            var fechaCtdoParameter = fechaCtdo.HasValue ?
+                new ObjectParameter("FechaCtdo", fechaCtdo) :
+                new ObjectParameter("FechaCtdo", typeof(System.DateTime));
+    
+            var fechaCtaParameter = fechaCta.HasValue ?
+                new ObjectParameter("FechaCta", fechaCta) :
+                new ObjectParameter("FechaCta", typeof(System.DateTime));
+    
+            var uTMMesParameter = uTMMes.HasValue ?
+                new ObjectParameter("UTMMes", uTMMes) :
+                new ObjectParameter("UTMMes", typeof(decimal));
+    
+            var uTMFacturaParameter = uTMFactura.HasValue ?
+                new ObjectParameter("UTMFactura", uTMFactura) :
+                new ObjectParameter("UTMFactura", typeof(decimal));
+    
+            var limite_TrasladoParameter = limite_Traslado.HasValue ?
+                new ObjectParameter("Limite_Traslado", limite_Traslado) :
+                new ObjectParameter("Limite_Traslado", typeof(bool));
+    
+            var fecha_Limite_TrasladoParameter = fecha_Limite_Traslado.HasValue ?
+                new ObjectParameter("Fecha_Limite_Traslado", fecha_Limite_Traslado) :
+                new ObjectParameter("Fecha_Limite_Traslado", typeof(System.DateTime));
+    
+            var periodo_PruebaParameter = periodo_Prueba.HasValue ?
+                new ObjectParameter("Periodo_Prueba", periodo_Prueba) :
+                new ObjectParameter("Periodo_Prueba", typeof(bool));
+    
+            var inicio_Segunda_CuotaParameter = inicio_Segunda_Cuota.HasValue ?
+                new ObjectParameter("Inicio_Segunda_Cuota", inicio_Segunda_Cuota) :
+                new ObjectParameter("Inicio_Segunda_Cuota", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaPeriodos", swParameter, codigoParameter, descripcionParameter, fechaRenovParameter, fechaCtdoParameter, fechaCtaParameter, uTMMesParameter, uTMFacturaParameter, limite_TrasladoParameter, fecha_Limite_TrasladoParameter, periodo_PruebaParameter, inicio_Segunda_CuotaParameter);
+        }
+    
+        public virtual int sp_ActualizaPropietarios(string rut, string nombre, string direccion, string comuna, string ciudad, string telefono, string codigo_Postal, Nullable<int> codigo_Empresa, string mail, string telefono_Movil)
+        {
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var comunaParameter = comuna != null ?
+                new ObjectParameter("Comuna", comuna) :
+                new ObjectParameter("Comuna", typeof(string));
+    
+            var ciudadParameter = ciudad != null ?
+                new ObjectParameter("Ciudad", ciudad) :
+                new ObjectParameter("Ciudad", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var codigo_PostalParameter = codigo_Postal != null ?
+                new ObjectParameter("Codigo_Postal", codigo_Postal) :
+                new ObjectParameter("Codigo_Postal", typeof(string));
+    
+            var codigo_EmpresaParameter = codigo_Empresa.HasValue ?
+                new ObjectParameter("Codigo_Empresa", codigo_Empresa) :
+                new ObjectParameter("Codigo_Empresa", typeof(int));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
+    
+            var telefono_MovilParameter = telefono_Movil != null ?
+                new ObjectParameter("Telefono_Movil", telefono_Movil) :
+                new ObjectParameter("Telefono_Movil", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaPropietarios", rutParameter, nombreParameter, direccionParameter, comunaParameter, ciudadParameter, telefonoParameter, codigo_PostalParameter, codigo_EmpresaParameter, mailParameter, telefono_MovilParameter);
+        }
+    
+        public virtual int sp_ActualizaRegPreemision(Nullable<decimal> año, Nullable<System.DateTime> fecha, string placa, Nullable<double> numero_Boletin, Nullable<decimal> valor_Contado, Nullable<decimal> valor_Cuota, Nullable<double> valor_IPC, Nullable<decimal> tipo, string iD_Usuario, Nullable<decimal> clasificacion, Nullable<double> tasacion, Nullable<double> valor_UTM, Nullable<decimal> comuna_Anterior, Nullable<decimal> ano_anterior, Nullable<short> correccion_Monetaria, Nullable<double> monto_Correccion, Nullable<decimal> numero_Caja_Transito, string tipo_Vehiculo, string periodo, string rut_Propietario)
+        {
+            var añoParameter = año.HasValue ?
+                new ObjectParameter("Año", año) :
+                new ObjectParameter("Año", typeof(decimal));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var numero_BoletinParameter = numero_Boletin.HasValue ?
+                new ObjectParameter("Numero_Boletin", numero_Boletin) :
+                new ObjectParameter("Numero_Boletin", typeof(double));
+    
+            var valor_ContadoParameter = valor_Contado.HasValue ?
+                new ObjectParameter("Valor_Contado", valor_Contado) :
+                new ObjectParameter("Valor_Contado", typeof(decimal));
+    
+            var valor_CuotaParameter = valor_Cuota.HasValue ?
+                new ObjectParameter("Valor_Cuota", valor_Cuota) :
+                new ObjectParameter("Valor_Cuota", typeof(decimal));
+    
+            var valor_IPCParameter = valor_IPC.HasValue ?
+                new ObjectParameter("Valor_IPC", valor_IPC) :
+                new ObjectParameter("Valor_IPC", typeof(double));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("Tipo", tipo) :
+                new ObjectParameter("Tipo", typeof(decimal));
+    
+            var iD_UsuarioParameter = iD_Usuario != null ?
+                new ObjectParameter("ID_Usuario", iD_Usuario) :
+                new ObjectParameter("ID_Usuario", typeof(string));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(decimal));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var valor_UTMParameter = valor_UTM.HasValue ?
+                new ObjectParameter("Valor_UTM", valor_UTM) :
+                new ObjectParameter("Valor_UTM", typeof(double));
+    
+            var comuna_AnteriorParameter = comuna_Anterior.HasValue ?
+                new ObjectParameter("Comuna_Anterior", comuna_Anterior) :
+                new ObjectParameter("Comuna_Anterior", typeof(decimal));
+    
+            var ano_anteriorParameter = ano_anterior.HasValue ?
+                new ObjectParameter("Ano_anterior", ano_anterior) :
+                new ObjectParameter("Ano_anterior", typeof(decimal));
+    
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(short));
+    
+            var monto_CorreccionParameter = monto_Correccion.HasValue ?
+                new ObjectParameter("Monto_Correccion", monto_Correccion) :
+                new ObjectParameter("Monto_Correccion", typeof(double));
+    
+            var numero_Caja_TransitoParameter = numero_Caja_Transito.HasValue ?
+                new ObjectParameter("Numero_Caja_Transito", numero_Caja_Transito) :
+                new ObjectParameter("Numero_Caja_Transito", typeof(decimal));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo != null ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(string));
+    
+            var periodoParameter = periodo != null ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(string));
+    
+            var rut_PropietarioParameter = rut_Propietario != null ?
+                new ObjectParameter("Rut_Propietario", rut_Propietario) :
+                new ObjectParameter("Rut_Propietario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaRegPreemision", añoParameter, fechaParameter, placaParameter, numero_BoletinParameter, valor_ContadoParameter, valor_CuotaParameter, valor_IPCParameter, tipoParameter, iD_UsuarioParameter, clasificacionParameter, tasacionParameter, valor_UTMParameter, comuna_AnteriorParameter, ano_anteriorParameter, correccion_MonetariaParameter, monto_CorreccionParameter, numero_Caja_TransitoParameter, tipo_VehiculoParameter, periodoParameter, rut_PropietarioParameter);
+        }
+    
+        public virtual int sp_ActualizaSellos(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion, string glosa, string desdeSello, string hastaSello, string usuario_Sello)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var glosaParameter = glosa != null ?
+                new ObjectParameter("Glosa", glosa) :
+                new ObjectParameter("Glosa", typeof(string));
+    
+            var desdeSelloParameter = desdeSello != null ?
+                new ObjectParameter("DesdeSello", desdeSello) :
+                new ObjectParameter("DesdeSello", typeof(string));
+    
+            var hastaSelloParameter = hastaSello != null ?
+                new ObjectParameter("HastaSello", hastaSello) :
+                new ObjectParameter("HastaSello", typeof(string));
+    
+            var usuario_SelloParameter = usuario_Sello != null ?
+                new ObjectParameter("Usuario_Sello", usuario_Sello) :
+                new ObjectParameter("Usuario_Sello", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaSellos", swParameter, codigoParameter, descripcionParameter, glosaParameter, desdeSelloParameter, hastaSelloParameter, usuario_SelloParameter);
+        }
+    
+        public virtual int sp_ActualizaSII(string codigo, string tipo, string marca, string modelo, string pais, Nullable<decimal> puertas, Nullable<decimal> cilindrada, string combustible, string transmision, string equipamiento, Nullable<double> tasacion, Nullable<decimal> añoFabricacion, Nullable<decimal> añoTasacion)
+        {
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var tipoParameter = tipo != null ?
+                new ObjectParameter("Tipo", tipo) :
+                new ObjectParameter("Tipo", typeof(string));
+    
+            var marcaParameter = marca != null ?
+                new ObjectParameter("Marca", marca) :
+                new ObjectParameter("Marca", typeof(string));
+    
+            var modeloParameter = modelo != null ?
+                new ObjectParameter("Modelo", modelo) :
+                new ObjectParameter("Modelo", typeof(string));
+    
+            var paisParameter = pais != null ?
+                new ObjectParameter("Pais", pais) :
+                new ObjectParameter("Pais", typeof(string));
+    
+            var puertasParameter = puertas.HasValue ?
+                new ObjectParameter("Puertas", puertas) :
+                new ObjectParameter("Puertas", typeof(decimal));
+    
+            var cilindradaParameter = cilindrada.HasValue ?
+                new ObjectParameter("Cilindrada", cilindrada) :
+                new ObjectParameter("Cilindrada", typeof(decimal));
+    
+            var combustibleParameter = combustible != null ?
+                new ObjectParameter("Combustible", combustible) :
+                new ObjectParameter("Combustible", typeof(string));
+    
+            var transmisionParameter = transmision != null ?
+                new ObjectParameter("Transmision", transmision) :
+                new ObjectParameter("Transmision", typeof(string));
+    
+            var equipamientoParameter = equipamiento != null ?
+                new ObjectParameter("Equipamiento", equipamiento) :
+                new ObjectParameter("Equipamiento", typeof(string));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var añoFabricacionParameter = añoFabricacion.HasValue ?
+                new ObjectParameter("AñoFabricacion", añoFabricacion) :
+                new ObjectParameter("AñoFabricacion", typeof(decimal));
+    
+            var añoTasacionParameter = añoTasacion.HasValue ?
+                new ObjectParameter("AñoTasacion", añoTasacion) :
+                new ObjectParameter("AñoTasacion", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaSII", codigoParameter, tipoParameter, marcaParameter, modeloParameter, paisParameter, puertasParameter, cilindradaParameter, combustibleParameter, transmisionParameter, equipamientoParameter, tasacionParameter, añoFabricacionParameter, añoTasacionParameter);
+        }
+    
+        public virtual int sp_ActualizaTipoPago(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion, string glosa, Nullable<float> descuento, Nullable<bool> factura)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var glosaParameter = glosa != null ?
+                new ObjectParameter("Glosa", glosa) :
+                new ObjectParameter("Glosa", typeof(string));
+    
+            var descuentoParameter = descuento.HasValue ?
+                new ObjectParameter("Descuento", descuento) :
+                new ObjectParameter("Descuento", typeof(float));
+    
+            var facturaParameter = factura.HasValue ?
+                new ObjectParameter("Factura", factura) :
+                new ObjectParameter("Factura", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaTipoPago", swParameter, codigoParameter, descripcionParameter, glosaParameter, descuentoParameter, facturaParameter);
+        }
+    
+        public virtual int sp_ActualizaTipoVehiculo(Nullable<decimal> sw, Nullable<decimal> codigo, string descripcion, Nullable<short> periodo, Nullable<short> tipoCalculo, Nullable<double> uTMVehiculo, string mascara, Nullable<int> tonelaje_I1, Nullable<int> tonelaje_F1, Nullable<double> tonelaje_U1, Nullable<int> tonelaje_I2, Nullable<int> tonelaje_F2, Nullable<double> tonelaje_U2, Nullable<int> tonelaje_I3, Nullable<int> tonelaje_F3, Nullable<double> tonelaje_U3, Nullable<int> tonelaje_I4, Nullable<int> tonelaje_F4, Nullable<double> tonelaje_U4)
+        {
+            var swParameter = sw.HasValue ?
+                new ObjectParameter("sw", sw) :
+                new ObjectParameter("sw", typeof(decimal));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(short));
+    
+            var tipoCalculoParameter = tipoCalculo.HasValue ?
+                new ObjectParameter("TipoCalculo", tipoCalculo) :
+                new ObjectParameter("TipoCalculo", typeof(short));
+    
+            var uTMVehiculoParameter = uTMVehiculo.HasValue ?
+                new ObjectParameter("UTMVehiculo", uTMVehiculo) :
+                new ObjectParameter("UTMVehiculo", typeof(double));
+    
+            var mascaraParameter = mascara != null ?
+                new ObjectParameter("Mascara", mascara) :
+                new ObjectParameter("Mascara", typeof(string));
+    
+            var tonelaje_I1Parameter = tonelaje_I1.HasValue ?
+                new ObjectParameter("Tonelaje_I1", tonelaje_I1) :
+                new ObjectParameter("Tonelaje_I1", typeof(int));
+    
+            var tonelaje_F1Parameter = tonelaje_F1.HasValue ?
+                new ObjectParameter("Tonelaje_F1", tonelaje_F1) :
+                new ObjectParameter("Tonelaje_F1", typeof(int));
+    
+            var tonelaje_U1Parameter = tonelaje_U1.HasValue ?
+                new ObjectParameter("Tonelaje_U1", tonelaje_U1) :
+                new ObjectParameter("Tonelaje_U1", typeof(double));
+    
+            var tonelaje_I2Parameter = tonelaje_I2.HasValue ?
+                new ObjectParameter("Tonelaje_I2", tonelaje_I2) :
+                new ObjectParameter("Tonelaje_I2", typeof(int));
+    
+            var tonelaje_F2Parameter = tonelaje_F2.HasValue ?
+                new ObjectParameter("Tonelaje_F2", tonelaje_F2) :
+                new ObjectParameter("Tonelaje_F2", typeof(int));
+    
+            var tonelaje_U2Parameter = tonelaje_U2.HasValue ?
+                new ObjectParameter("Tonelaje_U2", tonelaje_U2) :
+                new ObjectParameter("Tonelaje_U2", typeof(double));
+    
+            var tonelaje_I3Parameter = tonelaje_I3.HasValue ?
+                new ObjectParameter("Tonelaje_I3", tonelaje_I3) :
+                new ObjectParameter("Tonelaje_I3", typeof(int));
+    
+            var tonelaje_F3Parameter = tonelaje_F3.HasValue ?
+                new ObjectParameter("Tonelaje_F3", tonelaje_F3) :
+                new ObjectParameter("Tonelaje_F3", typeof(int));
+    
+            var tonelaje_U3Parameter = tonelaje_U3.HasValue ?
+                new ObjectParameter("Tonelaje_U3", tonelaje_U3) :
+                new ObjectParameter("Tonelaje_U3", typeof(double));
+    
+            var tonelaje_I4Parameter = tonelaje_I4.HasValue ?
+                new ObjectParameter("Tonelaje_I4", tonelaje_I4) :
+                new ObjectParameter("Tonelaje_I4", typeof(int));
+    
+            var tonelaje_F4Parameter = tonelaje_F4.HasValue ?
+                new ObjectParameter("Tonelaje_F4", tonelaje_F4) :
+                new ObjectParameter("Tonelaje_F4", typeof(int));
+    
+            var tonelaje_U4Parameter = tonelaje_U4.HasValue ?
+                new ObjectParameter("Tonelaje_U4", tonelaje_U4) :
+                new ObjectParameter("Tonelaje_U4", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaTipoVehiculo", swParameter, codigoParameter, descripcionParameter, periodoParameter, tipoCalculoParameter, uTMVehiculoParameter, mascaraParameter, tonelaje_I1Parameter, tonelaje_F1Parameter, tonelaje_U1Parameter, tonelaje_I2Parameter, tonelaje_F2Parameter, tonelaje_U2Parameter, tonelaje_I3Parameter, tonelaje_F3Parameter, tonelaje_U3Parameter, tonelaje_I4Parameter, tonelaje_F4Parameter, tonelaje_U4Parameter);
+        }
+    
+        public virtual int sp_ActualizaTraslados(Nullable<decimal> modoEdicion, Nullable<double> id, string placa, Nullable<System.DateTime> fecha_Solicitud, Nullable<System.DateTime> fecha_Emision, Nullable<short> tipo, string numero_Documento, Nullable<short> codigo_Comuna, string nota, string observaciones, string usuario_Ingreso_Traslado, string hash)
+        {
+            var modoEdicionParameter = modoEdicion.HasValue ?
+                new ObjectParameter("ModoEdicion", modoEdicion) :
+                new ObjectParameter("ModoEdicion", typeof(decimal));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(double));
+    
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var fecha_SolicitudParameter = fecha_Solicitud.HasValue ?
+                new ObjectParameter("Fecha_Solicitud", fecha_Solicitud) :
+                new ObjectParameter("Fecha_Solicitud", typeof(System.DateTime));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("Tipo", tipo) :
+                new ObjectParameter("Tipo", typeof(short));
+    
+            var numero_DocumentoParameter = numero_Documento != null ?
+                new ObjectParameter("Numero_Documento", numero_Documento) :
+                new ObjectParameter("Numero_Documento", typeof(string));
+    
+            var codigo_ComunaParameter = codigo_Comuna.HasValue ?
+                new ObjectParameter("Codigo_Comuna", codigo_Comuna) :
+                new ObjectParameter("Codigo_Comuna", typeof(short));
+    
+            var notaParameter = nota != null ?
+                new ObjectParameter("Nota", nota) :
+                new ObjectParameter("Nota", typeof(string));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var usuario_Ingreso_TrasladoParameter = usuario_Ingreso_Traslado != null ?
+                new ObjectParameter("Usuario_Ingreso_Traslado", usuario_Ingreso_Traslado) :
+                new ObjectParameter("Usuario_Ingreso_Traslado", typeof(string));
+    
+            var hashParameter = hash != null ?
+                new ObjectParameter("Hash", hash) :
+                new ObjectParameter("Hash", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaTraslados", modoEdicionParameter, idParameter, placaParameter, fecha_SolicitudParameter, fecha_EmisionParameter, tipoParameter, numero_DocumentoParameter, codigo_ComunaParameter, notaParameter, observacionesParameter, usuario_Ingreso_TrasladoParameter, hashParameter);
+        }
+    
+        public virtual int sp_CambiaEstadoCarta(Nullable<double> id, Nullable<bool> imprimir)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(double));
+    
+            var imprimirParameter = imprimir.HasValue ?
+                new ObjectParameter("Imprimir", imprimir) :
+                new ObjectParameter("Imprimir", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CambiaEstadoCarta", idParameter, imprimirParameter);
+        }
+    
+        public virtual int sp_Carga_Multas_Registro_Civil()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Carga_Multas_Registro_Civil");
+        }
+    
+        public virtual int sp_ConsultaDeuda(string placa, Nullable<decimal> año, ObjectParameter msg, ObjectParameter registros)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var añoParameter = año.HasValue ?
+                new ObjectParameter("Año", año) :
+                new ObjectParameter("Año", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ConsultaDeuda", placaParameter, añoParameter, msg, registros);
+        }
+    
+        public virtual int sp_Correlativo_Internet(Nullable<short> codigo_Sistema, ObjectParameter folio)
+        {
+            var codigo_SistemaParameter = codigo_Sistema.HasValue ?
+                new ObjectParameter("Codigo_Sistema", codigo_Sistema) :
+                new ObjectParameter("Codigo_Sistema", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Correlativo_Internet", codigo_SistemaParameter, folio);
+        }
+    
+        public virtual int sp_Correlativo_Internet_InHouse(Nullable<short> codigo_Sistema, ObjectParameter folio)
+        {
+            var codigo_SistemaParameter = codigo_Sistema.HasValue ?
+                new ObjectParameter("Codigo_Sistema", codigo_Sistema) :
+                new ObjectParameter("Codigo_Sistema", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Correlativo_Internet_InHouse", codigo_SistemaParameter, folio);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> Sp_CorrelativoTramitesVarios(string placa, Nullable<short> formaPago, Nullable<short> añoPermiso, Nullable<System.DateTime> fechaEmision, Nullable<int> valor_Duplicado, Nullable<short> numero_Caja, Nullable<byte> estado_del_Pago, string usuario, string observaciones, Nullable<int> tipo)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var formaPagoParameter = formaPago.HasValue ?
+                new ObjectParameter("FormaPago", formaPago) :
+                new ObjectParameter("FormaPago", typeof(short));
+    
+            var añoPermisoParameter = añoPermiso.HasValue ?
+                new ObjectParameter("AñoPermiso", añoPermiso) :
+                new ObjectParameter("AñoPermiso", typeof(short));
+    
+            var fechaEmisionParameter = fechaEmision.HasValue ?
+                new ObjectParameter("FechaEmision", fechaEmision) :
+                new ObjectParameter("FechaEmision", typeof(System.DateTime));
+    
+            var valor_DuplicadoParameter = valor_Duplicado.HasValue ?
+                new ObjectParameter("Valor_Duplicado", valor_Duplicado) :
+                new ObjectParameter("Valor_Duplicado", typeof(int));
+    
+            var numero_CajaParameter = numero_Caja.HasValue ?
+                new ObjectParameter("Numero_Caja", numero_Caja) :
+                new ObjectParameter("Numero_Caja", typeof(short));
+    
+            var estado_del_PagoParameter = estado_del_Pago.HasValue ?
+                new ObjectParameter("Estado_del_Pago", estado_del_Pago) :
+                new ObjectParameter("Estado_del_Pago", typeof(byte));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("Tipo", tipo) :
+                new ObjectParameter("Tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("Sp_CorrelativoTramitesVarios", placaParameter, formaPagoParameter, añoPermisoParameter, fechaEmisionParameter, valor_DuplicadoParameter, numero_CajaParameter, estado_del_PagoParameter, usuarioParameter, observacionesParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<sp_DatosVehiculo_Internet_Result> sp_DatosVehiculo_Internet(string placa, string pST)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var pSTParameter = pST != null ?
+                new ObjectParameter("PST", pST) :
+                new ObjectParameter("PST", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DatosVehiculo_Internet_Result>("sp_DatosVehiculo_Internet", placaParameter, pSTParameter);
+        }
+    
+        public virtual int sp_DatosVehiculosResp(string placa, string digito, string rut, Nullable<decimal> tipoVehiculo, Nullable<decimal> clasificacion, string codigoSII, Nullable<decimal> codigoMarca, string modelo, Nullable<decimal> añoFabricacion, string color, string numeroMotor, string numeroChassis, Nullable<decimal> numeroPuertas, Nullable<decimal> tonelaje, Nullable<decimal> asientos, Nullable<decimal> ejes, Nullable<decimal> ruedas, Nullable<decimal> sello, string numeroSello, Nullable<decimal> compañiaSeguro, string numeroPoliza, string nroRevTec, string lugarRevTec, string folioGases, Nullable<bool> usarCorreo, string nombreCorreo, string direccionCorreo, string comunaCorreo, string fonoCorreo, string codigoPostal, Nullable<bool> asimilado, Nullable<bool> tasado, Nullable<decimal> tasacionSII, Nullable<decimal> netoFactura, Nullable<System.DateTime> fechaFactura, Nullable<decimal> numeroFactura, Nullable<decimal> cilindrada, string combustible, string equipamiento, string transmision, string observaciones, Nullable<short> estado_Vehiculo, string rut_Empresa, string nombre_Notario, Nullable<short> declaracion_Jurada, Nullable<System.DateTime> fecha_VencRevTec, Nullable<short> tipo_RevTec, Nullable<System.DateTime> fecha_Aprueba_Traslado, Nullable<short> codigo_ZonaFranca, string numero_VIN, Nullable<int> año_Anterior, Nullable<double> boletin_Anterior, Nullable<System.DateTime> fecha_Termino_Seguro, Nullable<int> comunidad_Int, string potencia, string marchas, string traccion, string equipamiento_Detallado, string permiso_Año, string version, string hash, string usuario_Transaccion, string equipo)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var tipoVehiculoParameter = tipoVehiculo.HasValue ?
+                new ObjectParameter("TipoVehiculo", tipoVehiculo) :
+                new ObjectParameter("TipoVehiculo", typeof(decimal));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(decimal));
+    
+            var codigoSIIParameter = codigoSII != null ?
+                new ObjectParameter("CodigoSII", codigoSII) :
+                new ObjectParameter("CodigoSII", typeof(string));
+    
+            var codigoMarcaParameter = codigoMarca.HasValue ?
+                new ObjectParameter("CodigoMarca", codigoMarca) :
+                new ObjectParameter("CodigoMarca", typeof(decimal));
+    
+            var modeloParameter = modelo != null ?
+                new ObjectParameter("Modelo", modelo) :
+                new ObjectParameter("Modelo", typeof(string));
+    
+            var añoFabricacionParameter = añoFabricacion.HasValue ?
+                new ObjectParameter("AñoFabricacion", añoFabricacion) :
+                new ObjectParameter("AñoFabricacion", typeof(decimal));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var numeroMotorParameter = numeroMotor != null ?
+                new ObjectParameter("NumeroMotor", numeroMotor) :
+                new ObjectParameter("NumeroMotor", typeof(string));
+    
+            var numeroChassisParameter = numeroChassis != null ?
+                new ObjectParameter("NumeroChassis", numeroChassis) :
+                new ObjectParameter("NumeroChassis", typeof(string));
+    
+            var numeroPuertasParameter = numeroPuertas.HasValue ?
+                new ObjectParameter("NumeroPuertas", numeroPuertas) :
+                new ObjectParameter("NumeroPuertas", typeof(decimal));
+    
+            var tonelajeParameter = tonelaje.HasValue ?
+                new ObjectParameter("Tonelaje", tonelaje) :
+                new ObjectParameter("Tonelaje", typeof(decimal));
+    
+            var asientosParameter = asientos.HasValue ?
+                new ObjectParameter("Asientos", asientos) :
+                new ObjectParameter("Asientos", typeof(decimal));
+    
+            var ejesParameter = ejes.HasValue ?
+                new ObjectParameter("Ejes", ejes) :
+                new ObjectParameter("Ejes", typeof(decimal));
+    
+            var ruedasParameter = ruedas.HasValue ?
+                new ObjectParameter("Ruedas", ruedas) :
+                new ObjectParameter("Ruedas", typeof(decimal));
+    
+            var selloParameter = sello.HasValue ?
+                new ObjectParameter("Sello", sello) :
+                new ObjectParameter("Sello", typeof(decimal));
+    
+            var numeroSelloParameter = numeroSello != null ?
+                new ObjectParameter("NumeroSello", numeroSello) :
+                new ObjectParameter("NumeroSello", typeof(string));
+    
+            var compañiaSeguroParameter = compañiaSeguro.HasValue ?
+                new ObjectParameter("CompañiaSeguro", compañiaSeguro) :
+                new ObjectParameter("CompañiaSeguro", typeof(decimal));
+    
+            var numeroPolizaParameter = numeroPoliza != null ?
+                new ObjectParameter("NumeroPoliza", numeroPoliza) :
+                new ObjectParameter("NumeroPoliza", typeof(string));
+    
+            var nroRevTecParameter = nroRevTec != null ?
+                new ObjectParameter("NroRevTec", nroRevTec) :
+                new ObjectParameter("NroRevTec", typeof(string));
+    
+            var lugarRevTecParameter = lugarRevTec != null ?
+                new ObjectParameter("LugarRevTec", lugarRevTec) :
+                new ObjectParameter("LugarRevTec", typeof(string));
+    
+            var folioGasesParameter = folioGases != null ?
+                new ObjectParameter("FolioGases", folioGases) :
+                new ObjectParameter("FolioGases", typeof(string));
+    
+            var usarCorreoParameter = usarCorreo.HasValue ?
+                new ObjectParameter("UsarCorreo", usarCorreo) :
+                new ObjectParameter("UsarCorreo", typeof(bool));
+    
+            var nombreCorreoParameter = nombreCorreo != null ?
+                new ObjectParameter("NombreCorreo", nombreCorreo) :
+                new ObjectParameter("NombreCorreo", typeof(string));
+    
+            var direccionCorreoParameter = direccionCorreo != null ?
+                new ObjectParameter("DireccionCorreo", direccionCorreo) :
+                new ObjectParameter("DireccionCorreo", typeof(string));
+    
+            var comunaCorreoParameter = comunaCorreo != null ?
+                new ObjectParameter("ComunaCorreo", comunaCorreo) :
+                new ObjectParameter("ComunaCorreo", typeof(string));
+    
+            var fonoCorreoParameter = fonoCorreo != null ?
+                new ObjectParameter("FonoCorreo", fonoCorreo) :
+                new ObjectParameter("FonoCorreo", typeof(string));
+    
+            var codigoPostalParameter = codigoPostal != null ?
+                new ObjectParameter("CodigoPostal", codigoPostal) :
+                new ObjectParameter("CodigoPostal", typeof(string));
+    
+            var asimiladoParameter = asimilado.HasValue ?
+                new ObjectParameter("Asimilado", asimilado) :
+                new ObjectParameter("Asimilado", typeof(bool));
+    
+            var tasadoParameter = tasado.HasValue ?
+                new ObjectParameter("Tasado", tasado) :
+                new ObjectParameter("Tasado", typeof(bool));
+    
+            var tasacionSIIParameter = tasacionSII.HasValue ?
+                new ObjectParameter("TasacionSII", tasacionSII) :
+                new ObjectParameter("TasacionSII", typeof(decimal));
+    
+            var netoFacturaParameter = netoFactura.HasValue ?
+                new ObjectParameter("NetoFactura", netoFactura) :
+                new ObjectParameter("NetoFactura", typeof(decimal));
+    
+            var fechaFacturaParameter = fechaFactura.HasValue ?
+                new ObjectParameter("FechaFactura", fechaFactura) :
+                new ObjectParameter("FechaFactura", typeof(System.DateTime));
+    
+            var numeroFacturaParameter = numeroFactura.HasValue ?
+                new ObjectParameter("NumeroFactura", numeroFactura) :
+                new ObjectParameter("NumeroFactura", typeof(decimal));
+    
+            var cilindradaParameter = cilindrada.HasValue ?
+                new ObjectParameter("Cilindrada", cilindrada) :
+                new ObjectParameter("Cilindrada", typeof(decimal));
+    
+            var combustibleParameter = combustible != null ?
+                new ObjectParameter("Combustible", combustible) :
+                new ObjectParameter("Combustible", typeof(string));
+    
+            var equipamientoParameter = equipamiento != null ?
+                new ObjectParameter("Equipamiento", equipamiento) :
+                new ObjectParameter("Equipamiento", typeof(string));
+    
+            var transmisionParameter = transmision != null ?
+                new ObjectParameter("Transmision", transmision) :
+                new ObjectParameter("Transmision", typeof(string));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var estado_VehiculoParameter = estado_Vehiculo.HasValue ?
+                new ObjectParameter("Estado_Vehiculo", estado_Vehiculo) :
+                new ObjectParameter("Estado_Vehiculo", typeof(short));
+    
+            var rut_EmpresaParameter = rut_Empresa != null ?
+                new ObjectParameter("Rut_Empresa", rut_Empresa) :
+                new ObjectParameter("Rut_Empresa", typeof(string));
+    
+            var nombre_NotarioParameter = nombre_Notario != null ?
+                new ObjectParameter("Nombre_Notario", nombre_Notario) :
+                new ObjectParameter("Nombre_Notario", typeof(string));
+    
+            var declaracion_JuradaParameter = declaracion_Jurada.HasValue ?
+                new ObjectParameter("Declaracion_Jurada", declaracion_Jurada) :
+                new ObjectParameter("Declaracion_Jurada", typeof(short));
+    
+            var fecha_VencRevTecParameter = fecha_VencRevTec.HasValue ?
+                new ObjectParameter("Fecha_VencRevTec", fecha_VencRevTec) :
+                new ObjectParameter("Fecha_VencRevTec", typeof(System.DateTime));
+    
+            var tipo_RevTecParameter = tipo_RevTec.HasValue ?
+                new ObjectParameter("Tipo_RevTec", tipo_RevTec) :
+                new ObjectParameter("Tipo_RevTec", typeof(short));
+    
+            var fecha_Aprueba_TrasladoParameter = fecha_Aprueba_Traslado.HasValue ?
+                new ObjectParameter("Fecha_Aprueba_Traslado", fecha_Aprueba_Traslado) :
+                new ObjectParameter("Fecha_Aprueba_Traslado", typeof(System.DateTime));
+    
+            var codigo_ZonaFrancaParameter = codigo_ZonaFranca.HasValue ?
+                new ObjectParameter("Codigo_ZonaFranca", codigo_ZonaFranca) :
+                new ObjectParameter("Codigo_ZonaFranca", typeof(short));
+    
+            var numero_VINParameter = numero_VIN != null ?
+                new ObjectParameter("Numero_VIN", numero_VIN) :
+                new ObjectParameter("Numero_VIN", typeof(string));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(int));
+    
+            var boletin_AnteriorParameter = boletin_Anterior.HasValue ?
+                new ObjectParameter("Boletin_Anterior", boletin_Anterior) :
+                new ObjectParameter("Boletin_Anterior", typeof(double));
+    
+            var fecha_Termino_SeguroParameter = fecha_Termino_Seguro.HasValue ?
+                new ObjectParameter("Fecha_Termino_Seguro", fecha_Termino_Seguro) :
+                new ObjectParameter("Fecha_Termino_Seguro", typeof(System.DateTime));
+    
+            var comunidad_IntParameter = comunidad_Int.HasValue ?
+                new ObjectParameter("Comunidad_Int", comunidad_Int) :
+                new ObjectParameter("Comunidad_Int", typeof(int));
+    
+            var potenciaParameter = potencia != null ?
+                new ObjectParameter("Potencia", potencia) :
+                new ObjectParameter("Potencia", typeof(string));
+    
+            var marchasParameter = marchas != null ?
+                new ObjectParameter("Marchas", marchas) :
+                new ObjectParameter("Marchas", typeof(string));
+    
+            var traccionParameter = traccion != null ?
+                new ObjectParameter("Traccion", traccion) :
+                new ObjectParameter("Traccion", typeof(string));
+    
+            var equipamiento_DetalladoParameter = equipamiento_Detallado != null ?
+                new ObjectParameter("Equipamiento_Detallado", equipamiento_Detallado) :
+                new ObjectParameter("Equipamiento_Detallado", typeof(string));
+    
+            var permiso_AñoParameter = permiso_Año != null ?
+                new ObjectParameter("Permiso_Año", permiso_Año) :
+                new ObjectParameter("Permiso_Año", typeof(string));
+    
+            var versionParameter = version != null ?
+                new ObjectParameter("Version", version) :
+                new ObjectParameter("Version", typeof(string));
+    
+            var hashParameter = hash != null ?
+                new ObjectParameter("Hash", hash) :
+                new ObjectParameter("Hash", typeof(string));
+    
+            var usuario_TransaccionParameter = usuario_Transaccion != null ?
+                new ObjectParameter("Usuario_Transaccion", usuario_Transaccion) :
+                new ObjectParameter("Usuario_Transaccion", typeof(string));
+    
+            var equipoParameter = equipo != null ?
+                new ObjectParameter("Equipo", equipo) :
+                new ObjectParameter("Equipo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DatosVehiculosResp", placaParameter, digitoParameter, rutParameter, tipoVehiculoParameter, clasificacionParameter, codigoSIIParameter, codigoMarcaParameter, modeloParameter, añoFabricacionParameter, colorParameter, numeroMotorParameter, numeroChassisParameter, numeroPuertasParameter, tonelajeParameter, asientosParameter, ejesParameter, ruedasParameter, selloParameter, numeroSelloParameter, compañiaSeguroParameter, numeroPolizaParameter, nroRevTecParameter, lugarRevTecParameter, folioGasesParameter, usarCorreoParameter, nombreCorreoParameter, direccionCorreoParameter, comunaCorreoParameter, fonoCorreoParameter, codigoPostalParameter, asimiladoParameter, tasadoParameter, tasacionSIIParameter, netoFacturaParameter, fechaFacturaParameter, numeroFacturaParameter, cilindradaParameter, combustibleParameter, equipamientoParameter, transmisionParameter, observacionesParameter, estado_VehiculoParameter, rut_EmpresaParameter, nombre_NotarioParameter, declaracion_JuradaParameter, fecha_VencRevTecParameter, tipo_RevTecParameter, fecha_Aprueba_TrasladoParameter, codigo_ZonaFrancaParameter, numero_VINParameter, año_AnteriorParameter, boletin_AnteriorParameter, fecha_Termino_SeguroParameter, comunidad_IntParameter, potenciaParameter, marchasParameter, traccionParameter, equipamiento_DetalladoParameter, permiso_AñoParameter, versionParameter, hashParameter, usuario_TransaccionParameter, equipoParameter);
+        }
+    
+        public virtual int sp_EliminaDatosVehiculo(string placa)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaDatosVehiculo", placaParameter);
+        }
+    
+        public virtual int sp_EncabezadoDeudores_Internet(string @do, Nullable<short> ano_Proceso, Nullable<short> codigo_Area, Nullable<int> orden_Ingreso, Nullable<short> item_Pago, Nullable<System.DateTime> fecha_Emision, Nullable<System.DateTime> fecha_Vencimiento, string rut, string nombre, string placa_Vehiculo, string emitidoPor, string observacion_01, string observacion_02)
+        {
+            var doParameter = @do != null ?
+                new ObjectParameter("do", @do) :
+                new ObjectParameter("do", typeof(string));
+    
+            var ano_ProcesoParameter = ano_Proceso.HasValue ?
+                new ObjectParameter("Ano_Proceso", ano_Proceso) :
+                new ObjectParameter("Ano_Proceso", typeof(short));
+    
+            var codigo_AreaParameter = codigo_Area.HasValue ?
+                new ObjectParameter("Codigo_Area", codigo_Area) :
+                new ObjectParameter("Codigo_Area", typeof(short));
+    
+            var orden_IngresoParameter = orden_Ingreso.HasValue ?
+                new ObjectParameter("Orden_Ingreso", orden_Ingreso) :
+                new ObjectParameter("Orden_Ingreso", typeof(int));
+    
+            var item_PagoParameter = item_Pago.HasValue ?
+                new ObjectParameter("Item_Pago", item_Pago) :
+                new ObjectParameter("Item_Pago", typeof(short));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var fecha_VencimientoParameter = fecha_Vencimiento.HasValue ?
+                new ObjectParameter("Fecha_Vencimiento", fecha_Vencimiento) :
+                new ObjectParameter("Fecha_Vencimiento", typeof(System.DateTime));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var placa_VehiculoParameter = placa_Vehiculo != null ?
+                new ObjectParameter("Placa_Vehiculo", placa_Vehiculo) :
+                new ObjectParameter("Placa_Vehiculo", typeof(string));
+    
+            var emitidoPorParameter = emitidoPor != null ?
+                new ObjectParameter("EmitidoPor", emitidoPor) :
+                new ObjectParameter("EmitidoPor", typeof(string));
+    
+            var observacion_01Parameter = observacion_01 != null ?
+                new ObjectParameter("Observacion_01", observacion_01) :
+                new ObjectParameter("Observacion_01", typeof(string));
+    
+            var observacion_02Parameter = observacion_02 != null ?
+                new ObjectParameter("Observacion_02", observacion_02) :
+                new ObjectParameter("Observacion_02", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EncabezadoDeudores_Internet", doParameter, ano_ProcesoParameter, codigo_AreaParameter, orden_IngresoParameter, item_PagoParameter, fecha_EmisionParameter, fecha_VencimientoParameter, rutParameter, nombreParameter, placa_VehiculoParameter, emitidoPorParameter, observacion_01Parameter, observacion_02Parameter);
+        }
+    
+        public virtual int sp_EncabezadoDeudoresMultas_Internet(string @do, Nullable<short> ano_Proceso, Nullable<short> codigo_Area, Nullable<int> orden_Ingreso, Nullable<short> item_Pago, Nullable<System.DateTime> fecha_Emision, Nullable<System.DateTime> fecha_Vencimiento, string rut, string nombre, string placa_Vehiculo, string emitidoPor, string observacion_01, string observacion_02, string observacion_03)
+        {
+            var doParameter = @do != null ?
+                new ObjectParameter("do", @do) :
+                new ObjectParameter("do", typeof(string));
+    
+            var ano_ProcesoParameter = ano_Proceso.HasValue ?
+                new ObjectParameter("Ano_Proceso", ano_Proceso) :
+                new ObjectParameter("Ano_Proceso", typeof(short));
+    
+            var codigo_AreaParameter = codigo_Area.HasValue ?
+                new ObjectParameter("Codigo_Area", codigo_Area) :
+                new ObjectParameter("Codigo_Area", typeof(short));
+    
+            var orden_IngresoParameter = orden_Ingreso.HasValue ?
+                new ObjectParameter("Orden_Ingreso", orden_Ingreso) :
+                new ObjectParameter("Orden_Ingreso", typeof(int));
+    
+            var item_PagoParameter = item_Pago.HasValue ?
+                new ObjectParameter("Item_Pago", item_Pago) :
+                new ObjectParameter("Item_Pago", typeof(short));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var fecha_VencimientoParameter = fecha_Vencimiento.HasValue ?
+                new ObjectParameter("Fecha_Vencimiento", fecha_Vencimiento) :
+                new ObjectParameter("Fecha_Vencimiento", typeof(System.DateTime));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var placa_VehiculoParameter = placa_Vehiculo != null ?
+                new ObjectParameter("Placa_Vehiculo", placa_Vehiculo) :
+                new ObjectParameter("Placa_Vehiculo", typeof(string));
+    
+            var emitidoPorParameter = emitidoPor != null ?
+                new ObjectParameter("EmitidoPor", emitidoPor) :
+                new ObjectParameter("EmitidoPor", typeof(string));
+    
+            var observacion_01Parameter = observacion_01 != null ?
+                new ObjectParameter("Observacion_01", observacion_01) :
+                new ObjectParameter("Observacion_01", typeof(string));
+    
+            var observacion_02Parameter = observacion_02 != null ?
+                new ObjectParameter("Observacion_02", observacion_02) :
+                new ObjectParameter("Observacion_02", typeof(string));
+    
+            var observacion_03Parameter = observacion_03 != null ?
+                new ObjectParameter("Observacion_03", observacion_03) :
+                new ObjectParameter("Observacion_03", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EncabezadoDeudoresMultas_Internet", doParameter, ano_ProcesoParameter, codigo_AreaParameter, orden_IngresoParameter, item_PagoParameter, fecha_EmisionParameter, fecha_VencimientoParameter, rutParameter, nombreParameter, placa_VehiculoParameter, emitidoPorParameter, observacion_01Parameter, observacion_02Parameter, observacion_03Parameter);
+        }
+    
+        public virtual int sp_Inserta_Registro_de_Multas(string fecha_Informe, string placa, Nullable<double> id_Multa, string juzgado, string comuna, string rol_Causa, Nullable<System.DateTime> fecha_Sentencia, Nullable<double> multa, Nullable<double> arancel, Nullable<short> tipo_Moneda, string nombre, string rut, string direccion, string motivo, Nullable<System.DateTime> fecha_Ingreso, Nullable<int> tAG, string codigo_Comuna, string codigo_Juzgado, Nullable<short> año_Rol_Causa)
+        {
+            var fecha_InformeParameter = fecha_Informe != null ?
+                new ObjectParameter("Fecha_Informe", fecha_Informe) :
+                new ObjectParameter("Fecha_Informe", typeof(string));
+    
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var id_MultaParameter = id_Multa.HasValue ?
+                new ObjectParameter("Id_Multa", id_Multa) :
+                new ObjectParameter("Id_Multa", typeof(double));
+    
+            var juzgadoParameter = juzgado != null ?
+                new ObjectParameter("Juzgado", juzgado) :
+                new ObjectParameter("Juzgado", typeof(string));
+    
+            var comunaParameter = comuna != null ?
+                new ObjectParameter("Comuna", comuna) :
+                new ObjectParameter("Comuna", typeof(string));
+    
+            var rol_CausaParameter = rol_Causa != null ?
+                new ObjectParameter("Rol_Causa", rol_Causa) :
+                new ObjectParameter("Rol_Causa", typeof(string));
+    
+            var fecha_SentenciaParameter = fecha_Sentencia.HasValue ?
+                new ObjectParameter("Fecha_Sentencia", fecha_Sentencia) :
+                new ObjectParameter("Fecha_Sentencia", typeof(System.DateTime));
+    
+            var multaParameter = multa.HasValue ?
+                new ObjectParameter("Multa", multa) :
+                new ObjectParameter("Multa", typeof(double));
+    
+            var arancelParameter = arancel.HasValue ?
+                new ObjectParameter("Arancel", arancel) :
+                new ObjectParameter("Arancel", typeof(double));
+    
+            var tipo_MonedaParameter = tipo_Moneda.HasValue ?
+                new ObjectParameter("Tipo_Moneda", tipo_Moneda) :
+                new ObjectParameter("Tipo_Moneda", typeof(short));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var motivoParameter = motivo != null ?
+                new ObjectParameter("Motivo", motivo) :
+                new ObjectParameter("Motivo", typeof(string));
+    
+            var fecha_IngresoParameter = fecha_Ingreso.HasValue ?
+                new ObjectParameter("Fecha_Ingreso", fecha_Ingreso) :
+                new ObjectParameter("Fecha_Ingreso", typeof(System.DateTime));
+    
+            var tAGParameter = tAG.HasValue ?
+                new ObjectParameter("TAG", tAG) :
+                new ObjectParameter("TAG", typeof(int));
+    
+            var codigo_ComunaParameter = codigo_Comuna != null ?
+                new ObjectParameter("Codigo_Comuna", codigo_Comuna) :
+                new ObjectParameter("Codigo_Comuna", typeof(string));
+    
+            var codigo_JuzgadoParameter = codigo_Juzgado != null ?
+                new ObjectParameter("Codigo_Juzgado", codigo_Juzgado) :
+                new ObjectParameter("Codigo_Juzgado", typeof(string));
+    
+            var año_Rol_CausaParameter = año_Rol_Causa.HasValue ?
+                new ObjectParameter("Año_Rol_Causa", año_Rol_Causa) :
+                new ObjectParameter("Año_Rol_Causa", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Inserta_Registro_de_Multas", fecha_InformeParameter, placaParameter, id_MultaParameter, juzgadoParameter, comunaParameter, rol_CausaParameter, fecha_SentenciaParameter, multaParameter, arancelParameter, tipo_MonedaParameter, nombreParameter, rutParameter, direccionParameter, motivoParameter, fecha_IngresoParameter, tAGParameter, codigo_ComunaParameter, codigo_JuzgadoParameter, año_Rol_CausaParameter);
+        }
+    
+        public virtual int SP_inserta_Registros_Por_Carga_Masiva(string placa, string fecha_Archivo, Nullable<int> valor_Permiso, Nullable<decimal> numero_Boletin, Nullable<int> año_Permiso, Nullable<int> forma_de_Pago, string usuario, string nombre_Archivo, Nullable<decimal> registros_por_Archivo, string empresa)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var fecha_ArchivoParameter = fecha_Archivo != null ?
+                new ObjectParameter("Fecha_Archivo", fecha_Archivo) :
+                new ObjectParameter("Fecha_Archivo", typeof(string));
+    
+            var valor_PermisoParameter = valor_Permiso.HasValue ?
+                new ObjectParameter("Valor_Permiso", valor_Permiso) :
+                new ObjectParameter("Valor_Permiso", typeof(int));
+    
+            var numero_BoletinParameter = numero_Boletin.HasValue ?
+                new ObjectParameter("Numero_Boletin", numero_Boletin) :
+                new ObjectParameter("Numero_Boletin", typeof(decimal));
+    
+            var año_PermisoParameter = año_Permiso.HasValue ?
+                new ObjectParameter("Año_Permiso", año_Permiso) :
+                new ObjectParameter("Año_Permiso", typeof(int));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(int));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var nombre_ArchivoParameter = nombre_Archivo != null ?
+                new ObjectParameter("Nombre_Archivo", nombre_Archivo) :
+                new ObjectParameter("Nombre_Archivo", typeof(string));
+    
+            var registros_por_ArchivoParameter = registros_por_Archivo.HasValue ?
+                new ObjectParameter("Registros_por_Archivo", registros_por_Archivo) :
+                new ObjectParameter("Registros_por_Archivo", typeof(decimal));
+    
+            var empresaParameter = empresa != null ?
+                new ObjectParameter("Empresa", empresa) :
+                new ObjectParameter("Empresa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_inserta_Registros_Por_Carga_Masiva", placaParameter, fecha_ArchivoParameter, valor_PermisoParameter, numero_BoletinParameter, año_PermisoParameter, forma_de_PagoParameter, usuarioParameter, nombre_ArchivoParameter, registros_por_ArchivoParameter, empresaParameter);
+        }
+    
+        public virtual int sp_InsertarTransaccion_AACH(string codError, string error, Nullable<int> ticket, string nroFolio, string nroPoliza, string rutCia, string nombreCompania, string patente, string digPatene, string tipoVehiculo, string marcaVehiculo, string modeloVehiculo, string anofabricacion, string nroMotor, string rutPropietario, string nombrePropietario, string fechaInicio, string fechaTermino)
+        {
+            var codErrorParameter = codError != null ?
+                new ObjectParameter("CodError", codError) :
+                new ObjectParameter("CodError", typeof(string));
+    
+            var errorParameter = error != null ?
+                new ObjectParameter("Error", error) :
+                new ObjectParameter("Error", typeof(string));
+    
+            var ticketParameter = ticket.HasValue ?
+                new ObjectParameter("Ticket", ticket) :
+                new ObjectParameter("Ticket", typeof(int));
+    
+            var nroFolioParameter = nroFolio != null ?
+                new ObjectParameter("NroFolio", nroFolio) :
+                new ObjectParameter("NroFolio", typeof(string));
+    
+            var nroPolizaParameter = nroPoliza != null ?
+                new ObjectParameter("NroPoliza", nroPoliza) :
+                new ObjectParameter("NroPoliza", typeof(string));
+    
+            var rutCiaParameter = rutCia != null ?
+                new ObjectParameter("RutCia", rutCia) :
+                new ObjectParameter("RutCia", typeof(string));
+    
+            var nombreCompaniaParameter = nombreCompania != null ?
+                new ObjectParameter("NombreCompania", nombreCompania) :
+                new ObjectParameter("NombreCompania", typeof(string));
+    
+            var patenteParameter = patente != null ?
+                new ObjectParameter("Patente", patente) :
+                new ObjectParameter("Patente", typeof(string));
+    
+            var digPateneParameter = digPatene != null ?
+                new ObjectParameter("DigPatene", digPatene) :
+                new ObjectParameter("DigPatene", typeof(string));
+    
+            var tipoVehiculoParameter = tipoVehiculo != null ?
+                new ObjectParameter("TipoVehiculo", tipoVehiculo) :
+                new ObjectParameter("TipoVehiculo", typeof(string));
+    
+            var marcaVehiculoParameter = marcaVehiculo != null ?
+                new ObjectParameter("MarcaVehiculo", marcaVehiculo) :
+                new ObjectParameter("MarcaVehiculo", typeof(string));
+    
+            var modeloVehiculoParameter = modeloVehiculo != null ?
+                new ObjectParameter("ModeloVehiculo", modeloVehiculo) :
+                new ObjectParameter("ModeloVehiculo", typeof(string));
+    
+            var anofabricacionParameter = anofabricacion != null ?
+                new ObjectParameter("Anofabricacion", anofabricacion) :
+                new ObjectParameter("Anofabricacion", typeof(string));
+    
+            var nroMotorParameter = nroMotor != null ?
+                new ObjectParameter("NroMotor", nroMotor) :
+                new ObjectParameter("NroMotor", typeof(string));
+    
+            var rutPropietarioParameter = rutPropietario != null ?
+                new ObjectParameter("RutPropietario", rutPropietario) :
+                new ObjectParameter("RutPropietario", typeof(string));
+    
+            var nombrePropietarioParameter = nombrePropietario != null ?
+                new ObjectParameter("NombrePropietario", nombrePropietario) :
+                new ObjectParameter("NombrePropietario", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio != null ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(string));
+    
+            var fechaTerminoParameter = fechaTermino != null ?
+                new ObjectParameter("fechaTermino", fechaTermino) :
+                new ObjectParameter("fechaTermino", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarTransaccion_AACH", codErrorParameter, errorParameter, ticketParameter, nroFolioParameter, nroPolizaParameter, rutCiaParameter, nombreCompaniaParameter, patenteParameter, digPateneParameter, tipoVehiculoParameter, marcaVehiculoParameter, modeloVehiculoParameter, anofabricacionParameter, nroMotorParameter, rutPropietarioParameter, nombrePropietarioParameter, fechaInicioParameter, fechaTerminoParameter);
+        }
+    
+        public virtual int sp_InsertarTransaccion_MTT(string placa, string cOD_RESULTADO, string rESULTADO, Nullable<short> estadorevtec, string cOMUNA_PRT, string cODIGO_PRT, string iD_CRT, byte[] mARCA, string mODELO, string nUMERO_CHASIS, string tIPO_COMBUSTIBLE, string tIPO_SELLO, string tIPO_VEHICULO, string nUMERO_MOTOR, string cOMUNA_PRT_G, string cODIGO_PRT_G, string iD_CRT_G, string pPUDV, string aNO_FABRICACION, Nullable<System.DateTime> fECHA_REVISION, Nullable<System.DateTime> fECHA_VENCIMIENTO)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var cOD_RESULTADOParameter = cOD_RESULTADO != null ?
+                new ObjectParameter("COD_RESULTADO", cOD_RESULTADO) :
+                new ObjectParameter("COD_RESULTADO", typeof(string));
+    
+            var rESULTADOParameter = rESULTADO != null ?
+                new ObjectParameter("RESULTADO", rESULTADO) :
+                new ObjectParameter("RESULTADO", typeof(string));
+    
+            var estadorevtecParameter = estadorevtec.HasValue ?
+                new ObjectParameter("estadorevtec", estadorevtec) :
+                new ObjectParameter("estadorevtec", typeof(short));
+    
+            var cOMUNA_PRTParameter = cOMUNA_PRT != null ?
+                new ObjectParameter("COMUNA_PRT", cOMUNA_PRT) :
+                new ObjectParameter("COMUNA_PRT", typeof(string));
+    
+            var cODIGO_PRTParameter = cODIGO_PRT != null ?
+                new ObjectParameter("CODIGO_PRT", cODIGO_PRT) :
+                new ObjectParameter("CODIGO_PRT", typeof(string));
+    
+            var iD_CRTParameter = iD_CRT != null ?
+                new ObjectParameter("ID_CRT", iD_CRT) :
+                new ObjectParameter("ID_CRT", typeof(string));
+    
+            var mARCAParameter = mARCA != null ?
+                new ObjectParameter("MARCA", mARCA) :
+                new ObjectParameter("MARCA", typeof(byte[]));
+    
+            var mODELOParameter = mODELO != null ?
+                new ObjectParameter("MODELO", mODELO) :
+                new ObjectParameter("MODELO", typeof(string));
+    
+            var nUMERO_CHASISParameter = nUMERO_CHASIS != null ?
+                new ObjectParameter("NUMERO_CHASIS", nUMERO_CHASIS) :
+                new ObjectParameter("NUMERO_CHASIS", typeof(string));
+    
+            var tIPO_COMBUSTIBLEParameter = tIPO_COMBUSTIBLE != null ?
+                new ObjectParameter("TIPO_COMBUSTIBLE", tIPO_COMBUSTIBLE) :
+                new ObjectParameter("TIPO_COMBUSTIBLE", typeof(string));
+    
+            var tIPO_SELLOParameter = tIPO_SELLO != null ?
+                new ObjectParameter("TIPO_SELLO", tIPO_SELLO) :
+                new ObjectParameter("TIPO_SELLO", typeof(string));
+    
+            var tIPO_VEHICULOParameter = tIPO_VEHICULO != null ?
+                new ObjectParameter("TIPO_VEHICULO", tIPO_VEHICULO) :
+                new ObjectParameter("TIPO_VEHICULO", typeof(string));
+    
+            var nUMERO_MOTORParameter = nUMERO_MOTOR != null ?
+                new ObjectParameter("NUMERO_MOTOR", nUMERO_MOTOR) :
+                new ObjectParameter("NUMERO_MOTOR", typeof(string));
+    
+            var cOMUNA_PRT_GParameter = cOMUNA_PRT_G != null ?
+                new ObjectParameter("COMUNA_PRT_G", cOMUNA_PRT_G) :
+                new ObjectParameter("COMUNA_PRT_G", typeof(string));
+    
+            var cODIGO_PRT_GParameter = cODIGO_PRT_G != null ?
+                new ObjectParameter("CODIGO_PRT_G", cODIGO_PRT_G) :
+                new ObjectParameter("CODIGO_PRT_G", typeof(string));
+    
+            var iD_CRT_GParameter = iD_CRT_G != null ?
+                new ObjectParameter("ID_CRT_G", iD_CRT_G) :
+                new ObjectParameter("ID_CRT_G", typeof(string));
+    
+            var pPUDVParameter = pPUDV != null ?
+                new ObjectParameter("PPUDV", pPUDV) :
+                new ObjectParameter("PPUDV", typeof(string));
+    
+            var aNO_FABRICACIONParameter = aNO_FABRICACION != null ?
+                new ObjectParameter("ANO_FABRICACION", aNO_FABRICACION) :
+                new ObjectParameter("ANO_FABRICACION", typeof(string));
+    
+            var fECHA_REVISIONParameter = fECHA_REVISION.HasValue ?
+                new ObjectParameter("FECHA_REVISION", fECHA_REVISION) :
+                new ObjectParameter("FECHA_REVISION", typeof(System.DateTime));
+    
+            var fECHA_VENCIMIENTOParameter = fECHA_VENCIMIENTO.HasValue ?
+                new ObjectParameter("FECHA_VENCIMIENTO", fECHA_VENCIMIENTO) :
+                new ObjectParameter("FECHA_VENCIMIENTO", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarTransaccion_MTT", placaParameter, cOD_RESULTADOParameter, rESULTADOParameter, estadorevtecParameter, cOMUNA_PRTParameter, cODIGO_PRTParameter, iD_CRTParameter, mARCAParameter, mODELOParameter, nUMERO_CHASISParameter, tIPO_COMBUSTIBLEParameter, tIPO_SELLOParameter, tIPO_VEHICULOParameter, nUMERO_MOTORParameter, cOMUNA_PRT_GParameter, cODIGO_PRT_GParameter, iD_CRT_GParameter, pPUDVParameter, aNO_FABRICACIONParameter, fECHA_REVISIONParameter, fECHA_VENCIMIENTOParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Multas_Pendientes(string placa)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Multas_Pendientes", placaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> sp_NroBoletinAutomatico()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("sp_NroBoletinAutomatico");
+        }
+    
+        public virtual ObjectResult<sp_NroBoletinAutomaticoporLugar_Result> sp_NroBoletinAutomaticoporLugar(Nullable<decimal> codigo)
+        {
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_NroBoletinAutomaticoporLugar_Result>("sp_NroBoletinAutomaticoporLugar", codigoParameter);
+        }
+    
+        public virtual int sp_PermisosResp(string placa, string digito, string rut, Nullable<decimal> año_del_Permiso, Nullable<System.DateTime> fecha_Emision, Nullable<decimal> tipo_Vehiculo, Nullable<decimal> periodo, Nullable<decimal> clasificacion, Nullable<double> tasacion, Nullable<decimal> neto_Factura, Nullable<System.DateTime> fecha_Factura, Nullable<double> valor_UTM, Nullable<decimal> comuna_Anterior, Nullable<decimal> año_Anterior, Nullable<decimal> compañia_Seguro, string numero_Poliza, string nro_Revision_Tecnica, string lugar_Revision_Tecnica, string folio_Gases, Nullable<decimal> forma_de_Pago, Nullable<double> numero_Boletin, Nullable<decimal> numero_Caja, Nullable<decimal> valor_Permiso, Nullable<float> porcentaje_IPC, Nullable<float> porcentaje_Multa, Nullable<decimal> valor_IPC, Nullable<decimal> valor_Multa, Nullable<decimal> total_a_Pagar, Nullable<decimal> estado_del_Pago, Nullable<bool> fondos_a_Terceros, Nullable<decimal> valor_Contado, Nullable<decimal> valor_Cuota, Nullable<System.DateTime> fecha_Vencimiento, string observaciones, Nullable<bool> correccion_Monetaria, Nullable<float> porcentaje_Correccion, Nullable<decimal> monto_Correccion, Nullable<byte> origen, Nullable<System.DateTime> fecha_Ingreso, Nullable<short> comuna_Origen, string usuario, Nullable<int> codigo_Empresa_Procedencia, Nullable<System.DateTime> fecha_Pago, Nullable<float> numero_Boletin_Preimpreso, string municipalidad, string derechos_Varios, Nullable<System.TimeSpan> hora_Emision, string seriesQR, string hash, string usuario_Transaccion, string equipo)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var año_del_PermisoParameter = año_del_Permiso.HasValue ?
+                new ObjectParameter("Año_del_Permiso", año_del_Permiso) :
+                new ObjectParameter("Año_del_Permiso", typeof(decimal));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo.HasValue ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(decimal));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(decimal));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(decimal));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var neto_FacturaParameter = neto_Factura.HasValue ?
+                new ObjectParameter("Neto_Factura", neto_Factura) :
+                new ObjectParameter("Neto_Factura", typeof(decimal));
+    
+            var fecha_FacturaParameter = fecha_Factura.HasValue ?
+                new ObjectParameter("Fecha_Factura", fecha_Factura) :
+                new ObjectParameter("Fecha_Factura", typeof(System.DateTime));
+    
+            var valor_UTMParameter = valor_UTM.HasValue ?
+                new ObjectParameter("Valor_UTM", valor_UTM) :
+                new ObjectParameter("Valor_UTM", typeof(double));
+    
+            var comuna_AnteriorParameter = comuna_Anterior.HasValue ?
+                new ObjectParameter("Comuna_Anterior", comuna_Anterior) :
+                new ObjectParameter("Comuna_Anterior", typeof(decimal));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(decimal));
+    
+            var compañia_SeguroParameter = compañia_Seguro.HasValue ?
+                new ObjectParameter("Compañia_Seguro", compañia_Seguro) :
+                new ObjectParameter("Compañia_Seguro", typeof(decimal));
+    
+            var numero_PolizaParameter = numero_Poliza != null ?
+                new ObjectParameter("Numero_Poliza", numero_Poliza) :
+                new ObjectParameter("Numero_Poliza", typeof(string));
+    
+            var nro_Revision_TecnicaParameter = nro_Revision_Tecnica != null ?
+                new ObjectParameter("Nro_Revision_Tecnica", nro_Revision_Tecnica) :
+                new ObjectParameter("Nro_Revision_Tecnica", typeof(string));
+    
+            var lugar_Revision_TecnicaParameter = lugar_Revision_Tecnica != null ?
+                new ObjectParameter("Lugar_Revision_Tecnica", lugar_Revision_Tecnica) :
+                new ObjectParameter("Lugar_Revision_Tecnica", typeof(string));
+    
+            var folio_GasesParameter = folio_Gases != null ?
+                new ObjectParameter("Folio_Gases", folio_Gases) :
+                new ObjectParameter("Folio_Gases", typeof(string));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(decimal));
+    
+            var numero_BoletinParameter = numero_Boletin.HasValue ?
+                new ObjectParameter("Numero_Boletin", numero_Boletin) :
+                new ObjectParameter("Numero_Boletin", typeof(double));
+    
+            var numero_CajaParameter = numero_Caja.HasValue ?
+                new ObjectParameter("Numero_Caja", numero_Caja) :
+                new ObjectParameter("Numero_Caja", typeof(decimal));
+    
+            var valor_PermisoParameter = valor_Permiso.HasValue ?
+                new ObjectParameter("Valor_Permiso", valor_Permiso) :
+                new ObjectParameter("Valor_Permiso", typeof(decimal));
+    
+            var porcentaje_IPCParameter = porcentaje_IPC.HasValue ?
+                new ObjectParameter("Porcentaje_IPC", porcentaje_IPC) :
+                new ObjectParameter("Porcentaje_IPC", typeof(float));
+    
+            var porcentaje_MultaParameter = porcentaje_Multa.HasValue ?
+                new ObjectParameter("Porcentaje_Multa", porcentaje_Multa) :
+                new ObjectParameter("Porcentaje_Multa", typeof(float));
+    
+            var valor_IPCParameter = valor_IPC.HasValue ?
+                new ObjectParameter("Valor_IPC", valor_IPC) :
+                new ObjectParameter("Valor_IPC", typeof(decimal));
+    
+            var valor_MultaParameter = valor_Multa.HasValue ?
+                new ObjectParameter("Valor_Multa", valor_Multa) :
+                new ObjectParameter("Valor_Multa", typeof(decimal));
+    
+            var total_a_PagarParameter = total_a_Pagar.HasValue ?
+                new ObjectParameter("Total_a_Pagar", total_a_Pagar) :
+                new ObjectParameter("Total_a_Pagar", typeof(decimal));
+    
+            var estado_del_PagoParameter = estado_del_Pago.HasValue ?
+                new ObjectParameter("Estado_del_Pago", estado_del_Pago) :
+                new ObjectParameter("Estado_del_Pago", typeof(decimal));
+    
+            var fondos_a_TercerosParameter = fondos_a_Terceros.HasValue ?
+                new ObjectParameter("Fondos_a_Terceros", fondos_a_Terceros) :
+                new ObjectParameter("Fondos_a_Terceros", typeof(bool));
+    
+            var valor_ContadoParameter = valor_Contado.HasValue ?
+                new ObjectParameter("Valor_Contado", valor_Contado) :
+                new ObjectParameter("Valor_Contado", typeof(decimal));
+    
+            var valor_CuotaParameter = valor_Cuota.HasValue ?
+                new ObjectParameter("Valor_Cuota", valor_Cuota) :
+                new ObjectParameter("Valor_Cuota", typeof(decimal));
+    
+            var fecha_VencimientoParameter = fecha_Vencimiento.HasValue ?
+                new ObjectParameter("Fecha_Vencimiento", fecha_Vencimiento) :
+                new ObjectParameter("Fecha_Vencimiento", typeof(System.DateTime));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(bool));
+    
+            var porcentaje_CorreccionParameter = porcentaje_Correccion.HasValue ?
+                new ObjectParameter("Porcentaje_Correccion", porcentaje_Correccion) :
+                new ObjectParameter("Porcentaje_Correccion", typeof(float));
+    
+            var monto_CorreccionParameter = monto_Correccion.HasValue ?
+                new ObjectParameter("Monto_Correccion", monto_Correccion) :
+                new ObjectParameter("Monto_Correccion", typeof(decimal));
+    
+            var origenParameter = origen.HasValue ?
+                new ObjectParameter("Origen", origen) :
+                new ObjectParameter("Origen", typeof(byte));
+    
+            var fecha_IngresoParameter = fecha_Ingreso.HasValue ?
+                new ObjectParameter("Fecha_Ingreso", fecha_Ingreso) :
+                new ObjectParameter("Fecha_Ingreso", typeof(System.DateTime));
+    
+            var comuna_OrigenParameter = comuna_Origen.HasValue ?
+                new ObjectParameter("Comuna_Origen", comuna_Origen) :
+                new ObjectParameter("Comuna_Origen", typeof(short));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var codigo_Empresa_ProcedenciaParameter = codigo_Empresa_Procedencia.HasValue ?
+                new ObjectParameter("Codigo_Empresa_Procedencia", codigo_Empresa_Procedencia) :
+                new ObjectParameter("Codigo_Empresa_Procedencia", typeof(int));
+    
+            var fecha_PagoParameter = fecha_Pago.HasValue ?
+                new ObjectParameter("Fecha_Pago", fecha_Pago) :
+                new ObjectParameter("Fecha_Pago", typeof(System.DateTime));
+    
+            var numero_Boletin_PreimpresoParameter = numero_Boletin_Preimpreso.HasValue ?
+                new ObjectParameter("Numero_Boletin_Preimpreso", numero_Boletin_Preimpreso) :
+                new ObjectParameter("Numero_Boletin_Preimpreso", typeof(float));
+    
+            var municipalidadParameter = municipalidad != null ?
+                new ObjectParameter("Municipalidad", municipalidad) :
+                new ObjectParameter("Municipalidad", typeof(string));
+    
+            var derechos_VariosParameter = derechos_Varios != null ?
+                new ObjectParameter("Derechos_Varios", derechos_Varios) :
+                new ObjectParameter("Derechos_Varios", typeof(string));
+    
+            var hora_EmisionParameter = hora_Emision.HasValue ?
+                new ObjectParameter("Hora_Emision", hora_Emision) :
+                new ObjectParameter("Hora_Emision", typeof(System.TimeSpan));
+    
+            var seriesQRParameter = seriesQR != null ?
+                new ObjectParameter("SeriesQR", seriesQR) :
+                new ObjectParameter("SeriesQR", typeof(string));
+    
+            var hashParameter = hash != null ?
+                new ObjectParameter("Hash", hash) :
+                new ObjectParameter("Hash", typeof(string));
+    
+            var usuario_TransaccionParameter = usuario_Transaccion != null ?
+                new ObjectParameter("Usuario_Transaccion", usuario_Transaccion) :
+                new ObjectParameter("Usuario_Transaccion", typeof(string));
+    
+            var equipoParameter = equipo != null ?
+                new ObjectParameter("Equipo", equipo) :
+                new ObjectParameter("Equipo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_PermisosResp", placaParameter, digitoParameter, rutParameter, año_del_PermisoParameter, fecha_EmisionParameter, tipo_VehiculoParameter, periodoParameter, clasificacionParameter, tasacionParameter, neto_FacturaParameter, fecha_FacturaParameter, valor_UTMParameter, comuna_AnteriorParameter, año_AnteriorParameter, compañia_SeguroParameter, numero_PolizaParameter, nro_Revision_TecnicaParameter, lugar_Revision_TecnicaParameter, folio_GasesParameter, forma_de_PagoParameter, numero_BoletinParameter, numero_CajaParameter, valor_PermisoParameter, porcentaje_IPCParameter, porcentaje_MultaParameter, valor_IPCParameter, valor_MultaParameter, total_a_PagarParameter, estado_del_PagoParameter, fondos_a_TercerosParameter, valor_ContadoParameter, valor_CuotaParameter, fecha_VencimientoParameter, observacionesParameter, correccion_MonetariaParameter, porcentaje_CorreccionParameter, monto_CorreccionParameter, origenParameter, fecha_IngresoParameter, comuna_OrigenParameter, usuarioParameter, codigo_Empresa_ProcedenciaParameter, fecha_PagoParameter, numero_Boletin_PreimpresoParameter, municipalidadParameter, derechos_VariosParameter, hora_EmisionParameter, seriesQRParameter, hashParameter, usuario_TransaccionParameter, equipoParameter);
+        }
+    
+        public virtual int SP_PROCESO_PAGO_PERMISOS_INTERNET(Nullable<short> codigo_Area, Nullable<short> ano_Proceso, Nullable<short> miItemPago, Nullable<int> miOrdenIngreso, string miRut, Nullable<System.DateTime> fechaActual, string nombre, string placa, Nullable<short> año_del_Permiso, Nullable<short> forma_de_Pago)
+        {
+            var codigo_AreaParameter = codigo_Area.HasValue ?
+                new ObjectParameter("Codigo_Area", codigo_Area) :
+                new ObjectParameter("Codigo_Area", typeof(short));
+    
+            var ano_ProcesoParameter = ano_Proceso.HasValue ?
+                new ObjectParameter("Ano_Proceso", ano_Proceso) :
+                new ObjectParameter("Ano_Proceso", typeof(short));
+    
+            var miItemPagoParameter = miItemPago.HasValue ?
+                new ObjectParameter("MiItemPago", miItemPago) :
+                new ObjectParameter("MiItemPago", typeof(short));
+    
+            var miOrdenIngresoParameter = miOrdenIngreso.HasValue ?
+                new ObjectParameter("MiOrdenIngreso", miOrdenIngreso) :
+                new ObjectParameter("MiOrdenIngreso", typeof(int));
+    
+            var miRutParameter = miRut != null ?
+                new ObjectParameter("MiRut", miRut) :
+                new ObjectParameter("MiRut", typeof(string));
+    
+            var fechaActualParameter = fechaActual.HasValue ?
+                new ObjectParameter("FechaActual", fechaActual) :
+                new ObjectParameter("FechaActual", typeof(System.DateTime));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var año_del_PermisoParameter = año_del_Permiso.HasValue ?
+                new ObjectParameter("Año_del_Permiso", año_del_Permiso) :
+                new ObjectParameter("Año_del_Permiso", typeof(short));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PROCESO_PAGO_PERMISOS_INTERNET", codigo_AreaParameter, ano_ProcesoParameter, miItemPagoParameter, miOrdenIngresoParameter, miRutParameter, fechaActualParameter, nombreParameter, placaParameter, año_del_PermisoParameter, forma_de_PagoParameter);
+        }
+    
+        public virtual int sp_RegistraMulta_Internet(string placa, string digito, string rut, Nullable<short> año_del_Permiso, Nullable<System.DateTime> fecha_Emision, Nullable<short> tipo_Vehiculo, Nullable<short> periodo, Nullable<short> clasificacion, Nullable<double> tasacion, Nullable<int> valor_UTM, Nullable<short> comuna_Anterior, Nullable<short> año_Anterior, Nullable<short> compañia_Seguro, string numero_Poliza, string nro_Revision_Tecnica, string lugar_Revision_Tecnica, Nullable<short> forma_de_Pago, Nullable<short> numero_Caja, Nullable<int> valor_Permiso, Nullable<float> porcentaje_IPC, Nullable<float> porcentaje_Multa, Nullable<int> valor_IPC, Nullable<int> valor_Multa, Nullable<int> total_a_Pagar, Nullable<byte> estado_del_Pago, Nullable<bool> fondos_a_Terceros, Nullable<int> valor_Contado, Nullable<int> valor_Cuota, Nullable<System.DateTime> fecha_vencimiento, string observaciones, Nullable<bool> correccion_Monetaria, Nullable<float> porcentaje_Correccion, Nullable<int> monto_Correccion, Nullable<System.DateTime> fecha_Pago, string usuario)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var año_del_PermisoParameter = año_del_Permiso.HasValue ?
+                new ObjectParameter("Año_del_Permiso", año_del_Permiso) :
+                new ObjectParameter("Año_del_Permiso", typeof(short));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo.HasValue ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(short));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(short));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(short));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var valor_UTMParameter = valor_UTM.HasValue ?
+                new ObjectParameter("Valor_UTM", valor_UTM) :
+                new ObjectParameter("Valor_UTM", typeof(int));
+    
+            var comuna_AnteriorParameter = comuna_Anterior.HasValue ?
+                new ObjectParameter("Comuna_Anterior", comuna_Anterior) :
+                new ObjectParameter("Comuna_Anterior", typeof(short));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(short));
+    
+            var compañia_SeguroParameter = compañia_Seguro.HasValue ?
+                new ObjectParameter("Compañia_Seguro", compañia_Seguro) :
+                new ObjectParameter("Compañia_Seguro", typeof(short));
+    
+            var numero_PolizaParameter = numero_Poliza != null ?
+                new ObjectParameter("Numero_Poliza", numero_Poliza) :
+                new ObjectParameter("Numero_Poliza", typeof(string));
+    
+            var nro_Revision_TecnicaParameter = nro_Revision_Tecnica != null ?
+                new ObjectParameter("Nro_Revision_Tecnica", nro_Revision_Tecnica) :
+                new ObjectParameter("Nro_Revision_Tecnica", typeof(string));
+    
+            var lugar_Revision_TecnicaParameter = lugar_Revision_Tecnica != null ?
+                new ObjectParameter("Lugar_Revision_Tecnica", lugar_Revision_Tecnica) :
+                new ObjectParameter("Lugar_Revision_Tecnica", typeof(string));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(short));
+    
+            var numero_CajaParameter = numero_Caja.HasValue ?
+                new ObjectParameter("Numero_Caja", numero_Caja) :
+                new ObjectParameter("Numero_Caja", typeof(short));
+    
+            var valor_PermisoParameter = valor_Permiso.HasValue ?
+                new ObjectParameter("Valor_Permiso", valor_Permiso) :
+                new ObjectParameter("Valor_Permiso", typeof(int));
+    
+            var porcentaje_IPCParameter = porcentaje_IPC.HasValue ?
+                new ObjectParameter("Porcentaje_IPC", porcentaje_IPC) :
+                new ObjectParameter("Porcentaje_IPC", typeof(float));
+    
+            var porcentaje_MultaParameter = porcentaje_Multa.HasValue ?
+                new ObjectParameter("Porcentaje_Multa", porcentaje_Multa) :
+                new ObjectParameter("Porcentaje_Multa", typeof(float));
+    
+            var valor_IPCParameter = valor_IPC.HasValue ?
+                new ObjectParameter("Valor_IPC", valor_IPC) :
+                new ObjectParameter("Valor_IPC", typeof(int));
+    
+            var valor_MultaParameter = valor_Multa.HasValue ?
+                new ObjectParameter("Valor_Multa", valor_Multa) :
+                new ObjectParameter("Valor_Multa", typeof(int));
+    
+            var total_a_PagarParameter = total_a_Pagar.HasValue ?
+                new ObjectParameter("Total_a_Pagar", total_a_Pagar) :
+                new ObjectParameter("Total_a_Pagar", typeof(int));
+    
+            var estado_del_PagoParameter = estado_del_Pago.HasValue ?
+                new ObjectParameter("Estado_del_Pago", estado_del_Pago) :
+                new ObjectParameter("Estado_del_Pago", typeof(byte));
+    
+            var fondos_a_TercerosParameter = fondos_a_Terceros.HasValue ?
+                new ObjectParameter("Fondos_a_Terceros", fondos_a_Terceros) :
+                new ObjectParameter("Fondos_a_Terceros", typeof(bool));
+    
+            var valor_ContadoParameter = valor_Contado.HasValue ?
+                new ObjectParameter("Valor_Contado", valor_Contado) :
+                new ObjectParameter("Valor_Contado", typeof(int));
+    
+            var valor_CuotaParameter = valor_Cuota.HasValue ?
+                new ObjectParameter("Valor_Cuota", valor_Cuota) :
+                new ObjectParameter("Valor_Cuota", typeof(int));
+    
+            var fecha_vencimientoParameter = fecha_vencimiento.HasValue ?
+                new ObjectParameter("Fecha_vencimiento", fecha_vencimiento) :
+                new ObjectParameter("Fecha_vencimiento", typeof(System.DateTime));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(bool));
+    
+            var porcentaje_CorreccionParameter = porcentaje_Correccion.HasValue ?
+                new ObjectParameter("Porcentaje_Correccion", porcentaje_Correccion) :
+                new ObjectParameter("Porcentaje_Correccion", typeof(float));
+    
+            var monto_CorreccionParameter = monto_Correccion.HasValue ?
+                new ObjectParameter("Monto_Correccion", monto_Correccion) :
+                new ObjectParameter("Monto_Correccion", typeof(int));
+    
+            var fecha_PagoParameter = fecha_Pago.HasValue ?
+                new ObjectParameter("Fecha_Pago", fecha_Pago) :
+                new ObjectParameter("Fecha_Pago", typeof(System.DateTime));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RegistraMulta_Internet", placaParameter, digitoParameter, rutParameter, año_del_PermisoParameter, fecha_EmisionParameter, tipo_VehiculoParameter, periodoParameter, clasificacionParameter, tasacionParameter, valor_UTMParameter, comuna_AnteriorParameter, año_AnteriorParameter, compañia_SeguroParameter, numero_PolizaParameter, nro_Revision_TecnicaParameter, lugar_Revision_TecnicaParameter, forma_de_PagoParameter, numero_CajaParameter, valor_PermisoParameter, porcentaje_IPCParameter, porcentaje_MultaParameter, valor_IPCParameter, valor_MultaParameter, total_a_PagarParameter, estado_del_PagoParameter, fondos_a_TercerosParameter, valor_ContadoParameter, valor_CuotaParameter, fecha_vencimientoParameter, observacionesParameter, correccion_MonetariaParameter, porcentaje_CorreccionParameter, monto_CorreccionParameter, fecha_PagoParameter, usuarioParameter);
+        }
+    
+        public virtual int sp_RegistraPermiso_Internet(string placa, string digito, string rut, Nullable<short> año_del_Permiso, Nullable<System.DateTime> fecha_Emision, Nullable<short> tipo_Vehiculo, Nullable<short> periodo, Nullable<short> clasificacion, Nullable<double> tasacion, Nullable<int> neto_Factura, Nullable<System.DateTime> fecha_Factura, Nullable<int> valor_UTM, Nullable<short> comuna_Anterior, Nullable<short> año_Anterior, Nullable<short> compañia_Seguro, string numero_Poliza, string nro_Revision_Tecnica, string lugar_Revision_Tecnica, Nullable<short> forma_de_Pago, Nullable<short> numero_Caja, Nullable<int> valor_Permiso, Nullable<float> porcentaje_IPC, Nullable<float> porcentaje_Multa, Nullable<int> valor_IPC, Nullable<int> valor_Multa, Nullable<int> total_a_Pagar, Nullable<byte> estado_del_Pago, Nullable<bool> fondos_a_Terceros, Nullable<int> valor_Contado, Nullable<int> valor_Cuota, Nullable<System.DateTime> fecha_vencimiento, string observaciones, Nullable<bool> correccion_Monetaria, Nullable<float> porcentaje_Correccion, Nullable<int> monto_Correccion, Nullable<System.DateTime> fecha_Pago, string usuario)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var año_del_PermisoParameter = año_del_Permiso.HasValue ?
+                new ObjectParameter("Año_del_Permiso", año_del_Permiso) :
+                new ObjectParameter("Año_del_Permiso", typeof(short));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo.HasValue ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(short));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(short));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(short));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var neto_FacturaParameter = neto_Factura.HasValue ?
+                new ObjectParameter("Neto_Factura", neto_Factura) :
+                new ObjectParameter("Neto_Factura", typeof(int));
+    
+            var fecha_FacturaParameter = fecha_Factura.HasValue ?
+                new ObjectParameter("Fecha_Factura", fecha_Factura) :
+                new ObjectParameter("Fecha_Factura", typeof(System.DateTime));
+    
+            var valor_UTMParameter = valor_UTM.HasValue ?
+                new ObjectParameter("Valor_UTM", valor_UTM) :
+                new ObjectParameter("Valor_UTM", typeof(int));
+    
+            var comuna_AnteriorParameter = comuna_Anterior.HasValue ?
+                new ObjectParameter("Comuna_Anterior", comuna_Anterior) :
+                new ObjectParameter("Comuna_Anterior", typeof(short));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(short));
+    
+            var compañia_SeguroParameter = compañia_Seguro.HasValue ?
+                new ObjectParameter("Compañia_Seguro", compañia_Seguro) :
+                new ObjectParameter("Compañia_Seguro", typeof(short));
+    
+            var numero_PolizaParameter = numero_Poliza != null ?
+                new ObjectParameter("Numero_Poliza", numero_Poliza) :
+                new ObjectParameter("Numero_Poliza", typeof(string));
+    
+            var nro_Revision_TecnicaParameter = nro_Revision_Tecnica != null ?
+                new ObjectParameter("Nro_Revision_Tecnica", nro_Revision_Tecnica) :
+                new ObjectParameter("Nro_Revision_Tecnica", typeof(string));
+    
+            var lugar_Revision_TecnicaParameter = lugar_Revision_Tecnica != null ?
+                new ObjectParameter("Lugar_Revision_Tecnica", lugar_Revision_Tecnica) :
+                new ObjectParameter("Lugar_Revision_Tecnica", typeof(string));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(short));
+    
+            var numero_CajaParameter = numero_Caja.HasValue ?
+                new ObjectParameter("Numero_Caja", numero_Caja) :
+                new ObjectParameter("Numero_Caja", typeof(short));
+    
+            var valor_PermisoParameter = valor_Permiso.HasValue ?
+                new ObjectParameter("Valor_Permiso", valor_Permiso) :
+                new ObjectParameter("Valor_Permiso", typeof(int));
+    
+            var porcentaje_IPCParameter = porcentaje_IPC.HasValue ?
+                new ObjectParameter("Porcentaje_IPC", porcentaje_IPC) :
+                new ObjectParameter("Porcentaje_IPC", typeof(float));
+    
+            var porcentaje_MultaParameter = porcentaje_Multa.HasValue ?
+                new ObjectParameter("Porcentaje_Multa", porcentaje_Multa) :
+                new ObjectParameter("Porcentaje_Multa", typeof(float));
+    
+            var valor_IPCParameter = valor_IPC.HasValue ?
+                new ObjectParameter("Valor_IPC", valor_IPC) :
+                new ObjectParameter("Valor_IPC", typeof(int));
+    
+            var valor_MultaParameter = valor_Multa.HasValue ?
+                new ObjectParameter("Valor_Multa", valor_Multa) :
+                new ObjectParameter("Valor_Multa", typeof(int));
+    
+            var total_a_PagarParameter = total_a_Pagar.HasValue ?
+                new ObjectParameter("Total_a_Pagar", total_a_Pagar) :
+                new ObjectParameter("Total_a_Pagar", typeof(int));
+    
+            var estado_del_PagoParameter = estado_del_Pago.HasValue ?
+                new ObjectParameter("Estado_del_Pago", estado_del_Pago) :
+                new ObjectParameter("Estado_del_Pago", typeof(byte));
+    
+            var fondos_a_TercerosParameter = fondos_a_Terceros.HasValue ?
+                new ObjectParameter("Fondos_a_Terceros", fondos_a_Terceros) :
+                new ObjectParameter("Fondos_a_Terceros", typeof(bool));
+    
+            var valor_ContadoParameter = valor_Contado.HasValue ?
+                new ObjectParameter("Valor_Contado", valor_Contado) :
+                new ObjectParameter("Valor_Contado", typeof(int));
+    
+            var valor_CuotaParameter = valor_Cuota.HasValue ?
+                new ObjectParameter("Valor_Cuota", valor_Cuota) :
+                new ObjectParameter("Valor_Cuota", typeof(int));
+    
+            var fecha_vencimientoParameter = fecha_vencimiento.HasValue ?
+                new ObjectParameter("Fecha_vencimiento", fecha_vencimiento) :
+                new ObjectParameter("Fecha_vencimiento", typeof(System.DateTime));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(bool));
+    
+            var porcentaje_CorreccionParameter = porcentaje_Correccion.HasValue ?
+                new ObjectParameter("Porcentaje_Correccion", porcentaje_Correccion) :
+                new ObjectParameter("Porcentaje_Correccion", typeof(float));
+    
+            var monto_CorreccionParameter = monto_Correccion.HasValue ?
+                new ObjectParameter("Monto_Correccion", monto_Correccion) :
+                new ObjectParameter("Monto_Correccion", typeof(int));
+    
+            var fecha_PagoParameter = fecha_Pago.HasValue ?
+                new ObjectParameter("Fecha_Pago", fecha_Pago) :
+                new ObjectParameter("Fecha_Pago", typeof(System.DateTime));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RegistraPermiso_Internet", placaParameter, digitoParameter, rutParameter, año_del_PermisoParameter, fecha_EmisionParameter, tipo_VehiculoParameter, periodoParameter, clasificacionParameter, tasacionParameter, neto_FacturaParameter, fecha_FacturaParameter, valor_UTMParameter, comuna_AnteriorParameter, año_AnteriorParameter, compañia_SeguroParameter, numero_PolizaParameter, nro_Revision_TecnicaParameter, lugar_Revision_TecnicaParameter, forma_de_PagoParameter, numero_CajaParameter, valor_PermisoParameter, porcentaje_IPCParameter, porcentaje_MultaParameter, valor_IPCParameter, valor_MultaParameter, total_a_PagarParameter, estado_del_PagoParameter, fondos_a_TercerosParameter, valor_ContadoParameter, valor_CuotaParameter, fecha_vencimientoParameter, observacionesParameter, correccion_MonetariaParameter, porcentaje_CorreccionParameter, monto_CorreccionParameter, fecha_PagoParameter, usuarioParameter);
+        }
+    
+        public virtual int sp_RegistraPermiso_Internet_InHouse(string placa, string digito, string rut, Nullable<short> año_del_Permiso, Nullable<System.DateTime> fecha_Emision, Nullable<short> tipo_Vehiculo, Nullable<short> periodo, Nullable<short> clasificacion, Nullable<double> tasacion, Nullable<int> neto_Factura, Nullable<System.DateTime> fecha_Factura, Nullable<int> valor_UTM, Nullable<short> comuna_Anterior, Nullable<short> año_Anterior, Nullable<short> compañia_Seguro, string numero_Poliza, string nro_Revision_Tecnica, string lugar_Revision_Tecnica, Nullable<short> forma_de_Pago, Nullable<short> numero_Caja, Nullable<int> valor_Permiso, Nullable<float> porcentaje_IPC, Nullable<float> porcentaje_Multa, Nullable<int> valor_IPC, Nullable<int> valor_Multa, Nullable<int> total_a_Pagar, Nullable<byte> estado_del_Pago, Nullable<bool> fondos_a_Terceros, Nullable<int> valor_Contado, Nullable<int> valor_Cuota, Nullable<System.DateTime> fecha_vencimiento, string observaciones, Nullable<bool> correccion_Monetaria, Nullable<float> porcentaje_Correccion, Nullable<int> monto_Correccion, Nullable<System.DateTime> fecha_Pago, string usuario)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var año_del_PermisoParameter = año_del_Permiso.HasValue ?
+                new ObjectParameter("Año_del_Permiso", año_del_Permiso) :
+                new ObjectParameter("Año_del_Permiso", typeof(short));
+    
+            var fecha_EmisionParameter = fecha_Emision.HasValue ?
+                new ObjectParameter("Fecha_Emision", fecha_Emision) :
+                new ObjectParameter("Fecha_Emision", typeof(System.DateTime));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo.HasValue ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(short));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("Periodo", periodo) :
+                new ObjectParameter("Periodo", typeof(short));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(short));
+    
+            var tasacionParameter = tasacion.HasValue ?
+                new ObjectParameter("Tasacion", tasacion) :
+                new ObjectParameter("Tasacion", typeof(double));
+    
+            var neto_FacturaParameter = neto_Factura.HasValue ?
+                new ObjectParameter("Neto_Factura", neto_Factura) :
+                new ObjectParameter("Neto_Factura", typeof(int));
+    
+            var fecha_FacturaParameter = fecha_Factura.HasValue ?
+                new ObjectParameter("Fecha_Factura", fecha_Factura) :
+                new ObjectParameter("Fecha_Factura", typeof(System.DateTime));
+    
+            var valor_UTMParameter = valor_UTM.HasValue ?
+                new ObjectParameter("Valor_UTM", valor_UTM) :
+                new ObjectParameter("Valor_UTM", typeof(int));
+    
+            var comuna_AnteriorParameter = comuna_Anterior.HasValue ?
+                new ObjectParameter("Comuna_Anterior", comuna_Anterior) :
+                new ObjectParameter("Comuna_Anterior", typeof(short));
+    
+            var año_AnteriorParameter = año_Anterior.HasValue ?
+                new ObjectParameter("Año_Anterior", año_Anterior) :
+                new ObjectParameter("Año_Anterior", typeof(short));
+    
+            var compañia_SeguroParameter = compañia_Seguro.HasValue ?
+                new ObjectParameter("Compañia_Seguro", compañia_Seguro) :
+                new ObjectParameter("Compañia_Seguro", typeof(short));
+    
+            var numero_PolizaParameter = numero_Poliza != null ?
+                new ObjectParameter("Numero_Poliza", numero_Poliza) :
+                new ObjectParameter("Numero_Poliza", typeof(string));
+    
+            var nro_Revision_TecnicaParameter = nro_Revision_Tecnica != null ?
+                new ObjectParameter("Nro_Revision_Tecnica", nro_Revision_Tecnica) :
+                new ObjectParameter("Nro_Revision_Tecnica", typeof(string));
+    
+            var lugar_Revision_TecnicaParameter = lugar_Revision_Tecnica != null ?
+                new ObjectParameter("Lugar_Revision_Tecnica", lugar_Revision_Tecnica) :
+                new ObjectParameter("Lugar_Revision_Tecnica", typeof(string));
+    
+            var forma_de_PagoParameter = forma_de_Pago.HasValue ?
+                new ObjectParameter("Forma_de_Pago", forma_de_Pago) :
+                new ObjectParameter("Forma_de_Pago", typeof(short));
+    
+            var numero_CajaParameter = numero_Caja.HasValue ?
+                new ObjectParameter("Numero_Caja", numero_Caja) :
+                new ObjectParameter("Numero_Caja", typeof(short));
+    
+            var valor_PermisoParameter = valor_Permiso.HasValue ?
+                new ObjectParameter("Valor_Permiso", valor_Permiso) :
+                new ObjectParameter("Valor_Permiso", typeof(int));
+    
+            var porcentaje_IPCParameter = porcentaje_IPC.HasValue ?
+                new ObjectParameter("Porcentaje_IPC", porcentaje_IPC) :
+                new ObjectParameter("Porcentaje_IPC", typeof(float));
+    
+            var porcentaje_MultaParameter = porcentaje_Multa.HasValue ?
+                new ObjectParameter("Porcentaje_Multa", porcentaje_Multa) :
+                new ObjectParameter("Porcentaje_Multa", typeof(float));
+    
+            var valor_IPCParameter = valor_IPC.HasValue ?
+                new ObjectParameter("Valor_IPC", valor_IPC) :
+                new ObjectParameter("Valor_IPC", typeof(int));
+    
+            var valor_MultaParameter = valor_Multa.HasValue ?
+                new ObjectParameter("Valor_Multa", valor_Multa) :
+                new ObjectParameter("Valor_Multa", typeof(int));
+    
+            var total_a_PagarParameter = total_a_Pagar.HasValue ?
+                new ObjectParameter("Total_a_Pagar", total_a_Pagar) :
+                new ObjectParameter("Total_a_Pagar", typeof(int));
+    
+            var estado_del_PagoParameter = estado_del_Pago.HasValue ?
+                new ObjectParameter("Estado_del_Pago", estado_del_Pago) :
+                new ObjectParameter("Estado_del_Pago", typeof(byte));
+    
+            var fondos_a_TercerosParameter = fondos_a_Terceros.HasValue ?
+                new ObjectParameter("Fondos_a_Terceros", fondos_a_Terceros) :
+                new ObjectParameter("Fondos_a_Terceros", typeof(bool));
+    
+            var valor_ContadoParameter = valor_Contado.HasValue ?
+                new ObjectParameter("Valor_Contado", valor_Contado) :
+                new ObjectParameter("Valor_Contado", typeof(int));
+    
+            var valor_CuotaParameter = valor_Cuota.HasValue ?
+                new ObjectParameter("Valor_Cuota", valor_Cuota) :
+                new ObjectParameter("Valor_Cuota", typeof(int));
+    
+            var fecha_vencimientoParameter = fecha_vencimiento.HasValue ?
+                new ObjectParameter("Fecha_vencimiento", fecha_vencimiento) :
+                new ObjectParameter("Fecha_vencimiento", typeof(System.DateTime));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var correccion_MonetariaParameter = correccion_Monetaria.HasValue ?
+                new ObjectParameter("Correccion_Monetaria", correccion_Monetaria) :
+                new ObjectParameter("Correccion_Monetaria", typeof(bool));
+    
+            var porcentaje_CorreccionParameter = porcentaje_Correccion.HasValue ?
+                new ObjectParameter("Porcentaje_Correccion", porcentaje_Correccion) :
+                new ObjectParameter("Porcentaje_Correccion", typeof(float));
+    
+            var monto_CorreccionParameter = monto_Correccion.HasValue ?
+                new ObjectParameter("Monto_Correccion", monto_Correccion) :
+                new ObjectParameter("Monto_Correccion", typeof(int));
+    
+            var fecha_PagoParameter = fecha_Pago.HasValue ?
+                new ObjectParameter("Fecha_Pago", fecha_Pago) :
+                new ObjectParameter("Fecha_Pago", typeof(System.DateTime));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RegistraPermiso_Internet_InHouse", placaParameter, digitoParameter, rutParameter, año_del_PermisoParameter, fecha_EmisionParameter, tipo_VehiculoParameter, periodoParameter, clasificacionParameter, tasacionParameter, neto_FacturaParameter, fecha_FacturaParameter, valor_UTMParameter, comuna_AnteriorParameter, año_AnteriorParameter, compañia_SeguroParameter, numero_PolizaParameter, nro_Revision_TecnicaParameter, lugar_Revision_TecnicaParameter, forma_de_PagoParameter, numero_CajaParameter, valor_PermisoParameter, porcentaje_IPCParameter, porcentaje_MultaParameter, valor_IPCParameter, valor_MultaParameter, total_a_PagarParameter, estado_del_PagoParameter, fondos_a_TercerosParameter, valor_ContadoParameter, valor_CuotaParameter, fecha_vencimientoParameter, observacionesParameter, correccion_MonetariaParameter, porcentaje_CorreccionParameter, monto_CorreccionParameter, fecha_PagoParameter, usuarioParameter);
+        }
+    
+        public virtual int sp_RegistraPropietario_Internet(string rut, string nombre, string direccion, string comuna, string ciudad, string telefono, string codigo_Postal)
+        {
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var comunaParameter = comuna != null ?
+                new ObjectParameter("Comuna", comuna) :
+                new ObjectParameter("Comuna", typeof(string));
+    
+            var ciudadParameter = ciudad != null ?
+                new ObjectParameter("Ciudad", ciudad) :
+                new ObjectParameter("Ciudad", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var codigo_PostalParameter = codigo_Postal != null ?
+                new ObjectParameter("Codigo_Postal", codigo_Postal) :
+                new ObjectParameter("Codigo_Postal", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RegistraPropietario_Internet", rutParameter, nombreParameter, direccionParameter, comunaParameter, ciudadParameter, telefonoParameter, codigo_PostalParameter);
+        }
+    
+        public virtual int sp_RegistraVehiculo_Internet(string placa, string digito, string rut, Nullable<decimal> tipoVehiculo, Nullable<decimal> clasificacion, Nullable<decimal> codigoMarca, string modelo, Nullable<decimal> añoFabricacion, string color, string numeroMotor, string numeroChassis, Nullable<decimal> numeroPuertas, Nullable<decimal> tonelaje, Nullable<decimal> asientos, Nullable<decimal> sello, string numeroSello, string nroRevTec, string lugarRevTec, Nullable<bool> usarCorreo, Nullable<bool> asimilado, Nullable<bool> tasado, Nullable<bool> trasladado, Nullable<decimal> netoFactura, Nullable<System.DateTime> fechaFactura, Nullable<decimal> numeroFactura, string rut_Factura, Nullable<decimal> cilindrada, string combustible, string equipamiento, string transmision, string observaciones, Nullable<short> estado_Vehiculo)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("Placa", placa) :
+                new ObjectParameter("Placa", typeof(string));
+    
+            var digitoParameter = digito != null ?
+                new ObjectParameter("Digito", digito) :
+                new ObjectParameter("Digito", typeof(string));
+    
+            var rutParameter = rut != null ?
+                new ObjectParameter("Rut", rut) :
+                new ObjectParameter("Rut", typeof(string));
+    
+            var tipoVehiculoParameter = tipoVehiculo.HasValue ?
+                new ObjectParameter("TipoVehiculo", tipoVehiculo) :
+                new ObjectParameter("TipoVehiculo", typeof(decimal));
+    
+            var clasificacionParameter = clasificacion.HasValue ?
+                new ObjectParameter("Clasificacion", clasificacion) :
+                new ObjectParameter("Clasificacion", typeof(decimal));
+    
+            var codigoMarcaParameter = codigoMarca.HasValue ?
+                new ObjectParameter("CodigoMarca", codigoMarca) :
+                new ObjectParameter("CodigoMarca", typeof(decimal));
+    
+            var modeloParameter = modelo != null ?
+                new ObjectParameter("Modelo", modelo) :
+                new ObjectParameter("Modelo", typeof(string));
+    
+            var añoFabricacionParameter = añoFabricacion.HasValue ?
+                new ObjectParameter("AñoFabricacion", añoFabricacion) :
+                new ObjectParameter("AñoFabricacion", typeof(decimal));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var numeroMotorParameter = numeroMotor != null ?
+                new ObjectParameter("NumeroMotor", numeroMotor) :
+                new ObjectParameter("NumeroMotor", typeof(string));
+    
+            var numeroChassisParameter = numeroChassis != null ?
+                new ObjectParameter("NumeroChassis", numeroChassis) :
+                new ObjectParameter("NumeroChassis", typeof(string));
+    
+            var numeroPuertasParameter = numeroPuertas.HasValue ?
+                new ObjectParameter("NumeroPuertas", numeroPuertas) :
+                new ObjectParameter("NumeroPuertas", typeof(decimal));
+    
+            var tonelajeParameter = tonelaje.HasValue ?
+                new ObjectParameter("Tonelaje", tonelaje) :
+                new ObjectParameter("Tonelaje", typeof(decimal));
+    
+            var asientosParameter = asientos.HasValue ?
+                new ObjectParameter("Asientos", asientos) :
+                new ObjectParameter("Asientos", typeof(decimal));
+    
+            var selloParameter = sello.HasValue ?
+                new ObjectParameter("Sello", sello) :
+                new ObjectParameter("Sello", typeof(decimal));
+    
+            var numeroSelloParameter = numeroSello != null ?
+                new ObjectParameter("NumeroSello", numeroSello) :
+                new ObjectParameter("NumeroSello", typeof(string));
+    
+            var nroRevTecParameter = nroRevTec != null ?
+                new ObjectParameter("NroRevTec", nroRevTec) :
+                new ObjectParameter("NroRevTec", typeof(string));
+    
+            var lugarRevTecParameter = lugarRevTec != null ?
+                new ObjectParameter("LugarRevTec", lugarRevTec) :
+                new ObjectParameter("LugarRevTec", typeof(string));
+    
+            var usarCorreoParameter = usarCorreo.HasValue ?
+                new ObjectParameter("UsarCorreo", usarCorreo) :
+                new ObjectParameter("UsarCorreo", typeof(bool));
+    
+            var asimiladoParameter = asimilado.HasValue ?
+                new ObjectParameter("Asimilado", asimilado) :
+                new ObjectParameter("Asimilado", typeof(bool));
+    
+            var tasadoParameter = tasado.HasValue ?
+                new ObjectParameter("Tasado", tasado) :
+                new ObjectParameter("Tasado", typeof(bool));
+    
+            var trasladadoParameter = trasladado.HasValue ?
+                new ObjectParameter("Trasladado", trasladado) :
+                new ObjectParameter("Trasladado", typeof(bool));
+    
+            var netoFacturaParameter = netoFactura.HasValue ?
+                new ObjectParameter("NetoFactura", netoFactura) :
+                new ObjectParameter("NetoFactura", typeof(decimal));
+    
+            var fechaFacturaParameter = fechaFactura.HasValue ?
+                new ObjectParameter("FechaFactura", fechaFactura) :
+                new ObjectParameter("FechaFactura", typeof(System.DateTime));
+    
+            var numeroFacturaParameter = numeroFactura.HasValue ?
+                new ObjectParameter("NumeroFactura", numeroFactura) :
+                new ObjectParameter("NumeroFactura", typeof(decimal));
+    
+            var rut_FacturaParameter = rut_Factura != null ?
+                new ObjectParameter("Rut_Factura", rut_Factura) :
+                new ObjectParameter("Rut_Factura", typeof(string));
+    
+            var cilindradaParameter = cilindrada.HasValue ?
+                new ObjectParameter("Cilindrada", cilindrada) :
+                new ObjectParameter("Cilindrada", typeof(decimal));
+    
+            var combustibleParameter = combustible != null ?
+                new ObjectParameter("Combustible", combustible) :
+                new ObjectParameter("Combustible", typeof(string));
+    
+            var equipamientoParameter = equipamiento != null ?
+                new ObjectParameter("Equipamiento", equipamiento) :
+                new ObjectParameter("Equipamiento", typeof(string));
+    
+            var transmisionParameter = transmision != null ?
+                new ObjectParameter("Transmision", transmision) :
+                new ObjectParameter("Transmision", typeof(string));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("Observaciones", observaciones) :
+                new ObjectParameter("Observaciones", typeof(string));
+    
+            var estado_VehiculoParameter = estado_Vehiculo.HasValue ?
+                new ObjectParameter("Estado_Vehiculo", estado_Vehiculo) :
+                new ObjectParameter("Estado_Vehiculo", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RegistraVehiculo_Internet", placaParameter, digitoParameter, rutParameter, tipoVehiculoParameter, clasificacionParameter, codigoMarcaParameter, modeloParameter, añoFabricacionParameter, colorParameter, numeroMotorParameter, numeroChassisParameter, numeroPuertasParameter, tonelajeParameter, asientosParameter, selloParameter, numeroSelloParameter, nroRevTecParameter, lugarRevTecParameter, usarCorreoParameter, asimiladoParameter, tasadoParameter, trasladadoParameter, netoFacturaParameter, fechaFacturaParameter, numeroFacturaParameter, rut_FacturaParameter, cilindradaParameter, combustibleParameter, equipamientoParameter, transmisionParameter, observacionesParameter, estado_VehiculoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Seguro_Result> sp_Seguro(string orden)
+        {
+            var ordenParameter = orden != null ?
+                new ObjectParameter("orden", orden) :
+                new ObjectParameter("orden", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Seguro_Result>("sp_Seguro", ordenParameter);
+        }
+    
+        public virtual ObjectResult<sp_ValorSeguroInternet_Result> sp_ValorSeguroInternet(Nullable<short> codigo_CiaSeguro, Nullable<short> tipo_Vehiculo, Nullable<short> banco)
+        {
+            var codigo_CiaSeguroParameter = codigo_CiaSeguro.HasValue ?
+                new ObjectParameter("Codigo_CiaSeguro", codigo_CiaSeguro) :
+                new ObjectParameter("Codigo_CiaSeguro", typeof(short));
+    
+            var tipo_VehiculoParameter = tipo_Vehiculo.HasValue ?
+                new ObjectParameter("Tipo_Vehiculo", tipo_Vehiculo) :
+                new ObjectParameter("Tipo_Vehiculo", typeof(short));
+    
+            var bancoParameter = banco.HasValue ?
+                new ObjectParameter("Banco", banco) :
+                new ObjectParameter("Banco", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ValorSeguroInternet_Result>("sp_ValorSeguroInternet", codigo_CiaSeguroParameter, tipo_VehiculoParameter, bancoParameter);
+        }
+    
+        public virtual ObjectResult<Trae_Datos_Por_Años_Result> Trae_Datos_Por_Años(Nullable<int> desde, Nullable<int> hasta)
+        {
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(int));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Trae_Datos_Por_Años_Result>("Trae_Datos_Por_Años", desdeParameter, hastaParameter);
+        }
     }
 }

@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBSubdereModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBSubdereModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DetalleNomina">
           <Key>
             <PropertyRef Name="IdDetalle" />
           </Key>
           <Property Name="IdDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Patente" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Patente" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdNomina" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Nominas">
@@ -24,13 +24,15 @@
           <Key>
             <PropertyRef Name="Patente" />
           </Key>
-          <Property Name="Patente" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Patente" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Rut" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="datetime2" Precision="7" />
           <Property Name="FechaFactura" Type="datetime" />
           <Property Name="FechaHomologacion" Type="datetime" />
           <Property Name="ValorFactura" Type="bigint" />
-          <Property Name="FechaPlazoHomologacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaPlazoHomologacion" Type="datetime" />
+          <Property Name="Tasacion" Type="bigint" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_DetalleNomina_Nominas">
           <End Role="Nominas" Type="Self.Nominas" Multiplicity="1" />
@@ -69,8 +71,7 @@
             <End Role="DetalleNomina" EntitySet="DetalleNomina" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBSubdereModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -79,7 +80,7 @@
             <PropertyRef Name="IdDetalle" />
           </Key>
           <Property Name="IdDetalle" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Patente" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdNomina" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Nominas" Relationship="Self.FK_DetalleNomina_Nominas" FromRole="DetalleNomina" ToRole="Nominas" />
           <NavigationProperty Name="Vehiculos" Relationship="Self.FK_DetalleNomina_Vehiculos" FromRole="DetalleNomina" ToRole="Vehiculos" />
@@ -96,14 +97,16 @@
           <Key>
             <PropertyRef Name="Patente" />
           </Key>
-          <Property Name="Patente" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="7" />
           <Property Name="FechaFactura" Type="DateTime" Precision="3" />
           <Property Name="FechaHomologacion" Type="DateTime" Precision="3" />
           <Property Name="ValorFactura" Type="Int64" />
-          <Property Name="FechaPlazoHomologacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaPlazoHomologacion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="DetalleNomina" Relationship="Self.FK_DetalleNomina_Vehiculos" FromRole="Vehiculos" ToRole="DetalleNomina" />
+          <Property Name="Tasacion" Type="Int64" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_DetalleNomina_Nominas">
           <End Role="Nominas" Type="Self.Nominas" Multiplicity="1" />
@@ -168,6 +171,8 @@
           <EntitySetMapping Name="Vehiculos">
             <EntityTypeMapping TypeName="DBSubdereModel.Vehiculos">
               <MappingFragment StoreEntitySet="Vehiculos">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tasacion" ColumnName="Tasacion" />
                 <ScalarProperty Name="Patente" ColumnName="Patente" />
                 <ScalarProperty Name="Rut" ColumnName="Rut" />
                 <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
