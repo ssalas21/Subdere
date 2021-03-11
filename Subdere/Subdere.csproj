@@ -98,6 +98,7 @@
     <Compile Include="BLL\Connection.cs" />
     <Compile Include="BLL\Datos_del_VehiculoBLL.cs" />
     <Compile Include="BLL\DetalleNominaBLL.cs" />
+    <Compile Include="BLL\MarcasBLL.cs" />
     <Compile Include="BLL\NominasBLL.cs" />
     <Compile Include="BLL\PropietariosBLL.cs" />
     <Compile Include="BLL\SIIBLL.cs" />

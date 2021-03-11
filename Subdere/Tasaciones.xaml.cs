@@ -87,7 +87,7 @@ namespace Subdere {
             mainWindow.TxtCodigo.Text = sii.Codigo.Substring(0, 9);
             mainWindow.TxtCombustible.Text = sii.Combustible;
             mainWindow.TxtEquipamiento.Text = sii.Equipamiento;
-            mainWindow.TxtMarca.Text = sii.Marca;
+            mainWindow.CmbMarcas.SelectedValue = new MarcasBLL().GetMarcas(sii.Marca);
             mainWindow.TxtModelo.Text = sii.Modelo;
             mainWindow.TxtTasacion.Text = sii.Tasacion.ToString();
             mainWindow.TxtTransmision.Text = sii.Transmision;

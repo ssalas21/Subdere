@@ -43,7 +43,6 @@
         <TextBox x:Name="TxtModelo" HorizontalAlignment="Left" Height="23" Margin="114,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
         <TextBox x:Name="TxtCilindrada" HorizontalAlignment="Left" Height="23" Margin="114,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
         <TextBox x:Name="TxtTransmision" HorizontalAlignment="Left" Height="23" Margin="114,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-        <TextBox x:Name="TxtMarca" HorizontalAlignment="Left" Height="23" Margin="648,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="TxtCombustible" HorizontalAlignment="Left" Height="23" Margin="648,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="CmbTipo" HorizontalAlignment="Left" Margin="648,261,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="TxtEquipamiento" HorizontalAlignment="Left" Height="23" Margin="648,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -71,5 +70,6 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="38" Margin="10,97,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="793"/>
         <Button x:Name="BtnAgregar" Content="Agregar a Nomina" HorizontalAlignment="Left" Margin="45,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="241" Click="BtnAgregar_Click"/>
         <Button x:Name="BtnCrearNomina" Content="Crear Nomina" HorizontalAlignment="Left" Margin="551,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="241"/>
+        <ComboBox x:Name="CmbMarcas" HorizontalAlignment="Left" Margin="648,234,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
