@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Subdere"
         mc:Ignorable="d"
-        Title="Tasaciones" Height="671.884" Width="924.59">
+        Title="Tasaciones" Height="599.884" Width="953.59">
     <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="520" Margin="10,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="890"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="533" Margin="10,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="926"/>
         <Label Content="Buscar Tasacion" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
-        <DataGrid x:Name="DgLivianos" HorizontalAlignment="Left" Height="397" Margin="22,120,0,0" VerticalAlignment="Top" Width="859" AutoGenerateColumns="False">
+        <DataGrid x:Name="DgLivianos" HorizontalAlignment="Left" Height="397" Margin="22,120,0,0" VerticalAlignment="Top" Width="898" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}"/>
                 <DataGridTextColumn Header="Año" Binding="{Binding Año_Fabricacion}"/>
@@ -20,17 +20,19 @@
                 <DataGridTextColumn Header="Cilindrada" Binding="{Binding Cilindrada}"/>
                 <DataGridTextColumn Header="Combustible" Binding="{Binding Combustible}"/>
                 <DataGridTextColumn Header="Transmisión" Binding="{Binding Transmision}"/>
+                <DataGridTextColumn Header="Equipamiento" Binding="{Binding Equipamiento}"/>
                 <DataGridTextColumn Header="Tasación" Binding="{Binding Tasacion}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Año" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtAnno" HorizontalAlignment="Left" Height="23" Margin="59,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" TextChanged="TxtAnno_TextChanged"/>
+        <TextBox x:Name="TxtAnno" PreviewTextInput="NumberValidationTextBox" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="59,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" TextChanged="TxtAnno_TextChanged" LostFocus="TxtAnno_LostFocus"/>
         <Label Content="Marca" HorizontalAlignment="Left" Margin="181,67,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtMarca" HorizontalAlignment="Left" Height="23" Margin="240,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtMarca_TextChanged"/>
         <Label Content="Modelo" HorizontalAlignment="Left" Margin="381,67,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtModelo" HorizontalAlignment="Left" Height="23" Margin="460,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="TxtModelo_TextChanged"/>
         <Label Content="Version" HorizontalAlignment="Left" Margin="661,67,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtVersion" HorizontalAlignment="Left" Height="23" Margin="720,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="TxtVersion_TextChanged"/>
+        <Button x:Name="BtnSeleccionar" Content="Seleccionar codigo" HorizontalAlignment="Left" Margin="162,530,0,0" VerticalAlignment="Top" Width="637" Click="BtnSeleccionar_Click"/>
 
     </Grid>
 </Window>

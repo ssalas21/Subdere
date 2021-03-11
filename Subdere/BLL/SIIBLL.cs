@@ -64,6 +64,11 @@ namespace Subdere.BLL {
             return (from l in context.SII where l.Año_Fabricacion == anno && l.Modelo.Contains(modelo) select l).ToList();
         }
 
+        public List<SII> FindCodigoAnnoModeloVersion(int anno, string modelo, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Año_Fabricacion == anno && l.Modelo.Contains(modelo) && l.Version.Contains(version) select l).ToList();
+        }
+
         public List<SII> FindCodigoAnnoMarcaModelo(int anno, string marca, string modelo) {
             context = new Permisos_de_CirculacionEntities();
             return (from l in context.SII where l.Año_Fabricacion == anno && l.Marca.Contains(marca) && l.Modelo.Contains(modelo) select l).ToList();

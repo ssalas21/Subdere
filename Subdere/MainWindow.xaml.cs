@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,13 +22,46 @@ namespace Subdere {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            Inicializar();
+        }
+
+        public void Inicializar() {            
+            LblFechaFactura.IsEnabled = false;
+            LblValorFactura.IsEnabled = false;
+            DpFechaFactura.IsEnabled = false;
+            TxtValorNetoFactura.IsEnabled = false;
+            TxtRut.Text = "";
+            TxtTasacion.Text = "";
+            TxtTasacion.IsEnabled = false;
+            TxtPlaca.Text = "";
+            TxtDigito.Text = "";
+            TxtCodigo.Text = "";
+            TxtAnno.Text = "";
+            TxtColor.Text = "";
+            TxtModelo.Text = "";
+            TxtCilindrada.Text = "";
+            TxtTransmision.Text = "";
+            DpFechaEmisionHomologacion.SelectedDate = null;
+            DpFechaFactura.SelectedDate = null;
+            DpPlazoHomologacion.SelectedDate = null;
+            TxtValorNetoFactura.Text = "";
+            TxtNroChassis.Text = "";
+            TxtNroMotor.Text = "";
+            TxtMarca.Text = "";
+            TxtCombustible.Text = "";
+            TxtEquipamiento.Text = "";
+            TxtNombre.Text = "";
+            TxtDomicilio.Text = "";
+            TxtTelefono.Text = "";
             CmbTipo.ItemsSource = new TipoVehiculoBLL().getTipos();
             CmbTipo.DisplayMemberPath = "Descripcion";
             CmbTipo.SelectedValuePath = "Codigo";
+            CmbTipo.SelectedIndex = 0;
             CmbComuna.ItemsSource = new ComunasBLL().GetComunas();
             CmbComuna.DisplayMemberPath = "Descripcion";
             CmbComuna.SelectedValuePath = "Codigo";
             CmbComuna.SelectedValue = 220;
+            DgFaltantes.ItemsSource = new VehiculosBLL().GetVehiculosOff();
         }
 
         private void TxtPlaca_LostFocus(object sender, RoutedEventArgs e) {
@@ -47,6 +81,7 @@ namespace Subdere {
                         LblValorFactura.IsEnabled = true;
                         DpFechaFactura.IsEnabled = true;
                         DpFechaEmisionHomologacion.IsEnabled = true;
+                        TxtTasacion.IsEnabled = true;
                     } else {
                         LblFechaFactura.IsEnabled = false;
                         LblValorFactura.IsEnabled = false;
@@ -87,7 +122,9 @@ namespace Subdere {
                     TxtTelefono.Text = propietario.Telefono;
                     CmbComuna.SelectedValue = new ComunasBLL().GetComunas(propietario.Comuna).Codigo;
                 } else {
+                    TxtPlaca.Text = TxtPlaca.Text.ToUpper().Trim();
                     MessageBox.Show("No se encontraron coincidencias");
+                    
                 }               
             }
         }
@@ -100,12 +137,95 @@ namespace Subdere {
                 TxtDomicilio.Text = propietario.Direccion;
                 TxtTelefono.Text = propietario.Telefono;
                 CmbComuna.SelectedValue = new ComunasBLL().GetComunas(propietario.Comuna).Codigo;
+            } else {
+                if (TxtRut.Text.IndexOf("-") < 0) {
+                    MessageBox.Show("Ingrese un rut valido, con el siguiente formato XXXXXXXX-X");
+                    TxtRut.Text = "";
+                } else {
+                    MessageBox.Show("Ingrese datos del contribuyente");
+                }
+
             }
         }
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e) {
-            Tasaciones tasaciones = new Tasaciones();
+            Tasaciones tasaciones = new Tasaciones(this);
             tasaciones.Show();
+        }
+
+        private void TxtAnno_TextChanged(object sender, TextChangedEventArgs e) {
+            if (Convert.ToInt32(TxtAnno.Text) == DateTime.Now.Year) {
+                TxtTasacion.IsEnabled = true;
+                LblFechaFactura.IsEnabled = true;
+                LblValorFactura.IsEnabled = true;
+                DpFechaFactura.IsEnabled = true;
+                DpFechaEmisionHomologacion.IsEnabled = true;
+                TxtValorNetoFactura.IsEnabled = true;
+            } else {
+                LblFechaFactura.IsEnabled = false;
+                LblValorFactura.IsEnabled = false;
+                DpFechaFactura.IsEnabled = false;
+                TxtValorNetoFactura.IsEnabled = false;
+                TxtTasacion.IsEnabled = false;
+            }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TxtValorNetoFactura_TextChanged(object sender, TextChangedEventArgs e) {
+            if (TxtValorNetoFactura.Text != "") {
+                int factura = Convert.ToInt32(TxtValorNetoFactura.Text);
+                TxtTasacion.Text = (factura * 1.19 * 0.95).ToString();
+            }
+        }
+
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e) {
+            if (new Datos_del_VehiculoBLL().CheckDatos(TxtPlaca.Text)){
+                if (Convert.ToInt32(TxtAnno.Text) == 2021) {
+                    string codigo = TxtCodigo.Text + TxtAnno.Text.Substring(2, 2);
+                    new Datos_del_VehiculoBLL().UpdateDatos(TxtPlaca.Text, TxtDigito.Text, TxtRut.Text, Convert.ToInt32(CmbTipo.SelectedValue), codigo, TxtModelo.Text, Convert.ToInt32(TxtAnno.Text), TxtColor.Text, TxtNroMotor.Text, TxtNroChassis.Text, 0, Convert.ToInt32(TxtTasacion.Text), Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, " ");
+                    if (new PropietariosBLL().CheckPropietarios(TxtRut.Text)) {
+                        new PropietariosBLL().UpdatePropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);                        
+                    } else {
+                        new PropietariosBLL().InsertPropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    }
+                    new VehiculosBLL().InsertVehiculo(TxtPlaca.Text, TxtRut.Text, new DateTime(DateTime.Now.Year, 3, 31), Convert.ToDateTime(DpFechaFactura.SelectedDate), Convert.ToDateTime(DpPlazoHomologacion.SelectedDate), Convert.ToInt32(TxtValorNetoFactura.Text), Convert.ToDateTime(DpPlazoHomologacion.SelectedDate), Convert.ToInt32(TxtTasacion.Text), codigo);
+                } else {
+                    string codigo = TxtCodigo.Text + TxtAnno.Text.Substring(2, 2);
+                    SII sii = new SIIBLL().GetSII(codigo);
+                    new Datos_del_VehiculoBLL().UpdateDatos(TxtPlaca.Text, TxtDigito.Text, TxtRut.Text, Convert.ToInt32(CmbTipo.SelectedValue), codigo, sii.Modelo, Convert.ToInt32(TxtAnno.Text), TxtColor.Text, TxtNroMotor.Text, TxtNroChassis.Text, 0, Convert.ToInt32(TxtTasacion.Text), Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, sii.Version);
+                    if (new PropietariosBLL().CheckPropietarios(TxtRut.Text)) {
+                        new PropietariosBLL().UpdatePropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    } else {
+                        new PropietariosBLL().InsertPropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    }
+                    new VehiculosBLL().InsertVehiculo(TxtPlaca.Text, TxtRut.Text, new DateTime(DateTime.Now.Year, 3, 31), Convert.ToInt32(sii.Tasacion), codigo);
+                }
+            } else {
+                if (Convert.ToInt32(TxtAnno.Text) == 2021) {
+                    string codigo = TxtCodigo.Text + TxtAnno.Text.Substring(2, 2);
+                    new Datos_del_VehiculoBLL().InsertDatos(TxtPlaca.Text, TxtDigito.Text, TxtRut.Text, Convert.ToInt32(CmbTipo.SelectedValue), codigo, TxtModelo.Text, Convert.ToInt32(TxtAnno.Text), TxtColor.Text, TxtNroMotor.Text, TxtNroChassis.Text, 0, Convert.ToInt32(TxtTasacion.Text), Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, " ");
+                    if (new PropietariosBLL().CheckPropietarios(TxtRut.Text)) {
+                        new PropietariosBLL().UpdatePropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    } else {
+                        new PropietariosBLL().InsertPropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    }
+                    new VehiculosBLL().InsertVehiculo(TxtPlaca.Text, TxtRut.Text, new DateTime(DateTime.Now.Year, 3, 31), Convert.ToDateTime(DpFechaFactura.SelectedDate), Convert.ToDateTime(DpPlazoHomologacion.SelectedDate), Convert.ToInt32(TxtValorNetoFactura.Text), Convert.ToDateTime(DpPlazoHomologacion.SelectedDate), Convert.ToInt32(TxtTasacion.Text), codigo);
+                } else {
+                    string codigo = TxtCodigo.Text + TxtAnno.Text.Substring(2, 2);
+                    SII sii = new SIIBLL().GetSII(codigo);
+                    new Datos_del_VehiculoBLL().InsertDatos(TxtPlaca.Text, TxtDigito.Text, TxtRut.Text, Convert.ToInt32(CmbTipo.SelectedValue), codigo, sii.Modelo, Convert.ToInt32(TxtAnno.Text), TxtColor.Text, TxtNroMotor.Text, TxtNroChassis.Text, 0, Convert.ToInt32(TxtTasacion.Text), Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, sii.Version);
+                    if (new PropietariosBLL().CheckPropietarios(TxtRut.Text)) {
+                        new PropietariosBLL().UpdatePropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    } else {
+                        new PropietariosBLL().InsertPropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
+                    }
+                    new VehiculosBLL().InsertVehiculo(TxtPlaca.Text, TxtRut.Text, new DateTime(DateTime.Now.Year, 3, 31), Convert.ToInt32(sii.Tasacion), codigo);
+                }
+            }
         }
     }
 }

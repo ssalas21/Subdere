@@ -19,14 +19,14 @@
         <TextBox x:Name="TxtDigito" HorizontalAlignment="Left" Height="23" Margin="114,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
         <Label Content="Codigo" HorizontalAlignment="Left" Margin="27,118,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="114,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
-        <TextBox x:Name="TxtAnno" HorizontalAlignment="Left" Height="23" Margin="114,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="TxtAnno" PreviewTextInput="NumberValidationTextBox" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="114,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" TextChanged="TxtAnno_TextChanged"/>
         <Label Content="Año" HorizontalAlignment="Left" Margin="27,145,0,0" VerticalAlignment="Top"/>
-        <Label Content="Tasación" HorizontalAlignment="Left" Margin="27,173,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tasación" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="27,173,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtTasacion" HorizontalAlignment="Left" Height="23" Margin="114,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsEnabled="False"/>
         <Label x:Name="LblFechaFactura" Content="Fecha de Factura" HorizontalAlignment="Left" Margin="475,62,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha Emisión Homologación" HorizontalAlignment="Left" Margin="475,90,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblValorFactura" Content="Valor Neto Factura" HorizontalAlignment="Left" Margin="475,146,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtValorNetoFactura" HorizontalAlignment="Left" Height="23" Margin="648,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtValorNetoFactura" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="648,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtValorNetoFactura_TextChanged"/>
         <Label Content="Número de motor" HorizontalAlignment="Left" Margin="475,175,0,0" VerticalAlignment="Top"/>
         <Label Content="Número de chassis" HorizontalAlignment="Left" Margin="475,202,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtNroMotor" HorizontalAlignment="Left" Height="23" Margin="648,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -65,5 +65,11 @@
         <TextBox x:Name="TxtDomicilio" HorizontalAlignment="Left" Height="23" Margin="114,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" Grid.RowSpan="2"/>
         <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="114,52,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="394"/>
         <ComboBox x:Name="CmbComuna" HorizontalAlignment="Left" Margin="114,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="394"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="192" Margin="542,361,0,0" Stroke="Black" VerticalAlignment="Top" Width="261" Grid.RowSpan="2"/>
+        <Label Content="Vehículos no agregados a nominas" HorizontalAlignment="Left" Margin="541,354,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <DataGrid x:Name="DgFaltantes" HorizontalAlignment="Left" Height="147" Margin="551,389,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="241"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="38" Margin="10,97,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="793"/>
+        <Button x:Name="BtnAgregar" Content="Agregar a Nomina" HorizontalAlignment="Left" Margin="45,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="241" Click="BtnAgregar_Click"/>
+        <Button x:Name="BtnCrearNomina" Content="Crear Nomina" HorizontalAlignment="Left" Margin="551,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="241"/>
     </Grid>
 </Window>

@@ -12,5 +12,10 @@ namespace Subdere.BLL {
             context = new Permisos_de_CirculacionEntities();
             return (from l in context.Tipos_de_Vehiculos orderby l.Descripcion ascending select l).Distinct().ToList();
         }
+
+        public int GetTipo(string tipo) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.Tipos_de_Vehiculos where l.Descripcion.Contains(tipo) select l).FirstOrDefault().Codigo;
+        }
     }
 }
