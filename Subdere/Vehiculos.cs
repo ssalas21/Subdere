@@ -17,20 +17,41 @@ namespace Subdere
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vehiculos()
         {
-            this.DetalleNomina = new HashSet<DetalleNomina>();
+            this.DetalleNominas = new HashSet<DetalleNominas>();
         }
     
-        public string Patente { get; set; }
+        public int IdSubdere { get; set; }
         public string Rut { get; set; }
+        public string Patente { get; set; }
         public Nullable<System.DateTime> FechaVencimiento { get; set; }
         public Nullable<System.DateTime> FechaFactura { get; set; }
-        public Nullable<System.DateTime> FechaHomologacion { get; set; }
-        public Nullable<long> ValorFactura { get; set; }
-        public Nullable<System.DateTime> FechaPlazoHomologacion { get; set; }
+        public Nullable<System.DateTime> FechaEmisionHomologacion { get; set; }
+        public Nullable<long> ValorNetoFactura { get; set; }
+        public string DigitoVerificador { get; set; }
+        public string CodigoSII { get; set; }
+        public Nullable<int> Anno { get; set; }
         public Nullable<long> Tasacion { get; set; }
-        public string Codigo { get; set; }
+        public string NroMotor { get; set; }
+        public string NroChasis { get; set; }
+        public string Color { get; set; }
+        public Nullable<int> NroAsientos { get; set; }
+        public Nullable<int> Tara { get; set; }
+        public string NombrePropietario { get; set; }
+        public string DomicilioPropietario { get; set; }
+        public string ComunaPropietario { get; set; }
+        public string TelefonoPropietario { get; set; }
+        public string SelloVerde { get; set; }
+        public Nullable<System.DateTime> FechaPlazoHomologacion { get; set; }
+        public string Modelo { get; set; }
+        public string Marca { get; set; }
+        public string TipoVehiculo { get; set; }
+        public Nullable<int> Cilindrada { get; set; }
+        public string Combustible { get; set; }
+        public string Transmision { get; set; }
+        public string Equipamiento { get; set; }
+        public Nullable<int> NroPuertas { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleNomina> DetalleNomina { get; set; }
+        public virtual ICollection<DetalleNominas> DetalleNominas { get; set; }
     }
 }

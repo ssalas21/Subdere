@@ -6,37 +6,33 @@ using System.Threading.Tasks;
 
 namespace Subdere.BLL {
     class VehiculosBLL {
-        DBSubdereEntities context;
+        DBSubdereEntities1 context;
+
+        public void InsertVehiculo(string rut, string placa, string digito, string codigoSII, int anno, int tasacion, string nroMotor, string nroChasis, string color, int asientos, string nombre, string domicilio, string comuna, string telefono, string modelo, string marca, string tipoVehiculo, int cilindrada, string combustible, string transmision, string equipamiento, int puertas) { 
+            context = new DBSubdereEntities1();
+            Vehiculos vehiculo = new Vehiculos() {Rut = rut, Anno = anno, Cilindrada = cilindrada, CodigoSII = codigoSII, Color = color, Combustible = combustible, ComunaPropietario = comuna, DigitoVerificador = digito, DomicilioPropietario = domicilio, Equipamiento = equipamiento, FechaVencimiento = new DateTime(DateTime.Now.Year, 3, 31), Marca = marca, Modelo = modelo, NombrePropietario = nombre, NroAsientos = asientos, NroChasis = nroChasis, NroMotor = nroMotor, NroPuertas = puertas, Patente = placa, SelloVerde = "Si", Tara = 0, Tasacion = tasacion, TelefonoPropietario = telefono, TipoVehiculo = tipoVehiculo, Transmision = transmision };
+            context.Vehiculos.Add(vehiculo);
+            context.SaveChanges();
+        }
+
+        public void InsertVehiculo(string rut, string placa, string digito, string codigoSII, int anno, int tasacion, string nroMotor, string nroChasis, string color, int asientos, string nombre, string domicilio, string comuna, string telefono, string modelo, string marca, string tipoVehiculo, int cilindrada, string combustible, string transmision, string equipamiento, int puertas, DateTime fechaEmisionHologacion, DateTime fechaPlazoHomologacion) {
+            context = new DBSubdereEntities1();
+            Vehiculos vehiculo = new Vehiculos() { Rut = rut, Anno = anno, Cilindrada = cilindrada, CodigoSII = codigoSII, Color = color, Combustible = combustible, ComunaPropietario = comuna, DigitoVerificador = digito, DomicilioPropietario = domicilio, Equipamiento = equipamiento, FechaVencimiento = new DateTime(DateTime.Now.Year, 3, 31), Marca = marca, Modelo = modelo, NombrePropietario = nombre, NroAsientos = asientos, NroChasis = nroChasis, NroMotor = nroMotor, NroPuertas = puertas, Patente = placa, SelloVerde = "Si", Tara = 0, Tasacion = tasacion, TelefonoPropietario = telefono, TipoVehiculo = tipoVehiculo, Transmision = transmision, FechaEmisionHomologacion = fechaEmisionHologacion, FechaPlazoHomologacion = fechaPlazoHomologacion };
+            context.Vehiculos.Add(vehiculo);
+            context.SaveChanges();
+        }
+
+        public void InsertVehiculo(string rut, string placa, string digito, string codigoSII, int anno, int tasacion, string nroMotor, string nroChasis, string color, int asientos, string nombre, string domicilio, string comuna, string telefono, string modelo, string marca, string tipoVehiculo, int cilindrada, string combustible, string transmision, string equipamiento, int puertas, DateTime fechaEmisionHologacion, DateTime fechaPlazoHomologacion, DateTime fechaFactura, int valorNetoFactura) {
+            context = new DBSubdereEntities1();
+            Vehiculos vehiculo = new Vehiculos() { Rut = rut, Anno = anno, Cilindrada = cilindrada, CodigoSII = codigoSII, Color = color, Combustible = combustible, ComunaPropietario = comuna, DigitoVerificador = digito, DomicilioPropietario = domicilio, Equipamiento = equipamiento, FechaVencimiento = new DateTime(DateTime.Now.Year, 3, 31), Marca = marca, Modelo = modelo, NombrePropietario = nombre, NroAsientos = asientos, NroChasis = nroChasis, NroMotor = nroMotor, NroPuertas = puertas, Patente = placa, SelloVerde = "Si", Tara = 0, Tasacion = tasacion, TelefonoPropietario = telefono, TipoVehiculo = tipoVehiculo, Transmision = transmision, FechaEmisionHomologacion = fechaEmisionHologacion, FechaPlazoHomologacion = fechaPlazoHomologacion, FechaFactura = fechaFactura, ValorNetoFactura = valorNetoFactura };
+            context.Vehiculos.Add(vehiculo);
+            context.SaveChanges();
+        }
 
         public List<Vehiculos> GetVehiculosOff() {
-            context = new DBSubdereEntities();
-            return (from l in context.Vehiculos where l.DetalleNomina.Any() == false select l).ToList();
+            context = new DBSubdereEntities1();
+            return (from l in context.Vehiculos where l.DetalleNominas.Any() == false select l).ToList();
         }
 
-        public List<Vehiculos> GetVehiculosOn() {
-            context = new DBSubdereEntities();
-            return (from l in context.Vehiculos where l.DetalleNomina.Any() == true select l).ToList();
-        }
-
-        public void InsertVehiculo(string patente, string rut, DateTime fechaFactura, DateTime fechaHomologacion, int valorFactura, DateTime fechaPlazoHomologacion, int tasacion, string codigo) {
-            context = new DBSubdereEntities();
-            Vehiculos aux = new Vehiculos() { Patente = patente, FechaFactura = fechaFactura, FechaHomologacion = fechaHomologacion, FechaPlazoHomologacion = fechaPlazoHomologacion, FechaVencimiento = new DateTime(DateTime.Now.Year, 3, 31), Rut = rut, ValorFactura = valorFactura };
-            context.Vehiculos.Add(aux);
-            context.SaveChanges();
-        }
-
-        public void InsertVehiculo(string patente, string rut, DateTime fechaHomologacion, DateTime fechaPlazoHomologacion, int tasacion, string codigo) {
-            context = new DBSubdereEntities();
-            Vehiculos aux = new Vehiculos() { Patente = patente, FechaHomologacion = fechaHomologacion, FechaPlazoHomologacion = fechaPlazoHomologacion, FechaVencimiento = new DateTime(DateTime.Now.Year, 3, 31), Rut = rut};
-            context.Vehiculos.Add(aux);
-            context.SaveChanges();
-        }
-
-        public void InsertVehiculo(string patente, string rut, int tasacion, string codigo) {
-            context = new DBSubdereEntities();
-            Vehiculos aux = new Vehiculos() { Patente = patente, FechaVencimiento = new DateTime(DateTime.Now.Year, 3, 31), Rut = rut };
-            context.Vehiculos.Add(aux);
-            context.SaveChanges();
-        }
     }
 }

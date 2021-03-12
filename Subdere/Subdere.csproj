@@ -233,8 +233,8 @@
     <Compile Include="DerVar.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
-    <Compile Include="DetalleNomina.cs">
-      <DependentUpon>ModelNominas.tt</DependentUpon>
+    <Compile Include="DetalleNominas.cs">
+      <DependentUpon>ModelNomina.tt</DependentUpon>
     </Compile>
     <Compile Include="Detalle_Contaminacion.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
@@ -320,20 +320,20 @@
     <Compile Include="Mensaje_Correo_Factura.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelNominas.Context.cs">
+    <Compile Include="ModelNomina.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelNominas.Context.tt</DependentUpon>
+      <DependentUpon>ModelNomina.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelNominas.cs">
+    <Compile Include="ModelNomina.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelNominas.tt</DependentUpon>
+      <DependentUpon>ModelNomina.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelNominas.Designer.cs">
+    <Compile Include="ModelNomina.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelNominas.edmx</DependentUpon>
+      <DependentUpon>ModelNomina.edmx</DependentUpon>
     </Compile>
     <Compile Include="ModelSubdere.cs">
       <AutoGen>True</AutoGen>
@@ -341,7 +341,7 @@
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
     <Compile Include="Nominas.cs">
-      <DependentUpon>ModelNominas.tt</DependentUpon>
+      <DependentUpon>ModelNomina.tt</DependentUpon>
     </Compile>
     <Compile Include="Notificacion_Actualizacion_Estructura.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
@@ -599,7 +599,7 @@
       <DependentUpon>ModelSubdere.tt</DependentUpon>
     </Compile>
     <Compile Include="Vehiculos.cs">
-      <DependentUpon>ModelNominas.tt</DependentUpon>
+      <DependentUpon>ModelNomina.tt</DependentUpon>
     </Compile>
     <Compile Include="Vehiculos_Fuera_Circulacion.cs">
       <DependentUpon>ModelSubdere.tt</DependentUpon>
@@ -656,12 +656,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelSubdere.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <EntityDeploy Include="ModelNominas.edmx">
+    <EntityDeploy Include="ModelNomina.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelNominas.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelNomina.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModelNominas.edmx.diagram">
-      <DependentUpon>ModelNominas.edmx</DependentUpon>
+    <None Include="ModelNomina.edmx.diagram">
+      <DependentUpon>ModelNomina.edmx</DependentUpon>
     </None>
     <None Include="ModelSubdere.edmx.diagram">
       <DependentUpon>ModelSubdere.edmx</DependentUpon>
@@ -688,22 +688,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBSubdere.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DBSubdere_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DBSubdere.mdf</DependentUpon>
-    </Content>
-    <Content Include="ModelNominas.Context.tt">
+    <Content Include="ModelNomina.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelNominas.edmx</DependentUpon>
-      <LastGenOutput>ModelNominas.Context.cs</LastGenOutput>
+      <DependentUpon>ModelNomina.edmx</DependentUpon>
+      <LastGenOutput>ModelNomina.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelNominas.tt">
+    <Content Include="ModelNomina.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelNominas.edmx</DependentUpon>
-      <LastGenOutput>ModelNominas.cs</LastGenOutput>
+      <DependentUpon>ModelNomina.edmx</DependentUpon>
+      <LastGenOutput>ModelNomina.cs</LastGenOutput>
     </Content>
     <Content Include="ModelSubdere.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

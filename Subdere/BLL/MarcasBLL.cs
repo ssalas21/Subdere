@@ -16,7 +16,7 @@ namespace Subdere.BLL {
 
         public Marcas GetMarcas(string marca) {
             context = new Permisos_de_CirculacionEntities();
-            return (from l in context.Marcas where l.Descripcion.Contains(marca) select l).FirstOrDefault();
+            return (from l in context.Marcas where l.Descripcion.Equals(marca) select l).FirstOrDefault();
         }
     }
 }

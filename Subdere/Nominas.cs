@@ -17,13 +17,13 @@ namespace Subdere
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nominas()
         {
-            this.DetalleNomina = new HashSet<DetalleNomina>();
+            this.DetalleNominas = new HashSet<DetalleNominas>();
         }
     
         public int IdNomina { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleNomina> DetalleNomina { get; set; }
+        public virtual ICollection<DetalleNominas> DetalleNominas { get; set; }
     }
 }

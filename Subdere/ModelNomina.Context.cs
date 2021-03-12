@@ -13,10 +13,10 @@ namespace Subdere
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBSubdereEntities : DbContext
+    public partial class DBSubdereEntities1 : DbContext
     {
-        public DBSubdereEntities()
-            : base("name=DBSubdereEntities")
+        public DBSubdereEntities1()
+            : base("name=DBSubdereEntities1")
         {
         }
     
@@ -25,7 +25,7 @@ namespace Subdere
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DetalleNomina> DetalleNomina { get; set; }
+        public virtual DbSet<DetalleNominas> DetalleNominas { get; set; }
         public virtual DbSet<Nominas> Nominas { get; set; }
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
     }

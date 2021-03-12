@@ -12,11 +12,11 @@ namespace Subdere
     using System;
     using System.Collections.Generic;
     
-    public partial class DetalleNomina
+    public partial class DetalleNominas
     {
-        public long IdDetalle { get; set; }
-        public string Patente { get; set; }
-        public int IdNomina { get; set; }
+        public int IdDetalle { get; set; }
+        public Nullable<int> IdNomina { get; set; }
+        public Nullable<int> IdSubdere { get; set; }
     
         public virtual Nominas Nominas { get; set; }
         public virtual Vehiculos Vehiculos { get; set; }
