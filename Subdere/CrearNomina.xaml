@@ -1,0 +1,22 @@
+﻿<Window x:Class="Subdere.CrearNomina"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Subdere"
+        mc:Ignorable="d"
+        Title="CrearNomina" Height="488.643" Width="800">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="275" Margin="10,18,0,0" Stroke="Black" VerticalAlignment="Top" Width="772"/>
+        <Label Content="Vehículos no agregados a nominas" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <DataGrid x:Name="DgVehiculosNominas" HorizontalAlignment="Left" Height="223" Margin="23,52,0,0" VerticalAlignment="Top" Width="747" IsReadOnly="True"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Margin="10,312,0,0" Stroke="Black" VerticalAlignment="Top" Width="351"/>
+        <Label Content="Nominas creadas" HorizontalAlignment="Left" Margin="10,298,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="136" Margin="399,312,0,0" Stroke="Black" VerticalAlignment="Top" Width="383"/>
+        <Label Content="Acciones" HorizontalAlignment="Left" Margin="399,300,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
+        <Button x:Name="BtnCrear" Content="Crear nomina con vehículos ingresados sin nomina asignada" HorizontalAlignment="Left" Margin="420,349,0,0" VerticalAlignment="Top" Width="340" Click="BtnCrear_Click"/>
+        <Button x:Name="BtnRecrear" Content="Generar nuevamente nomina con nomina seleccionada" HorizontalAlignment="Left" Margin="420,399,0,0" VerticalAlignment="Top" Width="340" Click="BtnRecrear_Click"/>
+        <DataGrid x:Name="DgNominasCreadas" HorizontalAlignment="Left" Height="108" Margin="17,329,0,0" VerticalAlignment="Top" Width="332" IsReadOnly="True"/>
+
+    </Grid>
+</Window>

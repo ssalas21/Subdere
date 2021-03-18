@@ -103,6 +103,7 @@ namespace Subdere {
             if (sii.Tipo.Equals("Suv")) tipo = 52;
             if (sii.Tipo.Equals("Van")) tipo = 53;
             mainWindow.CmbTipo.SelectedValue = tipo;
+            mainWindow.CmbMarcas.SelectedValue = new MarcasBLL().GetMarcas(sii.Marca).Codigo;
             this.Close();            
         }
     }

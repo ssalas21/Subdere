@@ -34,5 +34,10 @@ namespace Subdere.BLL {
             return (from l in context.Vehiculos where l.DetalleNominas.Any() == false select l).ToList();
         }
 
+        public List<Vehiculos> GetVehiculosNomina(Nominas aux) {
+            context = new DBSubdereEntities1();
+            return (from l in context.DetalleNominas where l.IdNomina == aux.IdNomina select l.Vehiculos).ToList();
+        }
+
     }
 }

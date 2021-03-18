@@ -245,5 +245,10 @@ namespace Subdere {
             MessageBox.Show("Carga completa");
             Inicializar();
         }
+
+        private void BtnCrearNomina_Click(object sender, RoutedEventArgs e) {
+            CrearNomina crearNomina = new CrearNomina();
+            crearNomina.Show();
+        }
     }
 }
