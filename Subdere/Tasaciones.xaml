@@ -24,15 +24,17 @@
                 <DataGridTextColumn Header="Tasación" Binding="{Binding Tasacion}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Año" HorizontalAlignment="Left" Margin="22,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtAnno" PreviewTextInput="NumberValidationTextBox" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="59,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" TextChanged="TxtAnno_TextChanged" LostFocus="TxtAnno_LostFocus"/>
-        <Label Content="Marca" HorizontalAlignment="Left" Margin="181,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtMarca" HorizontalAlignment="Left" Height="23" Margin="240,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtMarca_TextChanged"/>
-        <Label Content="Modelo" HorizontalAlignment="Left" Margin="381,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtModelo" HorizontalAlignment="Left" Height="23" Margin="460,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="TxtModelo_TextChanged"/>
-        <Label Content="Version" HorizontalAlignment="Left" Margin="661,67,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtVersion" HorizontalAlignment="Left" Height="23" Margin="720,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="TxtVersion_TextChanged"/>
+        <Label Content="Año" HorizontalAlignment="Left" Margin="220,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtAnno" PreviewTextInput="NumberValidationTextBox" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="250,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" TextChanged="TxtAnno_TextChanged" LostFocus="TxtAnno_LostFocus"/>
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="349,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtMarca" HorizontalAlignment="Left" Height="23" Margin="390,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtMarca_TextChanged"/>
+        <Label Content="Modelo" HorizontalAlignment="Left" Margin="507,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtModelo" HorizontalAlignment="Left" Height="23" Margin="557,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="TxtModelo_TextChanged"/>
+        <Label Content="Version" HorizontalAlignment="Left" Margin="736,67,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtVersion" HorizontalAlignment="Left" Height="23" Margin="784,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" TextChanged="TxtVersion_TextChanged"/>
         <Button x:Name="BtnSeleccionar" Content="Seleccionar codigo" HorizontalAlignment="Left" Margin="162,530,0,0" VerticalAlignment="Top" Width="637" Click="BtnSeleccionar_Click"/>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="82,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtCodigo_TextChanged"/>
+        <Label Content="Codigo" HorizontalAlignment="Left" Margin="30,68,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

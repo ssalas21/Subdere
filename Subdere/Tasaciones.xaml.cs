@@ -57,26 +57,44 @@ namespace Subdere {
         }
 
         public void BuscarCodigo() {
-            bool flagMarca = false, flagModelo = false, flagAnno = false, flagVersion = false;
+            bool flagMarca = false, flagModelo = false, flagAnno = false, flagVersion = false, flagCodigo = false;
             if (TxtAnno.Text.Length > 0) flagAnno = true;
             if (TxtMarca.Text.Length > 0) flagMarca = true;
             if (TxtModelo.Text.Length > 0) flagModelo = true;
             if (TxtVersion.Text.Length > 0) flagVersion = true;
-            if (flagAnno == true && flagMarca == false && flagModelo == false && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnno(Convert.ToInt32(TxtAnno.Text));
-            if (flagAnno == true && flagMarca == true && flagModelo == false && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarca(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text);
-            if (flagAnno == true && flagMarca == true && flagModelo == true && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarcaModelo(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtModelo.Text);
-            if (flagAnno == true && flagMarca == true && flagModelo == false && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarcaVersion(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtVersion.Text);
-            if (flagAnno == true && flagMarca == true && flagModelo == true && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarcaModeloVersion(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtModelo.Text, TxtVersion.Text);
-            if (flagAnno == true && flagMarca == false && flagModelo == true && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoModelo(Convert.ToInt32(TxtAnno.Text), TxtModelo.Text);
-            if (flagAnno == true && flagMarca == false && flagModelo == true && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoModeloVersion(Convert.ToInt32(TxtAnno.Text), TxtModelo.Text, TxtVersion.Text);
-            if (flagAnno == true && flagMarca == false && flagModelo == false && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoVersion(Convert.ToInt32(TxtAnno.Text), TxtVersion.Text);
-            if (flagAnno == false && flagMarca == true && flagModelo == false && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarca(TxtMarca.Text);
-            if (flagAnno == false && flagMarca == true && flagModelo == true && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarcaModelo(TxtMarca.Text, TxtModelo.Text);
-            if (flagAnno == false && flagMarca == true && flagModelo == true && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarcaModeloVersion(TxtMarca.Text, TxtModelo.Text, TxtVersion.Text);
-            if (flagAnno == false && flagMarca == false && flagModelo == true && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoModelo(TxtModelo.Text);
-            if (flagAnno == false && flagMarca == false && flagModelo == true && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoModeloVersion(TxtModelo.Text, TxtVersion.Text);
-            if (flagAnno == false && flagMarca == false && flagModelo == false && flagVersion == true) DgLivianos.ItemsSource = new SIIBLL().FindCodigoVersion(TxtVersion.Text);
-            if (flagAnno == false && flagMarca == false && flagModelo == false && flagVersion == false) DgLivianos.ItemsSource = new SIIBLL().GetSII();
+            if (TxtCodigo.Text.Length > 0) flagCodigo = true;
+            if (flagAnno == false && flagMarca == false && flagModelo == false && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoVersion(TxtVersion.Text);
+            if (flagAnno == false && flagMarca == false && flagModelo == true && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoModelo(TxtModelo.Text);
+            if (flagAnno == false && flagMarca == true && flagModelo == false && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarca(TxtMarca.Text);
+            if (flagAnno == false && flagMarca == false && flagModelo == false && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindOnlyCode(TxtCodigo.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == false && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnno(Convert.ToInt32(TxtAnno.Text));
+            if (flagAnno == false && flagMarca == false && flagModelo == true && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoModeloVersion(TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == false && flagMarca == true && flagModelo == false && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarcaVersion(TxtMarca.Text, TxtVersion.Text);
+            if (flagAnno == false && flagMarca == false && flagModelo == false && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeVersion(TxtCodigo.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == false && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoVersion(Convert.ToInt32(TxtAnno.Text), TxtVersion.Text);
+            if (flagAnno == false && flagMarca == true && flagModelo == true && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarcaModelo(TxtMarca.Text, TxtModelo.Text);
+            if (flagAnno == false && flagMarca == false && flagModelo == true && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeModel(TxtCodigo.Text, TxtModelo.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == true && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoModelo(Convert.ToInt32(TxtAnno.Text), TxtModelo.Text);
+            if (flagAnno == false && flagMarca == true && flagModelo == false && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeMarca(TxtCodigo.Text, TxtMarca.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == false && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarca(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == false && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnno(TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text));
+            if (flagAnno == false && flagMarca == true && flagModelo == true && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoMarcaModeloVersion(TxtMarca.Text, TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == false && flagMarca == false && flagModelo == true && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeModeloVersion(TxtCodigo.Text, TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == true && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoModeloVersion(Convert.ToInt32(TxtAnno.Text), TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == false && flagMarca == true && flagModelo == false && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeMarcaVersion(TxtCodigo.Text, TxtMarca.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == false && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarcaVersion(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == false && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnnoVersion(TxtCodigo.Text, TxtVersion.Text, Convert.ToInt32(TxtAnno.Text));
+            if (flagAnno == false && flagMarca == true && flagModelo == true && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeMarcaModelo(TxtCodigo.Text, TxtMarca.Text, TxtModelo.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == true && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarcaModelo(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtModelo.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == true && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnnoModelo(TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), TxtModelo.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == false && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeMarcaAnno(TxtCodigo.Text, TxtMarca.Text, Convert.ToInt32(TxtAnno.Text));
+            if (flagAnno == false && flagMarca == true && flagModelo == true && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeMarcaModeloVersion(TxtCodigo.Text, TxtMarca.Text, TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == true && flagVersion == true && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().FindCodigoAnnoMarcaModeloVersion(Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == false && flagModelo == true && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnnoModeloVersion(TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), TxtModelo.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == false && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnnoMarcaVersion(TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtVersion.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == true && flagVersion == false && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnnoMarcaModelo(TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtModelo.Text);
+            if (flagAnno == true && flagMarca == true && flagModelo == true && flagVersion == true && flagCodigo == true) DgLivianos.ItemsSource = new SIIBLL().FindCodeAnnoMarcaModeloVersion(TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), TxtMarca.Text, TxtModelo.Text, TxtVersion.Text);
+                if (flagAnno == false && flagMarca == false && flagModelo == false && flagVersion == false && flagCodigo == false) DgLivianos.ItemsSource = new SIIBLL().GetSII();
             DgLivianos.SelectedIndex = 0;
         }
 
@@ -104,7 +122,11 @@ namespace Subdere {
             if (sii.Tipo.Equals("Van")) tipo = 53;
             mainWindow.CmbTipo.SelectedValue = tipo;
             mainWindow.CmbMarcas.SelectedValue = new MarcasBLL().GetMarcas(sii.Marca).Codigo;
-            this.Close();            
+            this.Close();
+        }
+
+        private void TxtCodigo_TextChanged(object sender, TextChangedEventArgs e) {
+            BuscarCodigo();
         }
     }
 }

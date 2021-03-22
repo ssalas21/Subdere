@@ -10,7 +10,7 @@ namespace Subdere.BLL {
     class Connection {
 
         public void Coneccion(string query) {
-            string strConn = "Data Source=192.168.1.25;Database=Permisos_de_Circulacion;User Id=sa;Password=PCHNCV:2006-10;";
+            string strConn = "Data Source=192.168.1.1;Database=Permisos_de_Circulacion;User Id=sa;Password=PCHNCV:2006-10;";
             SqlConnection sqlConnection = new SqlConnection(strConn);
             SqlCommand sqlCommand = new SqlCommand();
             try {

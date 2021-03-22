@@ -14,8 +14,8 @@ namespace Subdere.BLL {
         }
 
         public SII GetSII(string codigo) {
-            context = new Permisos_de_CirculacionEntities();            
-            return (from l in context.SII where l.Codigo == codigo select l).FirstOrDefault();            
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo == codigo select l).FirstOrDefault();
         }
 
         public bool CheckSII(string codigo) {
@@ -30,7 +30,7 @@ namespace Subdere.BLL {
         }
 
         public List<SII> FindCodigoAnno(int anno) {
-            context = new Permisos_de_CirculacionEntities();            
+            context = new Permisos_de_CirculacionEntities();
             return (from l in context.SII where l.Año_Fabricacion == anno select l).ToList();
         }
 
@@ -102,6 +102,87 @@ namespace Subdere.BLL {
         public List<SII> FindCodigoModeloVersion(string modelo, string version) {
             context = new Permisos_de_CirculacionEntities();
             return (from l in context.SII where l.Modelo.Contains(modelo) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindOnlyCode(string code) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) select l).ToList();
+        }
+
+        public List<SII> FindCodeVersion(string code, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindCodeModel(string code, string model) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Modelo.Contains(model) select l).ToList();
+        }
+
+        public List<SII> FindCodeMarca(string code, string marca) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Marca.Contains(marca) select l).ToList();
+        }
+
+        public List<SII> FindCodeAnno(string code, int anno) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Año_Fabricacion == anno select l).ToList();
+        }
+
+        public List<SII> FindCodeModeloVersion(string code, string modelo, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Modelo.Contains(modelo) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindCodeMarcaVersion(string code, string marca, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Marca.Contains(marca) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindCodeAnnoVersion(string code, string version, int anno) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Version.Contains(version) && l.Año_Fabricacion == anno select l).ToList();
+        }
+
+        public List<SII> FindCodeMarcaModelo(string code, string marca, string modelo) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Marca.Contains(marca) && l.Modelo.Contains(modelo) select l).ToList();
+        }
+
+        public List<SII> FindCodeAnnoModelo(string code, int anno, string modelo) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Año_Fabricacion == anno && l.Modelo.Contains(modelo) select l).ToList();
+        }
+
+        public List<SII> FindCodeMarcaAnno(string code, string marca, int anno) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Marca.Contains(marca) && l.Año_Fabricacion == anno select l).ToList();
+        }
+
+        public List<SII> FindCodeMarcaModeloVersion(string code, string marca, string modelo, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Marca.Contains(marca) && l.Modelo.Contains(modelo) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindCodeAnnoModeloVersion(string code, int anno, string modelo, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Año_Fabricacion == anno && l.Modelo.Contains(modelo) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindCodeAnnoMarcaVersion(string code, int anno, string marca, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Año_Fabricacion == anno && l.Marca.Contains(marca) && l.Version.Contains(version) select l).ToList();
+        }
+
+        public List<SII> FindCodeAnnoMarcaModelo(string code, int anno, string marca, string modelo) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Año_Fabricacion == anno && l.Marca.Contains(marca) && l.Modelo.Contains(modelo) select l).ToList();
+
+        }
+
+        public List<SII> FindCodeAnnoMarcaModeloVersion(string code, int anno, string marca, string modelo, string version) {
+            context = new Permisos_de_CirculacionEntities();
+            return (from l in context.SII where l.Codigo.Contains(code) && l.Año_Fabricacion == anno && l.Marca.Contains(marca) && l.Modelo.Contains(modelo) && l.Version.Contains(version) select l).ToList();
         }
 
     }

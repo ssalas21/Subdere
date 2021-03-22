@@ -46,7 +46,7 @@ namespace Subdere {
             DpPlazoHomologacion.SelectedDate = null;
             TxtValorNetoFactura.Text = "";
             TxtNroChassis.Text = "";
-            TxtNroMotor.Text = "";            
+            TxtNroMotor.Text = "";
             TxtCombustible.Text = "";
             TxtEquipamiento.Text = "";
             TxtNombre.Text = "";
@@ -144,7 +144,12 @@ namespace Subdere {
                 TxtNombre.Text = propietario.Nombre;
                 TxtDomicilio.Text = propietario.Direccion;
                 TxtTelefono.Text = propietario.Telefono;
-                CmbComuna.SelectedValue = new ComunasBLL().GetComunas(propietario.Comuna).Codigo;
+                try {
+                    CmbComuna.SelectedValue = new ComunasBLL().GetComunas(propietario.Comuna).Codigo;
+                } catch (Exception ex) {
+                    CmbComuna.SelectedIndex = 220;
+                    MessageBox.Show("Comuna mal digitada en Base de datos, por favor corregir");
+                }
             } else {
                 if (TxtRut.Text.IndexOf("-") < 0) {
                     MessageBox.Show("Ingrese un rut valido, con el siguiente formato XXXXXXXX-X");
@@ -162,19 +167,21 @@ namespace Subdere {
         }
 
         private void TxtAnno_TextChanged(object sender, TextChangedEventArgs e) {
-            if (Convert.ToInt32(TxtAnno.Text) == DateTime.Now.Year) {
-                TxtTasacion.IsEnabled = true;
-                LblFechaFactura.IsEnabled = true;
-                LblValorFactura.IsEnabled = true;
-                DpFechaFactura.IsEnabled = true;
-                DpFechaEmisionHomologacion.IsEnabled = true;
-                TxtValorNetoFactura.IsEnabled = true;
-            } else {
-                LblFechaFactura.IsEnabled = false;
-                LblValorFactura.IsEnabled = false;
-                DpFechaFactura.IsEnabled = false;
-                TxtValorNetoFactura.IsEnabled = false;
-                TxtTasacion.IsEnabled = false;
+            if (TxtAnno.Text.Length == 4) {
+                if (Convert.ToInt32(TxtAnno.Text) == DateTime.Now.Year) {
+                    TxtTasacion.IsEnabled = true;
+                    LblFechaFactura.IsEnabled = true;
+                    LblValorFactura.IsEnabled = true;
+                    DpFechaFactura.IsEnabled = true;
+                    DpFechaEmisionHomologacion.IsEnabled = true;
+                    TxtValorNetoFactura.IsEnabled = true;
+                } else {
+                    LblFechaFactura.IsEnabled = false;
+                    LblValorFactura.IsEnabled = false;
+                    DpFechaFactura.IsEnabled = false;
+                    TxtValorNetoFactura.IsEnabled = false;
+                    TxtTasacion.IsEnabled = false;
+                }
             }
         }
 
@@ -214,12 +221,12 @@ namespace Subdere {
                         new VehiculosBLL().InsertVehiculo(TxtRut.Text, TxtPlaca.Text, TxtDigito.Text, TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), Convert.ToInt32(TxtTasacion.Text), TxtNroMotor.Text, TxtNroChassis.Text, TxtColor.Text, 0, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text, TxtModelo.Text, CmbMarcas.Text, CmbTipo.Text, Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, 0, DpFechaEmisionHomologacion.SelectedDate.Value, DpPlazoHomologacion.SelectedDate.Value);
                     } else {
                         new VehiculosBLL().InsertVehiculo(TxtRut.Text, TxtPlaca.Text, TxtDigito.Text, TxtCodigo.Text, Convert.ToInt32(TxtAnno.Text), Convert.ToInt32(TxtTasacion.Text), TxtNroMotor.Text, TxtNroChassis.Text, TxtColor.Text, 0, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text, TxtModelo.Text, CmbMarcas.Text, CmbTipo.Text, Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, 0);
-                    }                    
+                    }
                 }
             } else {
                 if (Convert.ToInt32(TxtAnno.Text) == 2021) {
                     string codigo = TxtCodigo.Text + TxtAnno.Text.Substring(2, 2);
-                    new Datos_del_VehiculoBLL().InsertDatos(TxtPlaca.Text, TxtDigito.Text, TxtRut.Text, Convert.ToInt32(CmbTipo.SelectedValue), codigo, TxtModelo.Text, Convert.ToInt32(TxtAnno.Text), TxtColor.Text, TxtNroMotor.Text, TxtNroChassis.Text, 0, Convert.ToInt32(TxtTasacion.Text), Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, " " , Convert.ToInt32(CmbMarcas.SelectedValue));
+                    new Datos_del_VehiculoBLL().InsertDatos(TxtPlaca.Text, TxtDigito.Text, TxtRut.Text, Convert.ToInt32(CmbTipo.SelectedValue), codigo, TxtModelo.Text, Convert.ToInt32(TxtAnno.Text), TxtColor.Text, TxtNroMotor.Text, TxtNroChassis.Text, 0, Convert.ToInt32(TxtTasacion.Text), Convert.ToInt32(TxtCilindrada.Text), TxtCombustible.Text, TxtTransmision.Text, TxtEquipamiento.Text, " ", Convert.ToInt32(CmbMarcas.SelectedValue));
                     if (new PropietariosBLL().CheckPropietarios(TxtRut.Text)) {
                         new PropietariosBLL().UpdatePropietario(TxtRut.Text, TxtNombre.Text, TxtDomicilio.Text, CmbComuna.Text, TxtTelefono.Text);
                     } else {
@@ -249,6 +256,10 @@ namespace Subdere {
         private void BtnCrearNomina_Click(object sender, RoutedEventArgs e) {
             CrearNomina crearNomina = new CrearNomina();
             crearNomina.Show();
+        }
+
+        private void TxtTasacion_TextChanged(object sender, TextChangedEventArgs e) {
+            TxtTasacion.Text = Convert.ToInt32(TxtTasacion.Text).ToString();
         }
     }
 }

@@ -22,7 +22,7 @@
         <TextBox x:Name="TxtAnno" PreviewTextInput="NumberValidationTextBox" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="114,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" TextChanged="TxtAnno_TextChanged"/>
         <Label Content="Año" HorizontalAlignment="Left" Margin="27,145,0,0" VerticalAlignment="Top"/>
         <Label Content="Tasación" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="27,173,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtTasacion" HorizontalAlignment="Left" Height="23" Margin="114,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsEnabled="False"/>
+        <TextBox x:Name="TxtTasacion" HorizontalAlignment="Left" Height="23" Margin="114,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsEnabled="False" TextChanged="TxtTasacion_TextChanged"/>
         <Label x:Name="LblFechaFactura" Content="Fecha de Factura" HorizontalAlignment="Left" Margin="475,62,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha Emisión Homologación" HorizontalAlignment="Left" Margin="475,90,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblValorFactura" Content="Valor Neto Factura" HorizontalAlignment="Left" Margin="475,146,0,0" VerticalAlignment="Top"/>
